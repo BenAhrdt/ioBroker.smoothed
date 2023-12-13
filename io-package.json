@@ -84,8 +84,7 @@
 		]
 	},
 	"native": {
-		"option1": true,
-		"option2": "42"
+		"statesTable": []
 	},
 	"objects": [],
 	"instanceObjects": []
