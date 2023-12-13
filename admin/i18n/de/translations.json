@@ -1,5 +1,10 @@
 {
-	"smoothed adapter settings": "Adaptereinstellungen für smoothed",
-	"option1": "Option 1",
-	"option2": "Option 2"
+    "smoothed adapter settings": "Adaptereinstellungen für geglättet",
+    "mainInformations": "Hauptinformationen",
+    "mainInformationText": "Mit diesem Adapter können Sie Ihre Signale nach einer ausgewählten Formel glätten. Sie können eine ID auch mehrmals auswählen, um sie mit einer anderen Formel zu glätten.",
+    "configuration": "Konfiguration",
+    "refreshRate": "Aktualisierungsrate",
+    "refreshRateTooltip": "Hier können Sie die Aktualisierungsrate einstellen, mit der die Betriebsstunden aktualisiert werden sollen",
+    "type": "Typ",
+    "typeTooltip": "Hier können Sie den gewünschten Typ zur Glättung des Signals einstellen"
 }

@@ -1,5 +1,10 @@
 {
-	"smoothed adapter settings": "Paramètres d'adaptateur pour smoothed",
-	"option1": "Option 1",
-	"option2": "Option 2"
+    "smoothed adapter settings": "Paramètres de l'adaptateur pour lissé",
+    "mainInformations": "informations principales",
+    "mainInformationText": "Avec cet adaptateur vous pouvez lisser vos signaux selon une formule sélectionnée. Vous pouvez également sélectionner un identifiant plusieurs fois pour le lisser avec une formule différente.",
+    "configuration": "configuration",
+    "refreshRate": "fréquence de rafraîchissement",
+    "refreshRateTooltip": "ici, vous pouvez définir le taux de rafraîchissement avec lequel les heures de fonctionnement doivent être mises à jour",
+    "type": "taper",
+    "typeTooltip": "ici, vous pouvez définir le type souhaité pour lisser le signal"
 }

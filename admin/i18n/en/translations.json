@@ -1,5 +1,10 @@
 {
 	"smoothed adapter settings": "Adapter settings for smoothed",
-	"option1": "option1",
-	"option2": "option2"
+	"mainInformations": "main informations",
+	"mainInformationText": "With this adapter you can smooth your signals according to a selected fomula. Also you can select one id more than one time to smooth it with different formula.",
+	"configuration": "configuration",
+	"refreshRate": "refresh rate",
+	"refreshRateTooltip": "here you can set the refresh rate, with which the operating hours should be updated",
+	"type": "type",
+	"typeTooltip": "here you can set the desired type for smooth the signal"
 }

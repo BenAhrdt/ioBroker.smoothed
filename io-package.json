@@ -1,91 +1,92 @@
 {
-	"common": {
-		"name": "smoothed",
-		"version": "0.0.1",
-		"news": {
-			"0.0.1": {
-				"en": "initial release",
-				"de": "Erstveröffentlichung",
-				"ru": "Начальная версия",
-				"pt": "lançamento inicial",
-				"nl": "Eerste uitgave",
-				"fr": "Première version",
-				"it": "Versione iniziale",
-				"es": "Versión inicial",
-				"pl": "Pierwsze wydanie",
-				"uk": "Початкова версія",
-				"zh-cn": "首次出版"
-			}
-		},
-		"title": "smoothed",
-		"titleLang": {
-			"en": "smoothed",
-			"de": "geglättet",
-			"ru": "сглаженный",
-			"pt": "suavizado",
-			"nl": "gladgestreken",
-			"fr": "lissé",
-			"it": "levigato",
-			"es": "alisado",
-			"pl": "wygładzona",
-			"uk": "згладжений",
-			"zh-cn": "平滑的"
-		},
-		"desc": {
-			"en": "smoothes selected signas according to a selected function",
-			"de": "Glättet ausgewählte Signale gemäß einer ausgewählten Funktion",
-			"ru": "сглаживает выбранные сигналы в соответствии с выбранной функцией",
-			"pt": "suaviza os sinais selecionados de acordo com uma função selecionada",
-			"nl": "verzacht geselecteerde signalen volgens een geselecteerde functie",
-			"fr": "lisse les signaux sélectionnés selon une fonction sélectionnée",
-			"it": "attenua i segnali selezionati in base alla funzione selezionata",
-			"es": "suaviza las señales seleccionadas según una función seleccionada",
-			"pl": "wygładza wybrane znaki zgodnie z wybraną funkcją",
-			"uk": "згладжує вибрані сигнали відповідно до вибраної функції",
-			"zh-cn": "根据选定的函数平滑选定的信号"
-		},
-		"authors": [
-			"Ben1983 <bsahrdt@gmail.com>"
-		],
-		"keywords": [
-			"smooth",
-			"average",
-			"pt1",
-			"lowpass",
-			"filter",
-			"mittelwert",
-			"tiefpass"
-		],
-		"license": "MIT",
-		"platform": "Javascript/Node.js",
-		"main": "main.js",
-		"icon": "smoothed.png",
-		"enabled": true,
-		"extIcon": "https://raw.githubusercontent.com/BenAhrdt/ioBroker.smoothed/main/admin/smoothed.png",
-		"readme": "https://github.com/BenAhrdt/ioBroker.smoothed/blob/main/README.md",
-		"loglevel": "info",
-		"mode": "daemon",
-		"type": "logic",
-		"compact": true,
-		"connectionType": "local",
-		"dataSource": "push",
-		"adminUI": {
-			"config": "json"
-		},
-		"dependencies": [
-			{
-				"js-controller": ">=3.3.22"
-			}
-		],
-		"globalDependencies": [
-			{
-				"admin": ">=5.1.13"
-			}
-		]
-	},
-	"native": {
-		"statesTable": []
-	},
-	"objects": [],
-	"instanceObjects": []
+    "common": {
+        "name": "smoothed",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "uk": "Початкова версія",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "smoothed",
+        "titleLang": {
+            "en": "smoothed",
+            "de": "geglättet",
+            "ru": "сглаженный",
+            "pt": "suavizado",
+            "nl": "gladgestreken",
+            "fr": "lissé",
+            "it": "levigato",
+            "es": "alisado",
+            "pl": "wygładzona",
+            "uk": "згладжений",
+            "zh-cn": "平滑的"
+        },
+        "desc": {
+            "en": "smoothes selected signas according to a selected function",
+            "de": "Glättet ausgewählte Signale gemäß einer ausgewählten Funktion",
+            "ru": "сглаживает выбранные сигналы в соответствии с выбранной функцией",
+            "pt": "suaviza os sinais selecionados de acordo com uma função selecionada",
+            "nl": "verzacht geselecteerde signalen volgens een geselecteerde functie",
+            "fr": "lisse les signaux sélectionnés selon une fonction sélectionnée",
+            "it": "attenua i segnali selezionati in base alla funzione selezionata",
+            "es": "suaviza las señales seleccionadas según una función seleccionada",
+            "pl": "wygładza wybrane znaki zgodnie z wybraną funkcją",
+            "uk": "згладжує вибрані сигнали відповідно до вибраної функції",
+            "zh-cn": "根据选定的函数平滑选定的信号"
+        },
+        "authors": [
+            "Ben1983 <bsahrdt@gmail.com>"
+        ],
+        "keywords": [
+            "smooth",
+            "average",
+            "pt1",
+            "lowpass",
+            "filter",
+            "mittelwert",
+            "tiefpass"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "smoothed.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/BenAhrdt/ioBroker.smoothed/main/admin/smoothed.png",
+        "readme": "https://github.com/BenAhrdt/ioBroker.smoothed/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "logic",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "push",
+        "adminUI": {
+            "config": "json"
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=3.3.22"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.1.13"
+            }
+        ]
+    },
+    "native": {
+        "refreshRate": 2000,
+        "statesTable": []
+    },
+    "objects": [],
+    "instanceObjects": []
 }

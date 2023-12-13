@@ -1,5 +1,10 @@
 {
-	"smoothed adapter settings": "Ustawienia adaptera dla smoothed",
-	"option1": "opcja 1",
-	"option2": "Opcja 2"
+    "smoothed adapter settings": "Ustawienia adaptera dla wygładzonych",
+    "mainInformations": "główne informacje",
+    "mainInformationText": "Za pomocą tego adaptera możesz wygładzić sygnały według wybranej formuły. Możesz także wybrać jeden identyfikator więcej niż jeden raz, aby wygładzić go inną formułą.",
+    "configuration": "konfiguracja",
+    "refreshRate": "częstotliwość odświeżania",
+    "refreshRateTooltip": "tutaj możesz ustawić częstotliwość odświeżania, z jaką mają być aktualizowane godziny pracy",
+    "type": "typ",
+    "typeTooltip": "tutaj możesz ustawić żądany typ w celu wygładzenia sygnału"
 }

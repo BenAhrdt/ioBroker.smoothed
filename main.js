@@ -24,6 +24,9 @@ class Smoothed extends utils.Adapter {
 		// this.on("objectChange", this.onObjectChange.bind(this));
 		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
+
+		// Active states to smooth
+		this.activeStates = {};
 	}
 
 	/**
@@ -31,9 +34,25 @@ class Smoothed extends utils.Adapter {
 	 */
 	async onReady() {
 		// Initialize your adapter here
-
+		this.createInternalValues();
 	}
 
+	createInternalValues(){
+		for(const element of this.config.statesTable){
+			//this.log.info(JSON.stringify(element));
+			// Check for id
+			if(element.id){
+				// check if there isnt an element
+				if(!this.activeStates[element.id]){
+					this.activeStates[element.id] ={};
+				}
+				// generates the name element
+				this.activeStates[element.id][element.name] = {};
+				this.activeStates[element.id][element.name].type = element.type;
+			}
+		}
+		this.log.info(JSON.stringify(this.activeStates));
+	}
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
 	 * @param {() => void} callback

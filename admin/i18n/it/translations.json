@@ -1,5 +1,10 @@
 {
-	"smoothed adapter settings": "Impostazioni dell'adattatore per smoothed",
-	"option1": "opzione 1",
-	"option2": "opzione 2"
+    "smoothed adapter settings": "Impostazioni dell'adattatore per levigato",
+    "mainInformations": "informazioni principali",
+    "mainInformationText": "Con questo adattatore puoi attenuare i tuoi segnali secondo una formula selezionata. Inoltre puoi selezionare un ID più di una volta per uniformarlo con una formula diversa.",
+    "configuration": "configurazione",
+    "refreshRate": "frequenza di aggiornamento",
+    "refreshRateTooltip": "qui è possibile impostare la frequenza di aggiornamento con la quale devono essere aggiornate le ore di funzionamento",
+    "type": "tipo",
+    "typeTooltip": "qui è possibile impostare il tipo desiderato per uniformare il segnale"
 }

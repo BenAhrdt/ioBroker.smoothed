@@ -1,5 +1,10 @@
 {
-	"smoothed adapter settings": "Adapterinstellingen voor smoothed",
-	"option1": "Optie 1",
-	"option2": "Optie 2"
+    "smoothed adapter settings": "Adapterinstellingen voor vloeiend",
+    "mainInformations": "belangrijkste informatie",
+    "mainInformationText": "Met deze adapter kunt u uw signalen afvlakken volgens een geselecteerde formule. U kunt ook één ID meer dan één keer selecteren om deze met een andere formule glad te strijken.",
+    "configuration": "configuratie",
+    "refreshRate": "vernieuwingsfrequentie",
+    "refreshRateTooltip": "hier kunt u de vernieuwingsfrequentie instellen, waarmee de bedrijfsuren moeten worden bijgewerkt",
+    "type": "type",
+    "typeTooltip": "hier kunt u het gewenste type instellen voor een vloeiender signaal"
 }

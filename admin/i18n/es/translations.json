@@ -1,5 +1,10 @@
 {
-	"smoothed adapter settings": "Ajustes del adaptador para smoothed",
-	"option1": "Opción 1",
-	"option2": "opcion 2"
+    "smoothed adapter settings": "Configuración del adaptador para suavizado",
+    "mainInformations": "informaciones principales",
+    "mainInformationText": "Con este adaptador podrás suavizar tus señales según una fórmula seleccionada. También puede seleccionar una identificación más de una vez para suavizarla con una fórmula diferente.",
+    "configuration": "configuración",
+    "refreshRate": "frecuencia de actualización",
+    "refreshRateTooltip": "aquí puede configurar la frecuencia de actualización con la que se deben actualizar las horas de funcionamiento",
+    "type": "tipo",
+    "typeTooltip": "aquí puede configurar el tipo deseado para suavizar la señal"
 }
