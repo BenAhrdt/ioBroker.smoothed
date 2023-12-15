@@ -37,11 +37,6 @@ class Smoothed extends utils.Adapter {
 
 		// Active states to smooth
 		this.activeStates = {};
-
-		// Name of id Datafields
-		this.idDatafields = {
-			dataOfId: "dataOfId"
-		};
 	}
 
 	/**
@@ -103,18 +98,15 @@ class Smoothed extends utils.Adapter {
 				if(resultObject && resultState){
 					if(!this.activeStates[element.id]){
 						this.activeStates[element.id] = {};
-						this.activeStates[element.id][this.idDatafields.dataOfId] = {
-							currentValue: resultState.val,
-							lastValue: resultState.val,
-							currentTimestamp: resultState.ts,
-							lastTimestamp: resultState.ts
-						};
 					}
 					// Assigne values from state
 					this.activeStates[element.id][element.name] = {};
 					this.activeStates[element.id][element.name].smoothed = resultState.val;
 					this.activeStates[element.id][element.name].sourceId = element.id;
+					this.activeStates[element.id][element.name].currentValue = resultState.val;
+					this.activeStates[element.id][element.name].lastValue = resultState.val;
 					this.activeStates[element.id][element.name].channelName = element.name;
+					this.activeStates[element.id][element.name].lastChangeTimestamp = resultState.ts;
 
 					// Assigne values from object
 					// @ts-ignore
@@ -146,33 +138,31 @@ class Smoothed extends utils.Adapter {
 		for(const idName in this.activeStates){
 			const id = this.activeStates[idName];
 			for(const channelName in id){
-				if(channelName !== this.idDatafields.dataOfId){
-					const channel = id[channelName];
-					// create State for the name
-					await this.setObjectNotExistsAsync(this.generateInternalChannel(channelName),{
-						type: "channel",
-						common: {
-							name: channelName,
-							desc: channel.sourceId
-						},
-						native: {},
-					});
+				const channel = id[channelName];
+				// create State for the name
+				await this.setObjectNotExistsAsync(this.generateInternalChannel(channelName),{
+					type: "channel",
+					common: {
+						name: channelName,
+						desc: channel.sourceId
+					},
+					native: {},
+				});
 
-					// create State for the name
-					await this.setObjectNotExistsAsync(`${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.smoothed}`,{
-						type: "state",
-						common: {
-							name: "smoothed value",
-							type: "number",
-							role: "value",
-							read: true,
-							write: false,
-							unit: channel.unit,
-							def: this.activeStates[idName][this.idDatafields.dataOfId].currentValue
-						},
-						native: {},
-					});
-				}
+				// create State for the name
+				await this.setObjectNotExistsAsync(`${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.smoothed}`,{
+					type: "state",
+					common: {
+						name: "smoothed value",
+						type: "number",
+						role: "value",
+						read: true,
+						write: false,
+						unit: channel.unit,
+						def: channel.lastValue
+					},
+					native: {},
+				});
 			}
 			this.subscribeForeignStatesAsync(idName);
 		}
@@ -191,22 +181,18 @@ class Smoothed extends utils.Adapter {
 	 * ***************************************************************/
 
 	async doChangeProcess(id,state){
-		//Assign current state to active id
-		this.activeStates[id][this.idDatafields.dataOfId].currentValue = state.val;
-		this.activeStates[id][this.idDatafields.dataOfId].currentTimestamp = state.ts;
-
 		//Check internal channels for output, or just calculation
 		for(const channelName in this.activeStates[id]){
-			if(channelName !== this.idDatafields.dataOfId){
-				const channel = this.activeStates[id][channelName];
+			const channel = this.activeStates[id][channelName];
+			channel.currentValue = state.val;
+			channel.currentTimestamp = state.ts;
 // Hier prüfen, ob auch ausgegeben werden soll, oder nur berechnet.
-				this.outputSmoothedValues(channel);
-			}
+			this.outputSmoothedValues(channel);
+
+			channel.lastValue = state.val;
+			channel.lastTimestamp = state.ts;
 		}
 
-		// Assign last State to active id
-		this.activeStates[id][this.idDatafields.dataOfId].lastValue = state.val;
-		this.activeStates[id][this.idDatafields.dataOfId].lastTimestamp = state.ts;
 	}
 	/******************************************************************
 	 * ****************************************************************
@@ -222,7 +208,7 @@ class Smoothed extends utils.Adapter {
 	 * ***************************************************************/
 
 	async calculateSmoothedValue(channel){
-		channel.smoothed = this.activeStates[channel.sourceId][this.idDatafields.dataOfId].currentValue;
+		channel.smoothed = channel.currentValue;
 	}
 	/******************************************************************
 	 * ****************************************************************
