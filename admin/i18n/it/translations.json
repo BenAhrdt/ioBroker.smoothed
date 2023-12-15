@@ -4,7 +4,12 @@
     "mainInformationText": "Con questo adattatore puoi attenuare i tuoi segnali secondo una formula selezionata. Inoltre puoi selezionare un ID più di una volta per uniformarlo con una formula diversa.",
     "configuration": "configurazione",
     "refreshRate": "frequenza di aggiornamento",
-    "refreshRateTooltip": "qui è possibile impostare la frequenza di aggiornamento con la quale devono essere aggiornate le ore di funzionamento",
+    "refreshRateTooltip": "qui è possibile impostare la frequenza di aggiornamento con cui aggiornare il risultato livellato",
     "type": "tipo",
-    "typeTooltip": "qui è possibile impostare il tipo desiderato per uniformare il segnale"
+    "calculationType": "tipo di calcolo",
+    "typeTooltip": "qui è possibile impostare il tipo desiderato per uniformare il segnale",
+    "smoothtimePositive": "tempo fluido positivo",
+    "smoothtimePositiveTooltip": "tempo fluido per cambiamenti positivi",
+    "smoothtimeNegative": "tempo regolare negativo",
+    "smoothtimeNegativeTooltip": "smoothtime per cambiamenti negativi"
 }

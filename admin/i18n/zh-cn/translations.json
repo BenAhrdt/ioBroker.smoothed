@@ -4,7 +4,12 @@
     "mainInformationText": "使用此适配器，您可以根据选定的公式平滑信号。您也可以多次选择一个 ID，以使用不同的公式对其进行平滑处理。",
     "configuration": "配置",
     "refreshRate": "刷新率",
-    "refreshRateTooltip": "您可以在此处设置刷新率，以更新运行时间",
+    "refreshRateTooltip": "您可以在此处设置刷新率，以更新平滑结果",
     "type": "类型",
-    "typeTooltip": "您可以在此处设置所需的类型以平滑信号"
+    "calculationType": "计算类型",
+    "typeTooltip": "您可以在此处设置所需的类型以平滑信号",
+    "smoothtimePositive": "平滑时间正值",
+    "smoothtimePositiveTooltip": "积极改变的平稳时间",
+    "smoothtimeNegative": "平滑时间为负",
+    "smoothtimeNegativeTooltip": "负面变化的平滑时间"
 }

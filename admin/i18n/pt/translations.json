@@ -4,7 +4,12 @@
     "mainInformationText": "Com este adaptador você pode suavizar seus sinais de acordo com uma fórmula selecionada. Além disso, você pode selecionar um ID mais de uma vez para suavizá-lo com fórmulas diferentes.",
     "configuration": "configuração",
     "refreshRate": "taxa de atualização",
-    "refreshRateTooltip": "aqui você pode definir a taxa de atualização com a qual o horário de funcionamento deve ser atualizado",
+    "refreshRateTooltip": "aqui você pode definir a taxa de atualização com a qual o resultado suavizado deve ser atualizado",
     "type": "tipo",
-    "typeTooltip": "aqui você pode definir o tipo desejado para suavizar o sinal"
+    "calculationType": "tipo de cálculo",
+    "typeTooltip": "aqui você pode definir o tipo desejado para suavizar o sinal",
+    "smoothtimePositive": "tempo suave positivo",
+    "smoothtimePositiveTooltip": "tempo tranquilo para mudanças positivas",
+    "smoothtimeNegative": "tempo suave negativo",
+    "smoothtimeNegativeTooltip": "tempo suave para mudanças negativas"
 }

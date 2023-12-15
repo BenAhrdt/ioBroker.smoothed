@@ -25,34 +25,209 @@ class Smoothed extends utils.Adapter {
 		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
 
+		// Name of internal folder for smoothed values
+		this.internalFolder = {
+			smoothedvalues: "values"
+		};
+
+		// Name of internal states of smoothed values
+		this.internalSmoothedValues = {
+			smoothed: "smoothed"
+		};
+
 		// Active states to smooth
 		this.activeStates = {};
+
+		// Name of id Datafields
+		this.idDatafields = {
+			dataOfId: "dataOfId"
+		};
 	}
 
 	/**
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	async onReady() {
-		// Initialize your adapter here
-		this.createInternalValues();
+		// delete not configed ids in namestapace
+		await this.delNotConfiguredIds();
+
+		// Create internal adapter-structure
+		await this.createInternalValues();
+
+		// crate and init schedules
+
 	}
 
-	createInternalValues(){
-		for(const element of this.config.statesTable){
-			//this.log.info(JSON.stringify(element));
-			// Check for id
-			if(element.id){
-				// check if there isnt an element
-				if(!this.activeStates[element.id]){
-					this.activeStates[element.id] ={};
-				}
-				// generates the name element
-				this.activeStates[element.id][element.name] = {};
-				this.activeStates[element.id][element.name].type = element.type;
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	// delete not configured states
+	async delNotConfiguredIds()
+	{
+		// Get all objects in the adapter
+		this.AdapterObjectsAtStart = await this.getAdapterObjectsAsync();
+		let activeString = "";
+		for(const elementName in this.config.statesTable){
+			const element = this.config.statesTable[elementName];
+			if(element.name && element.name !== ""){
+				activeString = `${this.generateInternalChannel(element.name)}.${this.internalSmoothedValues.smoothed}`;
+				delete this.AdapterObjectsAtStart[activeString];
+				activeString = this.generateInternalChannel(element.name);
+				delete this.AdapterObjectsAtStart[activeString];
 			}
 		}
-		this.log.info(JSON.stringify(this.activeStates));
+		// delete mothedvalue folder from array
+		activeString = `${this.namespace}.${this.internalFolder.smoothedvalues}`;
+		delete this.AdapterObjectsAtStart[activeString];
+
+		// delete the remaining states
+		for(const state in this.AdapterObjectsAtStart){
+			this.delObjectAsync(state);
+		}
 	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	// Create internal folders and states
+	async createInternalValues(){
+		for(const elementName in this.config.statesTable){
+			// Assign element with the key
+			const element = this.config.statesTable[elementName];
+			// ckeck the id of the element
+			try{
+				const resultObject = await this.getForeignObjectAsync(element.id);
+				const resultState = await this.getForeignStateAsync(element.id);
+				if(resultObject && resultState){
+					if(!this.activeStates[element.id]){
+						this.activeStates[element.id] = {};
+						this.activeStates[element.id][this.idDatafields.dataOfId] = {
+							currentValue: resultState.val,
+							lastValue: resultState.val,
+							currentTimestamp: resultState.ts,
+							lastTimestamp: resultState.ts
+						};
+					}
+					// Assigne values from state
+					this.activeStates[element.id][element.name] = {};
+					this.activeStates[element.id][element.name].smoothed = resultState.val;
+					this.activeStates[element.id][element.name].sourceId = element.id;
+					this.activeStates[element.id][element.name].channelName = element.name;
+
+					// Assigne values from object
+					// @ts-ignore
+					this.activeStates[element.id][element.name].unit = resultObject.common.unit;
+
+					// Assign values from config
+					this.activeStates[element.id][element.name].type = element.type;
+					this.activeStates[element.id][element.name].refreshRate = element.refreshRate;
+					this.activeStates[element.id][element.name].smoothtimePositive = element.smoothtimePositive;
+					this.activeStates[element.id][element.name].smoothtimeNegative = element.smoothtimeNegative;
+				}
+			}
+			catch{
+				const message = `The configured value: ${element.name} with the id: ${element.id} is not able to read.`;
+				this.log.warn(message);
+			}
+		}
+
+		// Generate internal folder for the smoothed values values
+		await this.setObjectNotExistsAsync(`${this.internalFolder.smoothedvalues}`,{
+			"type": "folder",
+			"common": {
+				"name": "smoothed values"
+			},
+			native : {},
+		});
+
+		// Create the states of configed values
+		for(const idName in this.activeStates){
+			const id = this.activeStates[idName];
+			for(const channelName in id){
+				if(channelName !== this.idDatafields.dataOfId){
+					const channel = id[channelName];
+					// create State for the name
+					await this.setObjectNotExistsAsync(this.generateInternalChannel(channelName),{
+						type: "channel",
+						common: {
+							name: channelName,
+							desc: channel.sourceId
+						},
+						native: {},
+					});
+
+					// create State for the name
+					await this.setObjectNotExistsAsync(`${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.smoothed}`,{
+						type: "state",
+						common: {
+							name: "smoothed value",
+							type: "number",
+							role: "value",
+							read: true,
+							write: false,
+							unit: channel.unit,
+							def: this.activeStates[idName][this.idDatafields.dataOfId].currentValue
+						},
+						native: {},
+					});
+				}
+			}
+			this.subscribeForeignStatesAsync(idName);
+		}
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	generateInternalChannel(name){
+		return `${this.namespace}.${this.internalFolder.smoothedvalues}.${name}`;
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	async doChangeProcess(id,state){
+		//Assign current state to active id
+		this.activeStates[id][this.idDatafields.dataOfId].currentValue = state.val;
+		this.activeStates[id][this.idDatafields.dataOfId].currentTimestamp = state.ts;
+
+		//Check internal channels for output, or just calculation
+		for(const channelName in this.activeStates[id]){
+			if(channelName !== this.idDatafields.dataOfId){
+				const channel = this.activeStates[id][channelName];
+// Hier prüfen, ob auch ausgegeben werden soll, oder nur berechnet.
+				this.outputSmoothedValues(channel);
+			}
+		}
+
+		// Assign last State to active id
+		this.activeStates[id][this.idDatafields.dataOfId].lastValue = state.val;
+		this.activeStates[id][this.idDatafields.dataOfId].lastTimestamp = state.ts;
+	}
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	async outputSmoothedValues(channel){
+		this.calculateSmoothedValue(channel);
+		this.setState(`${this.generateInternalChannel(channel.channelName)}.${this.internalSmoothedValues.smoothed}`,channel.smoothed,true);
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	async calculateSmoothedValue(channel){
+		channel.smoothed = this.activeStates[channel.sourceId][this.idDatafields.dataOfId].currentValue;
+	}
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
 	 * @param {() => void} callback
@@ -88,6 +263,10 @@ class Smoothed extends utils.Adapter {
 	// 	}
 	// }
 
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
 	/**
 	 * Is called if a subscribed state changes
 	 * @param {string} id
@@ -95,8 +274,7 @@ class Smoothed extends utils.Adapter {
 	 */
 	onStateChange(id, state) {
 		if (state) {
-			// The state was changed
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+			this.doChangeProcess(id,state);
 		} else {
 			// The state was deleted
 			this.log.info(`state ${id} deleted`);

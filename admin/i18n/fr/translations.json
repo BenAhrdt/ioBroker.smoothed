@@ -4,7 +4,12 @@
     "mainInformationText": "Avec cet adaptateur vous pouvez lisser vos signaux selon une formule sélectionnée. Vous pouvez également sélectionner un identifiant plusieurs fois pour le lisser avec une formule différente.",
     "configuration": "configuration",
     "refreshRate": "fréquence de rafraîchissement",
-    "refreshRateTooltip": "ici, vous pouvez définir le taux de rafraîchissement avec lequel les heures de fonctionnement doivent être mises à jour",
+    "refreshRateTooltip": "ici, vous pouvez définir le taux de rafraîchissement avec lequel le résultat lissé doit être mis à jour",
     "type": "taper",
-    "typeTooltip": "ici, vous pouvez définir le type souhaité pour lisser le signal"
+    "calculationType": "type de calcul",
+    "typeTooltip": "ici, vous pouvez définir le type souhaité pour lisser le signal",
+    "smoothtimePositive": "temps lisse positif",
+    "smoothtimePositiveTooltip": "smoothtime pour des changements positifs",
+    "smoothtimeNegative": "temps de fluidité négatif",
+    "smoothtimeNegativeTooltip": "smoothtime pour les changements négatifs"
 }

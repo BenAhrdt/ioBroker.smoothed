@@ -4,7 +4,12 @@
     "mainInformationText": "Za pomocą tego adaptera możesz wygładzić sygnały według wybranej formuły. Możesz także wybrać jeden identyfikator więcej niż jeden raz, aby wygładzić go inną formułą.",
     "configuration": "konfiguracja",
     "refreshRate": "częstotliwość odświeżania",
-    "refreshRateTooltip": "tutaj możesz ustawić częstotliwość odświeżania, z jaką mają być aktualizowane godziny pracy",
+    "refreshRateTooltip": "tutaj możesz ustawić częstotliwość odświeżania, z jaką powinien być aktualizowany wygładzony wynik",
     "type": "typ",
-    "typeTooltip": "tutaj możesz ustawić żądany typ w celu wygładzenia sygnału"
+    "calculationType": "typ obliczeń",
+    "typeTooltip": "tutaj możesz ustawić żądany typ w celu wygładzenia sygnału",
+    "smoothtimePositive": "płynnie, pozytywnie",
+    "smoothtimePositiveTooltip": "płynny czas na pozytywne zmiany",
+    "smoothtimeNegative": "płynny negatyw",
+    "smoothtimeNegativeTooltip": "płynny czas na negatywne zmiany"
 }

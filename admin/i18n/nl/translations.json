@@ -4,7 +4,12 @@
     "mainInformationText": "Met deze adapter kunt u uw signalen afvlakken volgens een geselecteerde formule. U kunt ook één ID meer dan één keer selecteren om deze met een andere formule glad te strijken.",
     "configuration": "configuratie",
     "refreshRate": "vernieuwingsfrequentie",
-    "refreshRateTooltip": "hier kunt u de vernieuwingsfrequentie instellen, waarmee de bedrijfsuren moeten worden bijgewerkt",
+    "refreshRateTooltip": "hier kunt u de vernieuwingsfrequentie instellen, waarmee het afgevlakte resultaat moet worden bijgewerkt",
     "type": "type",
-    "typeTooltip": "hier kunt u het gewenste type instellen voor een vloeiender signaal"
+    "calculationType": "berekeningstype",
+    "typeTooltip": "hier kunt u het gewenste type instellen voor een vloeiender signaal",
+    "smoothtimePositive": "smoothtime positief",
+    "smoothtimePositiveTooltip": "soepele tijd voor positieve veranderingen",
+    "smoothtimeNegative": "smoothtime negatief",
+    "smoothtimeNegativeTooltip": "soepele tijd voor negatieve veranderingen"
 }

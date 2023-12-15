@@ -84,7 +84,6 @@
         ]
     },
     "native": {
-        "refreshRate": 2000,
         "statesTable": []
     },
     "objects": [],
