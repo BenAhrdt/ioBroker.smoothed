@@ -7,7 +7,7 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require("@iobroker/adapter-core");
-
+const schedule = require("node-schedule");
 
 class Smoothed extends utils.Adapter {
 
@@ -37,6 +37,9 @@ class Smoothed extends utils.Adapter {
 
 		// Active states to smooth
 		this.activeStates = {};
+
+		//Cronjobs for refreshing
+		this.cronJobs = {};
 	}
 
 	/**
@@ -50,7 +53,7 @@ class Smoothed extends utils.Adapter {
 		await this.createInternalValues();
 
 		// crate and init schedules
-
+		await this.initSchedules();
 	}
 
 	/******************************************************************
@@ -166,6 +169,33 @@ class Smoothed extends utils.Adapter {
 			}
 			this.subscribeForeignStatesAsync(idName);
 		}
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	async initSchedules(){
+// Erste Schritte für die Übernahme
+		for(const idName in this.activeStates){
+			const id = this.activeStates[idName];
+			for(const channelName in id){
+				const channel = id[channelName];
+				if(!this.cronJobs[channel.refreshRate]){
+					this.cronJobs[channel.refreshRate] = {};
+					this.log.info("schedule: " + channel.refreshRate);
+					this.cronJobs[channel.refreshRate]["JobId"] = schedule.scheduleJob(`*/${channel.refreshRate/1000} * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
+				}
+			}
+		}
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	async outputAddedChannels(refreshRate){
+		this.log.info(refreshRate);
 	}
 
 	/******************************************************************
