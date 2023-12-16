@@ -145,36 +145,33 @@ class Smoothed extends utils.Adapter {
 		});
 
 		// Create the states of configed values
-		for(const idName in this.activeStates){
-			const id = this.activeStates[idName];
-			for(const channelName in id){
-				const channel = id[channelName];
-				// create State for the name
-				await this.setObjectNotExistsAsync(this.generateInternalChannel(channelName),{
-					type: "channel",
-					common: {
-						name: channelName,
-						desc: channel.sourceId
-					},
-					native: {},
-				});
+		for(const channelName in this.activeChannels){
+			const channel = this.activeChannels[channelName];
+			// create State for the name
+			await this.setObjectNotExistsAsync(this.generateInternalChannel(channelName),{
+				type: "channel",
+				common: {
+					name: channelName,
+					desc: channel.sourceId
+				},
+				native: {},
+			});
 
-				// create State for the name
-				await this.setObjectNotExistsAsync(`${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.smoothed}`,{
-					type: "state",
-					common: {
-						name: "smoothed value",
-						type: "number",
-						role: "value",
-						read: true,
-						write: false,
-						unit: channel.unit,
-						def: channel.currentValue
-					},
-					native: {},
-				});
-			}
-			this.subscribeForeignStatesAsync(idName);
+			// create State for the name
+			await this.setObjectNotExistsAsync(`${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.smoothed}`,{
+				type: "state",
+				common: {
+					name: "smoothed value",
+					type: "number",
+					role: "value",
+					read: true,
+					write: false,
+					unit: channel.unit,
+					def: channel.currentValue
+				},
+				native: {},
+			});
+			this.subscribeForeignStatesAsync(channel.id);
 		}
 	}
 
@@ -184,22 +181,19 @@ class Smoothed extends utils.Adapter {
 
 	async initSchedules(){
 	// Erste Schritte für die Übernahme !!!
-		for(const idName in this.activeStates){
-			const id = this.activeStates[idName];
-			for(const channelName in id){
-				const channel = id[channelName];
-				if(!this.cronJobs[channel.refreshRate]){
-					this.cronJobs[channel.refreshRate] = {};
-					if(channel.refreshRate !== 60){
-						this.log.debug("schedule: " + channel.refreshRate);
-						this.cronJobs[channel.refreshRate][this.cronJobs.jobIdKey] = schedule.scheduleJob(`*/${channel.refreshRate} * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
-					}
-					else{
-						this.cronJobs[channel.refreshRate][this.cronJobs.jobIdKey] = schedule.scheduleJob(`0 * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
-					}
+		for(const channelName in this.activeChannels){
+			const channel = this.activeChannels[channelName];
+			if(!this.cronJobs[channel.refreshRate]){
+				this.cronJobs[channel.refreshRate] = {};
+				if(channel.refreshRate !== 60){
+					this.log.debug("schedule: " + channel.refreshRate);
+					this.cronJobs[channel.refreshRate][this.cronJobs.jobIdKey] = schedule.scheduleJob(`*/${channel.refreshRate} * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
 				}
-				this.cronJobs[channel.refreshRate][channel.name] = {};
+				else{
+					this.cronJobs[channel.refreshRate][this.cronJobs.jobIdKey] = schedule.scheduleJob(`0 * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
+				}
 			}
+			this.cronJobs[channel.refreshRate][channel.name] = {};
 		}
 	}
 
@@ -208,10 +202,11 @@ class Smoothed extends utils.Adapter {
 	 * ***************************************************************/
 
 	async outputAddedChannels(refreshRate){
-		this.log.debug(refreshRate);
 		for(const channelName in this.cronJobs[refreshRate]){
-			const channel = this.activeChannels[channelName];
-			this.outputSmoothedValues(channel);
+			if(channelName !== this.cronJobs.jobIdKey){
+				const channel = this.activeChannels[channelName];
+				this.outputSmoothedValues(channel);
+			}
 		}
 	}
 
