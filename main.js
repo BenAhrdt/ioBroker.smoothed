@@ -39,13 +39,16 @@ class Smoothed extends utils.Adapter {
 		this.activeStates = {};
 
 		//Cronjobs for refreshing
-		this.cronJobs = {};
+		this.cronJobs = {
+			jobIdKey : "jobIdKey"
+		};
 	}
 
 	/**
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	async onReady() {
+
 		// delete not configed ids in namestapace
 		await this.delNotConfiguredIds();
 
@@ -104,11 +107,11 @@ class Smoothed extends utils.Adapter {
 					}
 					// Assigne values from state
 					this.activeStates[element.id][element.name] = {};
-					this.activeStates[element.id][element.name].smoothed = resultState.val;
 					this.activeStates[element.id][element.name].sourceId = element.id;
+					this.activeStates[element.id][element.name].name = element.name;
+					this.activeStates[element.id][element.name].smoothed = resultState.val;
 					this.activeStates[element.id][element.name].currentValue = resultState.val;
 					this.activeStates[element.id][element.name].lastValue = resultState.val;
-					this.activeStates[element.id][element.name].channelName = element.name;
 					this.activeStates[element.id][element.name].lastChangeTimestamp = resultState.ts;
 
 					// Assigne values from object
@@ -162,7 +165,7 @@ class Smoothed extends utils.Adapter {
 						read: true,
 						write: false,
 						unit: channel.unit,
-						def: channel.lastValue
+						def: channel.currentValue
 					},
 					native: {},
 				});
@@ -184,13 +187,14 @@ class Smoothed extends utils.Adapter {
 				if(!this.cronJobs[channel.refreshRate]){
 					this.cronJobs[channel.refreshRate] = {};
 					if(channel.refreshRate !== 60){
-						this.log.info("schedule: " + channel.refreshRate);
-						this.cronJobs[channel.refreshRate]["JobId"] = schedule.scheduleJob(`*/${channel.refreshRate} * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
+						this.log.debug("schedule: " + channel.refreshRate);
+						this.cronJobs[channel.refreshRate][this.cronJobs.jobIdKey] = schedule.scheduleJob(`*/${channel.refreshRate} * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
 					}
 					else{
-						this.cronJobs[channel.refreshRate]["JobId"] = schedule.scheduleJob(`0 * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
+						this.cronJobs[channel.refreshRate][this.cronJobs.jobIdKey] = schedule.scheduleJob(`0 * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
 					}
 				}
+				this.cronJobs[channel.refreshRate][channel.name] = {};
 			}
 		}
 	}
@@ -200,7 +204,11 @@ class Smoothed extends utils.Adapter {
 	 * ***************************************************************/
 
 	async outputAddedChannels(refreshRate){
-		this.log.info(refreshRate);
+		this.log.debug(refreshRate);
+		for(const channelName in this.cronJobs[refreshRate]){
+			const channel = this.activeStates[channelName.s][channelName];
+			this.outputSmoothedValues(channel);
+		}
 	}
 
 	/******************************************************************
@@ -235,7 +243,7 @@ class Smoothed extends utils.Adapter {
 
 	async outputSmoothedValues(channel){
 		this.calculateSmoothedValue(channel);
-		this.setState(`${this.generateInternalChannel(channel.channelName)}.${this.internalSmoothedValues.smoothed}`,channel.smoothed,true);
+		this.setState(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.smoothed}`,channel.smoothed,true);
 	}
 
 	/******************************************************************
@@ -243,7 +251,14 @@ class Smoothed extends utils.Adapter {
 	 * ***************************************************************/
 
 	async calculateSmoothedValue(channel){
-		channel.smoothed = channel.currentValue;
+		// get act timestamp
+		const timestamp = Date.now();
+
+		//Assign current timestamp for claculation
+		channel.smoothed = channel.currentValue * (timestamp - channel.lastChangeTimestamp);
+
+		// assign timestamp as last changed timestampt
+		channel.lastChangeTimestamp = timestamp;
 	}
 	/******************************************************************
 	 * ****************************************************************
