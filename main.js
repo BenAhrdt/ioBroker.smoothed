@@ -35,8 +35,9 @@ class Smoothed extends utils.Adapter {
 			smoothed: "smoothed"
 		};
 
-		// Active states to smooth
+		// Active states / channels to smooth
 		this.activeStates = {};
+		this.activeChannels = {};
 
 		//Cronjobs for refreshing
 		this.cronJobs = {
@@ -95,34 +96,37 @@ class Smoothed extends utils.Adapter {
 	// Create internal folders and states
 	async createInternalValues(){
 		for(const elementName in this.config.statesTable){
-			// Assign element with the key
 			const element = this.config.statesTable[elementName];
-			// ckeck the id of the element
 			try{
 				const resultObject = await this.getForeignObjectAsync(element.id);
 				const resultState = await this.getForeignStateAsync(element.id);
 				if(resultObject && resultState){
+
+					// Assign element by name (later these are the channel)
+					this.activeChannels[element.name] = {
+						id: element.id,
+						name: element.name,
+						smoothed: resultState.val,
+						currentValue: resultState.val,
+						lastValue: resultState.val,
+						lastChangeTimestamp: resultState.ts,
+
+						// Assigne values from object
+						// @ts-ignore
+						unit: resultObject.common.unit,
+
+						// Assign values from config
+						type: element.type,
+						refreshRate: element.refreshRate,
+						smoothtimePositive: element.smoothtimePositive,
+						smoothtimeNegative: element.smoothtimeNegative
+					};
+
+					//Assign the created element by id
 					if(!this.activeStates[element.id]){
 						this.activeStates[element.id] = {};
 					}
-					// Assigne values from state
-					this.activeStates[element.id][element.name] = {};
-					this.activeStates[element.id][element.name].sourceId = element.id;
-					this.activeStates[element.id][element.name].name = element.name;
-					this.activeStates[element.id][element.name].smoothed = resultState.val;
-					this.activeStates[element.id][element.name].currentValue = resultState.val;
-					this.activeStates[element.id][element.name].lastValue = resultState.val;
-					this.activeStates[element.id][element.name].lastChangeTimestamp = resultState.ts;
-
-					// Assigne values from object
-					// @ts-ignore
-					this.activeStates[element.id][element.name].unit = resultObject.common.unit;
-
-					// Assign values from config
-					this.activeStates[element.id][element.name].type = element.type;
-					this.activeStates[element.id][element.name].refreshRate = element.refreshRate;
-					this.activeStates[element.id][element.name].smoothtimePositive = element.smoothtimePositive;
-					this.activeStates[element.id][element.name].smoothtimeNegative = element.smoothtimeNegative;
+					this.activeStates[element.id][element.name] = this.activeChannels[element.name];
 				}
 			}
 			catch{
@@ -179,7 +183,7 @@ class Smoothed extends utils.Adapter {
 	 * ***************************************************************/
 
 	async initSchedules(){
-// Erste Schritte für die Übernahme
+	// Erste Schritte für die Übernahme !!!
 		for(const idName in this.activeStates){
 			const id = this.activeStates[idName];
 			for(const channelName in id){
@@ -206,7 +210,7 @@ class Smoothed extends utils.Adapter {
 	async outputAddedChannels(refreshRate){
 		this.log.debug(refreshRate);
 		for(const channelName in this.cronJobs[refreshRate]){
-			const channel = this.activeStates[channelName.s][channelName];
+			const channel = this.activeChannels[channelName];
 			this.outputSmoothedValues(channel);
 		}
 	}
@@ -229,7 +233,7 @@ class Smoothed extends utils.Adapter {
 			const channel = this.activeStates[id][channelName];
 			channel.currentValue = state.val;
 			channel.currentTimestamp = state.ts;
-// Hier prüfen, ob auch ausgegeben werden soll, oder nur berechnet.
+			// Hier prüfen, ob auch ausgegeben werden soll, oder nur berechnet. !!!
 			this.outputSmoothedValues(channel);
 
 			channel.lastValue = state.val;
