@@ -183,8 +183,13 @@ class Smoothed extends utils.Adapter {
 				const channel = id[channelName];
 				if(!this.cronJobs[channel.refreshRate]){
 					this.cronJobs[channel.refreshRate] = {};
-					this.log.info("schedule: " + channel.refreshRate);
-					this.cronJobs[channel.refreshRate]["JobId"] = schedule.scheduleJob(`*/${channel.refreshRate/1000} * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
+					if(channel.refreshRate !== 60){
+						this.log.info("schedule: " + channel.refreshRate);
+						this.cronJobs[channel.refreshRate]["JobId"] = schedule.scheduleJob(`*/${channel.refreshRate} * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
+					}
+					else{
+						this.cronJobs[channel.refreshRate]["JobId"] = schedule.scheduleJob(`0 * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
+					}
 				}
 			}
 		}
