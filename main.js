@@ -32,7 +32,9 @@ class Smoothed extends utils.Adapter {
 
 		// Name of internal states of smoothed values
 		this.internalSmoothedValues = {
-			smoothed: "smoothed"
+			smoothed: "smoothed",
+			lastArrayPositiv : "lastArrayPotive",
+			lastArrayNegativ : "lastArrayPotive"
 		};
 
 		// Active states / channels to smooth
@@ -43,13 +45,17 @@ class Smoothed extends utils.Adapter {
 		this.cronJobs = {
 			jobIdKey : "jobIdKey"
 		};
+
+		//Types of calculations
+		this.calculationtype = {
+			avg: "avg"
+		};
 	}
 
 	/**
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	async onReady() {
-
 		// delete not configed ids in namestapace
 		await this.delNotConfiguredIds();
 
@@ -73,8 +79,10 @@ class Smoothed extends utils.Adapter {
 		for(const elementName in this.config.statesTable){
 			const element = this.config.statesTable[elementName];
 			if(element.name && element.name !== ""){
-				activeString = `${this.generateInternalChannel(element.name)}.${this.internalSmoothedValues.smoothed}`;
-				delete this.AdapterObjectsAtStart[activeString];
+				for(const stateName in this.internalSmoothedValues){
+					activeString = `${this.generateInternalChannel(element.name)}.${stateName}`;
+					delete this.AdapterObjectsAtStart[activeString];
+				}
 				activeString = this.generateInternalChannel(element.name);
 				delete this.AdapterObjectsAtStart[activeString];
 			}
@@ -108,8 +116,7 @@ class Smoothed extends utils.Adapter {
 						name: element.name,
 						smoothed: resultState.val,
 						currentValue: resultState.val,
-						lastValue: resultState.val,
-						lastChangeTimestamp: resultState.ts,
+						currentTimestamp : resultState.ts,
 
 						// Assigne values from object
 						// @ts-ignore
@@ -172,6 +179,32 @@ class Smoothed extends utils.Adapter {
 				native: {},
 			});
 			this.subscribeForeignStatesAsync(channel.id);
+			this.outputAddedChannels(channel);
+
+			// create last values arrays
+			const stateId = `${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.lastArrayPositiv}`;
+			// @ts-ignore
+			await this.setObjectNotExistsAsync(stateId,{
+				type: "state",
+				common: {
+					name: "last values and times",
+					type: "json",
+					role: "value",
+					read: true,
+					write: false,
+					def: JSON.stringify({})
+				},
+				native: {},
+			});
+			const lastArrayPositivResult = await this.getStateAsync(`${stateId}`);
+			// @ts-ignore
+			channel.lastArrayPositiv = JSON.parse(lastArrayPositivResult.val);
+			if(!channel.lastArrayPositiv.value){
+				channel.lastArrayPositiv = {};
+				channel.lastArrayPositiv.value = [];
+				channel.lastArrayPositiv.value.unshift({val:channel.currentValue,ts:Date.now() - (channel.smoothtimePositive * 1000)});
+				this.setStateAsync(stateId,JSON.stringify(channel.lastArrayPositiv),true);
+			}
 		}
 	}
 
@@ -186,7 +219,6 @@ class Smoothed extends utils.Adapter {
 			if(!this.cronJobs[channel.refreshRate]){
 				this.cronJobs[channel.refreshRate] = {};
 				if(channel.refreshRate !== 60){
-					this.log.debug("schedule: " + channel.refreshRate);
 					this.cronJobs[channel.refreshRate][this.cronJobs.jobIdKey] = schedule.scheduleJob(`*/${channel.refreshRate} * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
 				}
 				else{
@@ -215,7 +247,7 @@ class Smoothed extends utils.Adapter {
 	 * ***************************************************************/
 
 	generateInternalChannel(name){
-		return `${this.namespace}.${this.internalFolder.smoothedvalues}.${name}`;
+		return `${this.internalFolder.smoothedvalues}.${name}`;
 	}
 
 	/******************************************************************
@@ -227,7 +259,8 @@ class Smoothed extends utils.Adapter {
 		for(const channelName in this.activeStates[id]){
 			const channel = this.activeStates[id][channelName];
 			channel.currentValue = state.val;
-			channel.currentTimestamp = state.ts;
+			channel.currentChangeTimestamp = state.ts;
+
 			// Hier prüfen, ob auch ausgegeben werden soll, oder nur berechnet. !!!
 			this.outputSmoothedValues(channel);
 
@@ -253,11 +286,22 @@ class Smoothed extends utils.Adapter {
 		// get act timestamp
 		const timestamp = Date.now();
 
-		//Assign current timestamp for claculation
-		channel.smoothed = channel.currentValue * (timestamp - channel.lastChangeTimestamp);
+		let differenceTime = 0;
+		let weight = 0;
+		let smoothtime = 0;
+
+		// Select the calculationtype
+		switch(channel.type){
+			case this.calculationtype.avg:
+			default:
+				differenceTime = timestamp - channel.lastTimestamp;
+				smoothtime = channel.smoothtimePositive * 1000;
+				weight = (smoothtime) - differenceTime;
+				channel.smoothed = (channel.smoothed * weight + channel.lastValue * differenceTime) / smoothtime;
+		}
 
 		// assign timestamp as last changed timestampt
-		channel.lastChangeTimestamp = timestamp;
+		channel.lastTimestamp = timestamp;
 	}
 	/******************************************************************
 	 * ****************************************************************
