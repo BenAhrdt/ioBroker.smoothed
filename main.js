@@ -33,8 +33,8 @@ class Smoothed extends utils.Adapter {
 		// Name of internal states of smoothed values
 		this.internalSmoothedValues = {
 			smoothed: "smoothed",
-			lastArrayPositiv : "lastArrayPotive",
-			lastArrayNegativ : "lastArrayPotive"
+			lastArrayPositive : "lastArrayPositive",
+			lastArrayNegative : "lastArrayNegative"
 		};
 
 		// Active states / channels to smooth
@@ -80,14 +80,14 @@ class Smoothed extends utils.Adapter {
 			const element = this.config.statesTable[elementName];
 			if(element.name && element.name !== ""){
 				for(const stateName in this.internalSmoothedValues){
-					activeString = `${this.generateInternalChannel(element.name)}.${stateName}`;
+					activeString = `${this.generateInternalChannel(element.name,true)}.${stateName}`;
 					delete this.AdapterObjectsAtStart[activeString];
 				}
-				activeString = this.generateInternalChannel(element.name);
+				activeString = this.generateInternalChannel(element.name,true);
 				delete this.AdapterObjectsAtStart[activeString];
 			}
 		}
-		// delete mothedvalue folder from array
+		// delete smoothedvalue folder from array
 		activeString = `${this.namespace}.${this.internalFolder.smoothedvalues}`;
 		delete this.AdapterObjectsAtStart[activeString];
 
@@ -116,7 +116,7 @@ class Smoothed extends utils.Adapter {
 						name: element.name,
 						smoothed: resultState.val,
 						currentValue: resultState.val,
-						currentTimestamp : resultState.ts,
+						currentTimestamp : Date.now(),
 
 						// Assigne values from object
 						// @ts-ignore
@@ -182,7 +182,7 @@ class Smoothed extends utils.Adapter {
 			this.outputAddedChannels(channel);
 
 			// create last values arrays
-			const stateId = `${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.lastArrayPositiv}`;
+			const stateId = `${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.lastArrayPositive}`;
 			// @ts-ignore
 			await this.setObjectNotExistsAsync(stateId,{
 				type: "state",
@@ -246,8 +246,13 @@ class Smoothed extends utils.Adapter {
 	 * ****************************************************************
 	 * ***************************************************************/
 
-	generateInternalChannel(name){
-		return `${this.internalFolder.smoothedvalues}.${name}`;
+	generateInternalChannel(name,withNamespace = false){
+		if(withNamespace){
+			return `${this.namespace}.${this.internalFolder.smoothedvalues}.${name}`;
+		}
+		else{
+			return `${this.internalFolder.smoothedvalues}.${name}`;
+		}
 	}
 
 	/******************************************************************
@@ -259,7 +264,6 @@ class Smoothed extends utils.Adapter {
 		for(const channelName in this.activeStates[id]){
 			const channel = this.activeStates[id][channelName];
 			channel.currentValue = state.val;
-			channel.currentChangeTimestamp = state.ts;
 
 			// Hier prüfen, ob auch ausgegeben werden soll, oder nur berechnet. !!!
 			this.outputSmoothedValues(channel);
@@ -285,9 +289,12 @@ class Smoothed extends utils.Adapter {
 	async calculateSmoothedValue(channel){
 		// get act timestamp
 		const timestamp = Date.now();
+		channel.lastTimestamp = channel.currentTimestamp;
+		channel.currentTimestamp = timestamp;
 
 		let differenceTime = 0;
-		let weight = 0;
+		let weightOldValue = 0;
+		let weightCurrentValue = 0;
 		let smoothtime = 0;
 
 		// Select the calculationtype
@@ -295,9 +302,19 @@ class Smoothed extends utils.Adapter {
 			case this.calculationtype.avg:
 			default:
 				differenceTime = timestamp - channel.lastTimestamp;
+				//this.log.info("difference: " + differenceTime);
 				smoothtime = channel.smoothtimePositive * 1000;
-				weight = (smoothtime) - differenceTime;
-				channel.smoothed = (channel.smoothed * weight + channel.lastValue * differenceTime) / smoothtime;
+				weightCurrentValue = channel.currentValue * differenceTime / smoothtime;
+				for(let i = 0 ; i<= channel.lastArrayPositiv.value.length; i++){
+					if((channel.lastArrayPositiv.value[i].ts + differenceTime) < timestamp){
+						channel.lastArrayPositiv.value[i].ts += differenceTime;
+						weightOldValue = channel.lastArrayPositiv.value[i].val * differenceTime / smoothtime;
+						break;
+					}
+				}
+				this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.lastArrayPositive}`,JSON.stringify(channel.lastArrayPositiv),true);
+				this.log.info(`${channel.smoothed} - ${weightCurrentValue} - ${weightOldValue}`);
+				channel.smoothed += weightCurrentValue - weightOldValue;
 		}
 
 		// assign timestamp as last changed timestampt
