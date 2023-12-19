@@ -23,7 +23,7 @@
             "size": 3
         },
 		"statesTable":{
-            "type":"table",
+            "type":"accordion",
             "sm":12,
             "allowAddByFilter": true,
             "items":[
