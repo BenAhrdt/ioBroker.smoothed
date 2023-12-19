@@ -68,8 +68,9 @@
 					"type": "select",
                     "attr": "type",
 					"options": [
-					  {"label":"avg","value":"avg"}],
-					  "default": "avg",
+					    {"label":"avg","value":"avg"},
+                        {"label":"avgArray","value":"avgArray"}],
+					  "default": "avgArray",
 					"title": "calculationType",
 					"tooltip": "typeTooltip"
 				},
@@ -151,7 +152,8 @@
                     {"label":"60 min","value":3600}],
                     "default":300,
                     "title": "smoothtimeNegative",
-                    "tooltip": "smoothtimeNegativeTooltip"
+                    "tooltip": "smoothtimeNegativeTooltip",
+                    "hidden": "data.smoothtimePositive === -1"
                 }
             ]
         }

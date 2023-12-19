@@ -48,7 +48,8 @@ class Smoothed extends utils.Adapter {
 
 		//Types of calculations
 		this.calculationtype = {
-			avg: "avg"
+			avg: "avg",
+			avgArray: "avgArray"
 		};
 	}
 
@@ -117,6 +118,8 @@ class Smoothed extends utils.Adapter {
 						smoothed: resultState.val,
 						currentValue: resultState.val,
 						currentTimestamp : Date.now(),
+						lastValue: resultState.val,
+						lastTimestamp: Date.now(),
 
 						// Assigne values from object
 						// @ts-ignore
@@ -125,8 +128,8 @@ class Smoothed extends utils.Adapter {
 						// Assign values from config
 						type: element.type,
 						refreshRate: element.refreshRate,
-						smoothtimePositive: element.smoothtimePositive,
-						smoothtimeNegative: element.smoothtimeNegative
+						smoothtimePositive: element.smoothtimePositive * 1000,
+						smoothtimeNegative: element.smoothtimeNegative * 1000
 					};
 
 					//Assign the created element by id
@@ -164,23 +167,6 @@ class Smoothed extends utils.Adapter {
 				native: {},
 			});
 
-			// create State for the name
-			await this.setObjectNotExistsAsync(`${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.smoothed}`,{
-				type: "state",
-				common: {
-					name: "smoothed value",
-					type: "number",
-					role: "value",
-					read: true,
-					write: false,
-					unit: channel.unit,
-					def: channel.currentValue
-				},
-				native: {},
-			});
-			this.subscribeForeignStatesAsync(channel.id);
-			this.outputAddedChannels(channel);
-
 			// create last values arrays
 			const stateId = `${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.lastArrayPositive}`;
 			// @ts-ignore
@@ -196,15 +182,36 @@ class Smoothed extends utils.Adapter {
 				},
 				native: {},
 			});
-			const lastArrayPositivResult = await this.getStateAsync(`${stateId}`);
+			const lastArrayPositiveResult = await this.getStateAsync(`${stateId}`);
 			// @ts-ignore
-			channel.lastArrayPositiv = JSON.parse(lastArrayPositivResult.val);
-			if(!channel.lastArrayPositiv.value){
-				channel.lastArrayPositiv = {};
-				channel.lastArrayPositiv.value = [];
-				channel.lastArrayPositiv.value.unshift({val:channel.currentValue,ts:Date.now() - (channel.smoothtimePositive * 1000)});
-				this.setStateAsync(stateId,JSON.stringify(channel.lastArrayPositiv),true);
+			channel.lastArrayPositive = JSON.parse(lastArrayPositiveResult.val);
+			if(!channel.lastArrayPositive.smoothtimePositive || channel.smoothtimePositive !== channel.lastArrayPositive.smoothtimePositive){
+				channel.lastArrayPositive = {};
+				channel.lastArrayPositive.smoothed = channel.smoothed;
+				channel.lastArrayPositive.smoothtimePositive = channel.smoothtimePositive;
+				channel.lastArrayPositive.value = [];
+				channel.lastArrayPositive.value.push({val:channel.currentValue,ts:Date.now() - (channel.smoothtimePositive)},{val:channel.currentValue,ts:Date.now()});
+				this.log.info("LastArray created: " + JSON.stringify(channel.lastArrayPositive));
+				this.setStateAsync(stateId,JSON.stringify(channel.lastArrayPositive),true);
 			}
+
+			// create State for the name
+			await this.setObjectNotExistsAsync(`${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.smoothed}`,{
+				type: "state",
+				common: {
+					name: "smoothed value",
+					type: "number",
+					role: "value",
+					read: true,
+					write: false,
+					unit: channel.unit,
+					def: channel.lastArrayPositive.smoothed
+				},
+				native: {},
+			});
+			channel.smoothed = channel.lastArrayPositive.smoothed;
+			this.subscribeForeignStatesAsync(channel.id);
+			this.outputSmoothedValues(channel);
 		}
 	}
 
@@ -263,13 +270,15 @@ class Smoothed extends utils.Adapter {
 		//Check internal channels for output, or just calculation
 		for(const channelName in this.activeStates[id]){
 			const channel = this.activeStates[id][channelName];
+
+			// Value is changed => Assign new value
 			channel.currentValue = state.val;
 
 			// Hier prüfen, ob auch ausgegeben werden soll, oder nur berechnet. !!!
 			this.outputSmoothedValues(channel);
 
-			channel.lastValue = state.val;
-			channel.lastTimestamp = state.ts;
+			// Assign current value to last value
+			channel.lastValue = channel.currentValue;
 		}
 
 	}
@@ -279,7 +288,8 @@ class Smoothed extends utils.Adapter {
 
 	async outputSmoothedValues(channel){
 		this.calculateSmoothedValue(channel);
-		this.setState(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.smoothed}`,channel.smoothed,true);
+		this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.smoothed}`,channel.smoothed,true);
+		this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.lastArrayPositive}`,JSON.stringify(channel.lastArrayPositive),true);
 	}
 
 	/******************************************************************
@@ -289,37 +299,126 @@ class Smoothed extends utils.Adapter {
 	async calculateSmoothedValue(channel){
 		// get act timestamp
 		const timestamp = Date.now();
-		channel.lastTimestamp = channel.currentTimestamp;
 		channel.currentTimestamp = timestamp;
-
+		/*
 		let differenceTime = 0;
 		let weightOldValue = 0;
 		let weightCurrentValue = 0;
 		let smoothtime = 0;
-
+		*/
 		// Select the calculationtype
+
 		switch(channel.type){
+			case this.calculationtype.avgArray:
+				this.calculateAvgArray(channel);
+				break;
 			case this.calculationtype.avg:
 			default:
+
+				this.calculateAvg(channel);
+				/*
 				differenceTime = timestamp - channel.lastTimestamp;
 				//this.log.info("difference: " + differenceTime);
-				smoothtime = channel.smoothtimePositive * 1000;
+				smoothtime = channel.smoothtimePositive;
 				weightCurrentValue = channel.currentValue * differenceTime / smoothtime;
-				for(let i = 0 ; i<= channel.lastArrayPositiv.value.length; i++){
-					if((channel.lastArrayPositiv.value[i].ts + differenceTime) < timestamp){
-						channel.lastArrayPositiv.value[i].ts += differenceTime;
-						weightOldValue = channel.lastArrayPositiv.value[i].val * differenceTime / smoothtime;
+				for(let i = 0 ; i<= channel.lastArrayPositive.value.length; i++){
+					if((channel.lastArrayPositive.value[i].ts + differenceTime) < timestamp){
+						channel.lastArrayPositive.value[i].ts += differenceTime;
+						weightOldValue = channel.lastArrayPositive.value[i].val * differenceTime / smoothtime;
 						break;
 					}
 				}
-				this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.lastArrayPositive}`,JSON.stringify(channel.lastArrayPositiv),true);
+				this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.lastArrayPositive}`,JSON.stringify(channel.lastArrayPositive),true);
 				this.log.info(`${channel.smoothed} - ${weightCurrentValue} - ${weightOldValue}`);
-				channel.smoothed += weightCurrentValue - weightOldValue;
+				channel.smoothed += weightCurrentValue - weightOldValue;*/
 		}
 
 		// assign timestamp as last changed timestampt
 		channel.lastTimestamp = timestamp;
 	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	async calculateAvg(channel){
+		this.newValueToArray(channel);
+		channel.lastArrayPositive.smoothed += channel.lastArrayPositive.additionalValue - channel.lastArrayPositive.reduceValue;
+		channel.smoothed = channel.lastArrayPositive.smoothed;
+		this.log.debug("New value smoothed: " + channel.smoothed);
+		this.log.debug("----- end cycle -----");
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	calculateAvgArray(channel){
+		this.newValueToArray(channel);
+		// Add all arrayelements and build the smoothed value
+		const lastElementIndex = channel.lastArrayPositive.value.length - 2;
+		let sum = 0;
+		for(let elementIndex = 0 ; elementIndex <= lastElementIndex ; elementIndex++){
+			const timedifferenceBetweenElements = channel.lastArrayPositive.value[elementIndex + 1].ts - channel.lastArrayPositive.value[elementIndex].ts;
+			const weightOfElement = timedifferenceBetweenElements * channel.lastArrayPositive.value[elementIndex].val;
+			sum += weightOfElement;
+		}
+		channel.lastArrayPositive.smoothed = sum / channel.smoothtimePositive;
+
+		channel.smoothed = channel.lastArrayPositive.smoothed;
+
+		this.log.debug("New value smoothed: " + channel.smoothed);
+		this.log.debug("----- end cycle -----");
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	async newValueToArray(channel){
+		const smoothtime = channel.smoothtimePositive;
+		const lastElementIndex = channel.lastArrayPositive.value.length - 1;
+		// Generate diffenrence time and additonal Value
+		let differenceTimeLastValue = channel.currentTimestamp - channel.lastArrayPositive.value[lastElementIndex].ts;
+		const additionalValue = differenceTimeLastValue * channel.lastArrayPositive.value[lastElementIndex].val / smoothtime;
+
+		// Add new value
+		channel.lastArrayPositive.value.push({val:channel.currentValue,ts:channel.currentTimestamp});
+
+		// value to reduce smoothed value
+		let reduceValue = 0;
+		this.log.debug("");
+		this.log.debug("----- start new cycle -----");
+		// Change Array elements after adding newValue
+		do{
+			const differencetimeBetweenElements = channel.lastArrayPositive.value[1].ts - channel.lastArrayPositive.value[0].ts;
+			if(differenceTimeLastValue < differencetimeBetweenElements){
+				channel.lastArrayPositive.value[0].ts +=  differenceTimeLastValue;
+				reduceValue += differenceTimeLastValue * channel.lastArrayPositive.value[0].val / smoothtime;
+				this.log.debug("reduce " + differenceTimeLastValue + "ms with value " + channel.lastArrayPositive.value[0].val + ".");
+				break;
+			}
+			else if(differenceTimeLastValue === differencetimeBetweenElements){
+				reduceValue += differenceTimeLastValue * channel.lastArrayPositive.value[0].val / smoothtime;
+				channel.lastArrayPositive.value.shift();
+				this.log.debug("reduce " + differenceTimeLastValue + "ms with value " + channel.lastArrayPositive.value[0].val + " and shift array.");
+				break;
+			}
+			else{
+				reduceValue += differencetimeBetweenElements * channel.lastArrayPositive.value[0].val / smoothtime;
+				differenceTimeLastValue -= differencetimeBetweenElements;
+				channel.lastArrayPositive.value.shift();
+				this.log.debug("reduce " + differencetimeBetweenElements + "ms with value " + channel.lastArrayPositive.value[0].val + ", shift array and check next element.");
+			}
+		}while(channel.lastArrayPositive.value.length !== 0);// This condition is hopefully ever true
+
+		// Shows the hole timedifference from the oldest to the newest element in the array
+		this.log.debug("Hole timedifference in the array: " +(channel.lastArrayPositive.value[channel.lastArrayPositive.value.length - 1].ts - channel.lastArrayPositive.value[0].ts) / 1000 + "s.");
+
+		channel.lastArrayPositive.additionalValue = additionalValue;
+		channel.lastArrayPositive.reduceValue = reduceValue;
+	}
+
 	/******************************************************************
 	 * ****************************************************************
 	 * ***************************************************************/
