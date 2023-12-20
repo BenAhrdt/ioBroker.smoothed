@@ -22,7 +22,6 @@
         "statesAccordion":{
             "type":"accordion",
             "sm":12,
-            "allowAddByFilter": true,
             "items":[
                 {
                     "type": "text",
@@ -76,7 +75,7 @@
                     "default": "mvgavg",
                     "label": "calculationType",
                     "tooltip": "typeTooltip",
-                    "sm": 1
+                    "sm": 3
                 },
                 {
                     "type": "select",
@@ -115,7 +114,8 @@
                     {"label":"60 min","value":3600}],
                     "default":300,
                     "label": "smoothtime",
-                    "tooltip": "smoothtimeTooltip"
+                    "tooltip": "smoothtimeTooltip",
+                    "sm":2
                 },
                 {
                     "newLine": true,
