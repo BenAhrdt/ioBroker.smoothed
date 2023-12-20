@@ -8,8 +8,14 @@
     "type": "tipo",
     "calculationType": "tipo di calcolo",
     "typeTooltip": "qui è possibile impostare il tipo desiderato per uniformare il segnale",
-    "smoothtimePositive": "tempo fluido positivo",
-    "smoothtimePositiveTooltip": "tempo fluido per cambiamenti positivi",
+    "name": "nome del valore livellato",
+    "nameId": "inserisci il tuo nome preferito, del risultato del calcolo livellato",
+    "id": "stato che dovrebbe essere livellato",
+    "idTooltip": "scegli lo state-id dello stato che dovrebbe essere livellato",
+    "smoothtime": "tempo fluido positivo",
+    "smoothtimeTooltip": "tempo fluido per cambiamenti positivi",
     "smoothtimeNegative": "tempo regolare negativo",
-    "smoothtimeNegativeTooltip": "smoothtime per cambiamenti negativi"
+    "smoothtimeNegativeTooltip": "smoothtime per cambiamenti negativi",
+    "avgbw": "avg (media mobile all'indietro)",
+    "mvgavg": "media mobile"
 }

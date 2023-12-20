@@ -8,8 +8,14 @@
     "type": "tipo",
     "calculationType": "tipo de cálculo",
     "typeTooltip": "aqui você pode definir o tipo desejado para suavizar o sinal",
-    "smoothtimePositive": "tempo suave positivo",
-    "smoothtimePositiveTooltip": "tempo tranquilo para mudanças positivas",
+    "name": "nome do valor suavizado",
+    "nameId": "insira seu nome favorito, do resultado do cálculo suavizado",
+    "id": "estado que deve ser suavizado",
+    "idTooltip": "escolha o id do estado que deve ser suavizado",
+    "smoothtime": "tempo suave positivo",
+    "smoothtimeTooltip": "tempo tranquilo para mudanças positivas",
     "smoothtimeNegative": "tempo suave negativo",
-    "smoothtimeNegativeTooltip": "tempo suave para mudanças negativas"
+    "smoothtimeNegativeTooltip": "tempo suave para mudanças negativas",
+    "avgbw": "avg (média móvel retroativa)",
+    "mvgavg": "média móvel"
 }

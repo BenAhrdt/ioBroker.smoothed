@@ -8,8 +8,14 @@
 	"type": "type",
 	"calculationType":"calculation type",
 	"typeTooltip": "here you can set the desired type for smooth the signal",
-	"smoothtimePositive":"smoothtime positive",
-	"smoothtimePositiveTooltip":"smoothtime for positive changes",
+	"name": "name of the smoothed value",
+	"nameId": "input your favorite name, of the result of the smoothed calculation",
+	"id": "state wich should be smoothed",
+	"idTooltip": "choose the state-id of the state wich should be smoothed",
+	"smoothtime":"smoothtime positive",
+	"smoothtimeTooltip":"smoothtime for positive changes",
 	"smoothtimeNegative":"smoothtime negative",
-	"smoothtimeNegativeTooltip":"smoothtime for negative changes"
+	"smoothtimeNegativeTooltip":"smoothtime for negative changes",
+	"mvgavg": "moving average"
+
 }

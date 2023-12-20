@@ -4,12 +4,17 @@
     "mainInformationText": "Mit diesem Adapter können Sie Ihre Signale nach einer ausgewählten Formel glätten. Sie können eine ID auch mehrmals auswählen, um sie mit einer anderen Formel zu glätten.",
     "configuration": "Aufbau",
     "refreshRate": "Aktualisierungsrate",
-    "refreshRateTooltip": "Hier können Sie die Bildwiederholfrequenz einstellen, mit der das geglättete Ergebnis aktualisiert werden soll",
+    "refreshRateTooltip": "Hier können Sie die Aktualisierungsrate einstellen, mit der das geglättete Ergebnis aktualisiert werden soll",
     "type": "Typ",
     "calculationType": "Berechnungsart",
     "typeTooltip": "Hier können Sie den gewünschten Typ zur Glättung des Signals einstellen",
-    "smoothtimePositive": "positive Glättungszeite Glättungszeit",
-    "smoothtimePositiveTooltip": "Glättungzeit für positive Veränderungen",
-    "smoothtimeNegative": "negative Glättungszeit",
-    "smoothtimeNegativeTooltip": "Glättungszeit für negative Veränderungen"
+    "name": "Name des geglätteten Werts",
+    "nameId": "Geben Sie Ihren Wunschnamen für den geglätteten Wert ein",
+    "id": "State, der geglättet werden soll",
+    "idTooltip": "Wählen Sie die Sate-ID des States aus, der geglättet werden soll",
+    "smoothtime": "Glättungszeit",
+    "smoothtimeTooltip": "Glättungszeit für Veränderungen",
+    "smoothtimeNegative": "Glättungszeit",
+    "smoothtimeNegativeTooltip": "Glättungszeit für negative Veränderungen",
+    "mvgavg": "gleitender Mittelwert"
 }

@@ -8,8 +8,14 @@
     "type": "类型",
     "calculationType": "计算类型",
     "typeTooltip": "您可以在此处设置所需的类型以平滑信号",
-    "smoothtimePositive": "平滑时间正值",
-    "smoothtimePositiveTooltip": "积极改变的平稳时间",
+    "name": "平滑值的名称",
+    "nameId": "输入平滑计算结果中您最喜欢的名称",
+    "id": "应平滑的状态",
+    "idTooltip": "选择应该平滑的状态的状态ID",
+    "smoothtime": "平滑时间正值",
+    "smoothtimeTooltip": "积极改变的平稳时间",
     "smoothtimeNegative": "平滑时间为负",
-    "smoothtimeNegativeTooltip": "负面变化的平滑时间"
+    "smoothtimeNegativeTooltip": "负面变化的平滑时间",
+    "avgbw": "avg（向后移动平均线）",
+    "mvgavg": "移动平均线"
 }

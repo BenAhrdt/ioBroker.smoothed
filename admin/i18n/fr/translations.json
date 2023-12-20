@@ -8,8 +8,14 @@
     "type": "taper",
     "calculationType": "type de calcul",
     "typeTooltip": "ici, vous pouvez définir le type souhaité pour lisser le signal",
-    "smoothtimePositive": "temps lisse positif",
-    "smoothtimePositiveTooltip": "smoothtime pour des changements positifs",
+    "name": "nom de la valeur lissée",
+    "nameId": "saisissez votre nom préféré, du résultat du calcul lissé",
+    "id": "état à lisser",
+    "idTooltip": "choisir l'identifiant de l'état qui doit être lissé",
+    "smoothtime": "temps lisse positif",
+    "smoothtimeTooltip": "smoothtime pour des changements positifs",
     "smoothtimeNegative": "temps de fluidité négatif",
-    "smoothtimeNegativeTooltip": "smoothtime pour les changements négatifs"
+    "smoothtimeNegativeTooltip": "smoothtime pour les changements négatifs",
+    "avgbw": "avg (Moyenne mobile vers l'arrière)",
+    "mvgavg": "moyenne mobile"
 }

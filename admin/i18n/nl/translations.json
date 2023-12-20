@@ -8,8 +8,14 @@
     "type": "type",
     "calculationType": "berekeningstype",
     "typeTooltip": "hier kunt u het gewenste type instellen voor een vloeiender signaal",
-    "smoothtimePositive": "smoothtime positief",
-    "smoothtimePositiveTooltip": "soepele tijd voor positieve veranderingen",
+    "name": "naam van de afgevlakte waarde",
+    "nameId": "voer uw favoriete naam in, of het resultaat van de afgevlakte berekening",
+    "id": "staat die moet worden afgevlakt",
+    "idTooltip": "kies de state-id van de staat die moet worden afgevlakt",
+    "smoothtime": "smoothtime positief",
+    "smoothtimeTooltip": "soepele tijd voor positieve veranderingen",
     "smoothtimeNegative": "smoothtime negatief",
-    "smoothtimeNegativeTooltip": "soepele tijd voor negatieve veranderingen"
+    "smoothtimeNegativeTooltip": "soepele tijd voor negatieve veranderingen",
+    "avgbw": "avg (achterwaarts voortschrijdend gemiddelde)",
+    "mvgavg": "voortschrijdend gemiddelde"
 }
