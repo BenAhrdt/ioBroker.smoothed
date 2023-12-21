@@ -17,7 +17,7 @@ smoothes selected signas according to a selected function
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.2.0 (2023-12-21)
 * (Ben1983) lowpassfilter added to calculation type
 
 ### 0.1.0 (2023-12-20)
