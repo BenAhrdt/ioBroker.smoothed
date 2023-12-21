@@ -33,8 +33,7 @@ class Smoothed extends utils.Adapter {
 		// Name of internal states of smoothed values
 		this.internalSmoothedValues = {
 			smoothed: "smoothed",
-			lastArray : "lastArray",
-			lastArrayNegative : "lastArrayNegative"
+			lastArray : "lastArray"
 		};
 
 		// Active states / channels to smooth
@@ -48,7 +47,8 @@ class Smoothed extends utils.Adapter {
 
 		//Types of calculations
 		this.calculationtype = {
-			mvgavg: "mvgavg"
+			mvgavg: "mvgavg",
+			lowpasspt1: "PT1"
 		};
 	}
 
@@ -112,8 +112,6 @@ class Smoothed extends utils.Adapter {
 
 					// Assign element by name (later these are the channel)
 					this.activeChannels[element.name] = {
-						id: element.id,
-						name: element.name,
 						smoothed: resultState.val,
 						currentValue: resultState.val,
 						currentTimestamp : Date.now(),
@@ -125,9 +123,20 @@ class Smoothed extends utils.Adapter {
 						unit: resultObject.common.unit,
 
 						// Assign values from config
-						type: element.type,
+						name: element.name,
+						id: element.id,
 						refreshRate: element.refreshRate,
-						smoothtime: element.smoothtime * 1000
+						refreshWithStatechange: element.refreshWithStatechange,
+						type: element.type,
+						smoothtime: element.smoothtime * 1000,
+						separateSmoothtimeForNegativeDifference: element.separateSmoothtimeForNegativeDifference,
+						smoothtimeNegative: element.smoothtimeNegative * 1000,
+						limitInNegativeDirection: element.limitInNegativeDirection,
+						negativeLimit: element.negativeLimit,
+						limitInPositiveDirection: element.limitInPositiveDirection,
+						positiveLimit: element.positiveLimit,
+						limitDecimalplaces: element.limitDecimalplaces,
+						decimalplaces: element.decimalplaces
 					};
 
 					//Assign the created element by id
@@ -188,7 +197,7 @@ class Smoothed extends utils.Adapter {
 				channel.lastArray.smoothtime = channel.smoothtime;
 				channel.lastArray.value = [];
 				channel.lastArray.value.push({val:channel.currentValue,ts:Date.now() - (channel.smoothtime)},{val:channel.currentValue,ts:Date.now()});
-				this.log.info("LastArray created: " + JSON.stringify(channel.lastArray));
+				this.log.debug("LastArray created: " + JSON.stringify(channel.lastArray));
 				this.setStateAsync(stateId,JSON.stringify(channel.lastArray),true);
 			}
 
@@ -267,12 +276,27 @@ class Smoothed extends utils.Adapter {
 		for(const channelName in this.activeStates[id]){
 			const channel = this.activeStates[id][channelName];
 
-			// Value is changed => Assign new value
-			channel.currentValue = state.val;
+			// Ceck for limits
+			if(channel.limitInNegativeDirection && state.val < channel.negativeLimit){
+				channel.currentValue = channel.negativeLimit;
+				this.log.info(`State ${id} is set to value ${state.val} and would be limitted to ${channel.negativeLimit}`);
+			}
+			else if(channel.limitInPositiveDirection && state.val > channel.positiveLimit){
+				channel.currentValue = channel.negativeLimit;
+				this.log.info(`State ${id} is set to value ${state.val} and would be limitted to ${channel.positiveLimit}`);
+			}
+			else{
+				// Assign new value, if no limit is reached
+				channel.currentValue = state.val;
+			}
 
-			// Hier prüfen, ob auch ausgegeben werden soll, oder nur berechnet. !!!
-			this.outputSmoothedValues(channel);
-
+			// Check refrehing => Output, or just calculate
+			if(channel.refreshRate === 0 || channel.refreshWithStatechange){
+				this.outputSmoothedValues(channel);
+			}
+			else{
+				this.calculateSmoothedValue(channel);
+			}
 			// Assign current value to last value
 			channel.lastValue = channel.currentValue;
 		}
@@ -284,8 +308,12 @@ class Smoothed extends utils.Adapter {
 
 	async outputSmoothedValues(channel){
 		this.calculateSmoothedValue(channel);
-		this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.smoothed}`,channel.smoothed,true);
-		this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.lastArray}`,JSON.stringify(channel.lastArray),true);
+		// Output with the desired decimal places
+		let smoothedOutput = channel.smoothed;
+		if(channel.limitDecimalplaces){
+			smoothedOutput = Math.round(smoothedOutput * channel.decimalplaces) / channel.decimalplaces;
+		}
+		this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.smoothed}`,smoothedOutput,true);
 	}
 
 	/******************************************************************
@@ -296,8 +324,12 @@ class Smoothed extends utils.Adapter {
 		// get act timestamp
 		const timestamp = Date.now();
 		channel.currentTimestamp = timestamp;
+
 		// Select the calculationtype
 		switch(channel.type){
+			case this.calculationtype.lowpasspt1:
+				this.calculateLowpassPt1(channel);
+				break;
 			case this.calculationtype.mvgavg:
 			default:
 				this.calculateMovingAverage(channel);
@@ -330,8 +362,30 @@ class Smoothed extends utils.Adapter {
 	 * ****************************************************************
 	 * ***************************************************************/
 
+	async calculateLowpassPt1(channel){
+		const timestamp = channel.currentTimestamp;
+		let smoothtime = 0;
+		if(channel.currentValue >= channel.smoothed || !channel.separateSmoothtimeForNegativeDifference){
+			smoothtime = channel.smoothtime;
+		}
+		else{
+			smoothtime = channel.smoothtimeNegative;
+		}
+		const tau = 1/5;
+		if(smoothtime != 0){
+			channel.smoothed += (channel.lastValue - channel.smoothed) *
+										(1 - Math.exp(-(timestamp - channel.lastTimestamp)/(smoothtime  * tau)));
+		}
+		else{
+			channel.smoothed = channel.currentValue;
+		}
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
 	async newValueToArray(channel){
-		//const smoothtime = channel.smoothtime;
 		const lastElementIndex = channel.lastArray.value.length - 1;
 
 		// Generate diffenrence time and additonal Value
@@ -341,7 +395,7 @@ class Smoothed extends utils.Adapter {
 		channel.lastArray.value.push({val:channel.currentValue,ts:channel.currentTimestamp});
 
 		this.log.debug("");
-		this.log.debug("----- start new cycle -----");
+		this.log.debug("----- start new cycle new value to array -----");
 		// Change Array elements after adding newValue
 		do{
 			const differencetimeBetweenElements = channel.lastArray.value[1].ts - channel.lastArray.value[0].ts;
@@ -364,6 +418,8 @@ class Smoothed extends utils.Adapter {
 
 		// Shows the hole timedifference from the oldest to the newest element in the array
 		this.log.debug("Hole timedifference in the array: " +(channel.lastArray.value[channel.lastArray.value.length - 1].ts - channel.lastArray.value[0].ts) / 1000 + "s.");
+		this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.lastArray}`,JSON.stringify(channel.lastArray),true);
+		this.log.debug("----- end new value to array -----");
 	}
 
 	/******************************************************************
