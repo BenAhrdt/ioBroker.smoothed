@@ -63,6 +63,7 @@ class Smoothed extends utils.Adapter {
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	async onReady() {
+
 		// delete not configed ids in namestapace
 		await this.statehandling.delNotConfiguredIds();
 
@@ -73,6 +74,9 @@ class Smoothed extends utils.Adapter {
 		await this.schedulehandling.initSchedules();
 	}
 
+	async testfunktion(){
+		return 1;
+	}
 	/******************************************************************
 	 * *********Called from schedules (from schedulehandling)**********
 	 * ***************************************************************/
@@ -81,7 +85,7 @@ class Smoothed extends utils.Adapter {
 		for(const channelName in this.cronJobs[refreshRate]){
 			if(channelName !== this.cronJobs.jobIdKey){
 				const channel = this.activeChannels[channelName];
-				this.outputSmoothedValues(channel);
+				await this.outputSmoothedValues(channel);
 			}
 		}
 	}
@@ -91,7 +95,7 @@ class Smoothed extends utils.Adapter {
 	 * ***************************************************************/
 
 	async outputSmoothedValues(channel){
-		this.calculateSmoothedValue(channel);
+		await this.calculateSmoothedValue(channel);
 		// Output with the desired decimal places
 		let smoothedOutput = channel.smoothed;
 		if(channel.limitDecimalplaces){
@@ -112,11 +116,11 @@ class Smoothed extends utils.Adapter {
 		// Select the calculationtype
 		switch(channel.type){
 			case this.calculationtype.lowpasspt1:
-				this.calculation.lowpassPt1(channel);
+				await this.calculation.lowpassPt1(channel);
 				break;
 			case this.calculationtype.mvgavg:
 			default:
-				this.calculation.movingAverage(channel);//this.calculateMovingAverage(channel);
+				await this.calculation.movingAverage(channel);//this.calculateMovingAverage(channel);
 		}
 
 		// assign timestamp as last changed timestampt
@@ -166,10 +170,10 @@ class Smoothed extends utils.Adapter {
 
 			// Check refrehing => Output, or just calculate
 			if(channel.refreshRate === 0 || channel.refreshWithStatechange){
-				this.outputSmoothedValues(channel);
+				await this.outputSmoothedValues(channel);
 			}
 			else{
-				this.calculateSmoothedValue(channel);
+				await this.calculateSmoothedValue(channel);
 			}
 			// Assign current value to last value
 			channel.lastValue = channel.currentValue;
