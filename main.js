@@ -7,7 +7,9 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require("@iobroker/adapter-core");
-const schedule = require("node-schedule");
+const calculationtypes = require("./lib/modules/calculation");
+const statehandlingtypes = require("./lib/modules/statehandling");
+const schedulehandlingtypes = require("./lib/modules/schedulehandling");
 
 class Smoothed extends utils.Adapter {
 
@@ -50,6 +52,11 @@ class Smoothed extends utils.Adapter {
 			mvgavg: "mvgavg",
 			lowpasspt1: "PT1"
 		};
+
+		// define externat modules
+		this.calculation = new calculationtypes({adapter:this});
+		this.statehandling = new statehandlingtypes({adapter:this});
+		this.schedulehandling = new schedulehandlingtypes({adapter:this});
 	}
 
 	/**
@@ -57,192 +64,17 @@ class Smoothed extends utils.Adapter {
 	 */
 	async onReady() {
 		// delete not configed ids in namestapace
-		await this.delNotConfiguredIds();
+		await this.statehandling.delNotConfiguredIds();
 
 		// Create internal adapter-structure
-		await this.createInternalValues();
+		await this.statehandling.createInternalValues();
 
 		// crate and init schedules
-		await this.initSchedules();
+		await this.schedulehandling.initSchedules();
 	}
 
 	/******************************************************************
-	 * ****************************************************************
-	 * ***************************************************************/
-
-	// delete not configured states
-	async delNotConfiguredIds()
-	{
-		// Get all objects in the adapter
-		this.AdapterObjectsAtStart = await this.getAdapterObjectsAsync();
-		let activeString = "";
-		for(const elementName in this.config.statesAccordion){
-			const element = this.config.statesAccordion[elementName];
-			if(element.name && element.name !== ""){
-				for(const stateName in this.internalSmoothedValues){
-					activeString = `${this.generateInternalChannel(element.name,true)}.${stateName}`;
-					delete this.AdapterObjectsAtStart[activeString];
-				}
-				activeString = this.generateInternalChannel(element.name,true);
-				delete this.AdapterObjectsAtStart[activeString];
-			}
-		}
-		// delete smoothedvalue folder from array
-		activeString = `${this.namespace}.${this.internalFolder.smoothedvalues}`;
-		delete this.AdapterObjectsAtStart[activeString];
-
-		// delete the remaining states
-		for(const state in this.AdapterObjectsAtStart){
-			this.delObjectAsync(state);
-		}
-	}
-
-	/******************************************************************
-	 * ****************************************************************
-	 * ***************************************************************/
-
-	// Create internal folders and states
-	async createInternalValues(){
-		for(const elementName in this.config.statesAccordion){
-			const element = this.config.statesAccordion[elementName];
-			try{
-				const resultObject = await this.getForeignObjectAsync(element.id);
-				const resultState = await this.getForeignStateAsync(element.id);
-				if(resultObject && resultState){
-
-					// Assign element by name (later these are the channel)
-					this.activeChannels[element.name] = {
-						smoothed: resultState.val,
-						currentValue: resultState.val,
-						currentTimestamp : Date.now(),
-						lastValue: resultState.val,
-						lastTimestamp: Date.now(),
-
-						// Assigne values from object
-						// @ts-ignore
-						unit: resultObject.common.unit,
-
-						// Assign values from config
-						name: element.name,
-						id: element.id,
-						refreshRate: element.refreshRate,
-						refreshWithStatechange: element.refreshWithStatechange,
-						type: element.type,
-						smoothtime: element.smoothtime * 1000,
-						separateSmoothtimeForNegativeDifference: element.separateSmoothtimeForNegativeDifference,
-						smoothtimeNegative: element.smoothtimeNegative * 1000,
-						limitInNegativeDirection: element.limitInNegativeDirection,
-						negativeLimit: element.negativeLimit,
-						limitInPositiveDirection: element.limitInPositiveDirection,
-						positiveLimit: element.positiveLimit,
-						limitDecimalplaces: element.limitDecimalplaces,
-						decimalplaces: element.decimalplaces
-					};
-
-					//Assign the created element by id
-					if(!this.activeStates[element.id]){
-						this.activeStates[element.id] = {};
-					}
-					this.activeStates[element.id][element.name] = this.activeChannels[element.name];
-				}
-			}
-			catch{
-				const message = `The configured value: ${element.name} with the id: ${element.id} is not able to read.`;
-				this.log.warn(message);
-			}
-		}
-
-		// Generate internal folder for the smoothed values values
-		await this.setObjectNotExistsAsync(`${this.internalFolder.smoothedvalues}`,{
-			"type": "folder",
-			"common": {
-				"name": "smoothed values"
-			},
-			native : {},
-		});
-
-		// Create the states of configed values
-		for(const channelName in this.activeChannels){
-			const channel = this.activeChannels[channelName];
-			// create State for the name
-			await this.setObjectNotExistsAsync(this.generateInternalChannel(channelName),{
-				type: "channel",
-				common: {
-					name: channelName,
-					desc: channel.sourceId
-				},
-				native: {},
-			});
-
-			// create last values arrays
-			const stateId = `${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.lastArray}`;
-			// @ts-ignore
-			await this.setObjectNotExistsAsync(stateId,{
-				type: "state",
-				common: {
-					name: "last values and times",
-					type: "json",
-					role: "value",
-					read: true,
-					write: false,
-					def: JSON.stringify({})
-				},
-				native: {},
-			});
-			const lastArrayResult = await this.getStateAsync(`${stateId}`);
-			// @ts-ignore
-			channel.lastArray = JSON.parse(lastArrayResult.val);
-			if(!channel.lastArray.smoothtime || channel.smoothtime !== channel.lastArray.smoothtime){
-				channel.lastArray = {};
-				channel.lastArray.smoothtime = channel.smoothtime;
-				channel.lastArray.value = [];
-				channel.lastArray.value.push({val:channel.currentValue,ts:Date.now() - (channel.smoothtime)},{val:channel.currentValue,ts:Date.now()});
-				this.log.debug("LastArray created: " + JSON.stringify(channel.lastArray));
-				this.setStateAsync(stateId,JSON.stringify(channel.lastArray),true);
-			}
-
-			// create State for the name
-			await this.setObjectNotExistsAsync(`${this.generateInternalChannel(channelName)}.${this.internalSmoothedValues.smoothed}`,{
-				type: "state",
-				common: {
-					name: "smoothed value",
-					type: "number",
-					role: "value",
-					read: true,
-					write: false,
-					unit: channel.unit,
-					def: channel.smoothed
-				},
-				native: {},
-			});
-			this.subscribeForeignStatesAsync(channel.id);
-			this.outputSmoothedValues(channel);
-		}
-	}
-
-	/******************************************************************
-	 * ****************************************************************
-	 * ***************************************************************/
-
-	async initSchedules(){
-	// Erste Schritte für die Übernahme !!!
-		for(const channelName in this.activeChannels){
-			const channel = this.activeChannels[channelName];
-			if(!this.cronJobs[channel.refreshRate]){
-				this.cronJobs[channel.refreshRate] = {};
-				if(channel.refreshRate !== 60){
-					this.cronJobs[channel.refreshRate][this.cronJobs.jobIdKey] = schedule.scheduleJob(`*/${channel.refreshRate} * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
-				}
-				else{
-					this.cronJobs[channel.refreshRate][this.cronJobs.jobIdKey] = schedule.scheduleJob(`0 * * * * *`,this.outputAddedChannels.bind(this,channel.refreshRate));
-				}
-			}
-			this.cronJobs[channel.refreshRate][channel.name] = {};
-		}
-	}
-
-	/******************************************************************
-	 * ****************************************************************
+	 * *********Called from schedules (from schedulehandling)**********
 	 * ***************************************************************/
 
 	async outputAddedChannels(refreshRate){
@@ -258,12 +90,54 @@ class Smoothed extends utils.Adapter {
 	 * ****************************************************************
 	 * ***************************************************************/
 
-	generateInternalChannel(name,withNamespace = false){
-		if(withNamespace){
-			return `${this.namespace}.${this.internalFolder.smoothedvalues}.${name}`;
+	async outputSmoothedValues(channel){
+		this.calculateSmoothedValue(channel);
+		// Output with the desired decimal places
+		let smoothedOutput = channel.smoothed;
+		if(channel.limitDecimalplaces){
+			smoothedOutput = Math.round(smoothedOutput * channel.decimalplaces) / channel.decimalplaces;
 		}
-		else{
-			return `${this.internalFolder.smoothedvalues}.${name}`;
+		this.setStateAsync(`${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.smoothed}`,smoothedOutput,true);
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	async calculateSmoothedValue(channel){
+		// get act timestamp
+		const timestamp = Date.now();
+		channel.currentTimestamp = timestamp;
+
+		// Select the calculationtype
+		switch(channel.type){
+			case this.calculationtype.lowpasspt1:
+				this.calculation.lowpassPt1(channel);
+				break;
+			case this.calculationtype.mvgavg:
+			default:
+				this.calculation.movingAverage(channel);//this.calculateMovingAverage(channel);
+		}
+
+		// assign timestamp as last changed timestampt
+		channel.lastTimestamp = timestamp;
+	}
+
+	/******************************************************************
+	 * ****************************************************************
+	 * ***************************************************************/
+
+	/**
+	 * Is called if a subscribed state changes
+	 * @param {string} id
+	 * @param {ioBroker.State | null | undefined} state
+	 */
+	onStateChange(id, state) {
+		if (state) {
+			this.doChangeProcess(id,state);
+		} else {
+			// The state was deleted
+			this.log.info(`state ${id} deleted`);
 		}
 	}
 
@@ -302,141 +176,6 @@ class Smoothed extends utils.Adapter {
 		}
 
 	}
-	/******************************************************************
-	 * ****************************************************************
-	 * ***************************************************************/
-
-	async outputSmoothedValues(channel){
-		this.calculateSmoothedValue(channel);
-		// Output with the desired decimal places
-		let smoothedOutput = channel.smoothed;
-		if(channel.limitDecimalplaces){
-			smoothedOutput = Math.round(smoothedOutput * channel.decimalplaces) / channel.decimalplaces;
-		}
-		this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.smoothed}`,smoothedOutput,true);
-	}
-
-	/******************************************************************
-	 * ****************************************************************
-	 * ***************************************************************/
-
-	async calculateSmoothedValue(channel){
-		// get act timestamp
-		const timestamp = Date.now();
-		channel.currentTimestamp = timestamp;
-
-		// Select the calculationtype
-		switch(channel.type){
-			case this.calculationtype.lowpasspt1:
-				this.calculateLowpassPt1(channel);
-				break;
-			case this.calculationtype.mvgavg:
-			default:
-				this.calculateMovingAverage(channel);
-		}
-
-		// assign timestamp as last changed timestampt
-		channel.lastTimestamp = timestamp;
-	}
-
-	/******************************************************************
-	 * ****************************************************************
-	 * ***************************************************************/
-
-	async calculateMovingAverage(channel){
-		this.newValueToArray(channel);
-		// Add all arrayelements and build the smoothed value
-		const lastElementIndex = channel.lastArray.value.length - 2;
-		let sum = 0;
-		for(let elementIndex = 0 ; elementIndex <= lastElementIndex ; elementIndex++){
-			const timedifferenceBetweenElements = channel.lastArray.value[elementIndex + 1].ts - channel.lastArray.value[elementIndex].ts;
-			const weightOfElement = timedifferenceBetweenElements * channel.lastArray.value[elementIndex].val;
-			sum += weightOfElement;
-		}
-		channel.smoothed = sum / channel.smoothtime;
-		this.log.debug("New value smoothed: " + channel.smoothed);
-		this.log.debug("----- end cycle -----");
-	}
-
-	/******************************************************************
-	 * ****************************************************************
-	 * ***************************************************************/
-
-	async calculateLowpassPt1(channel){
-		const timestamp = channel.currentTimestamp;
-		let smoothtime = 0;
-		if(channel.currentValue >= channel.smoothed || !channel.separateSmoothtimeForNegativeDifference){
-			smoothtime = channel.smoothtime;
-		}
-		else{
-			smoothtime = channel.smoothtimeNegative;
-		}
-		const tau = 1/5;
-		if(smoothtime != 0){
-			channel.smoothed += (channel.lastValue - channel.smoothed) *
-										(1 - Math.exp(-(timestamp - channel.lastTimestamp)/(smoothtime  * tau)));
-		}
-		else{
-			channel.smoothed = channel.currentValue;
-		}
-	}
-
-	/******************************************************************
-	 * ****************************************************************
-	 * ***************************************************************/
-
-	async newValueToArray(channel){
-		const lastElementIndex = channel.lastArray.value.length - 1;
-
-		// Generate diffenrence time and additonal Value
-		let differenceTimeLastValue = channel.currentTimestamp - channel.lastArray.value[lastElementIndex].ts;
-
-		// Add new value
-		channel.lastArray.value.push({val:channel.currentValue,ts:channel.currentTimestamp});
-
-		this.log.debug("");
-		this.log.debug("----- start new cycle new value to array -----");
-		// Change Array elements after adding newValue
-		do{
-			const differencetimeBetweenElements = channel.lastArray.value[1].ts - channel.lastArray.value[0].ts;
-			if(differenceTimeLastValue < differencetimeBetweenElements){
-				channel.lastArray.value[0].ts +=  differenceTimeLastValue;
-				this.log.debug("reduce " + differenceTimeLastValue + "ms with value " + channel.lastArray.value[0].val + ".");
-				break;
-			}
-			else if(differenceTimeLastValue === differencetimeBetweenElements){
-				channel.lastArray.value.shift();
-				this.log.debug("reduce " + differenceTimeLastValue + "ms with value " + channel.lastArray.value[0].val + " and shift array.");
-				break;
-			}
-			else{
-				differenceTimeLastValue -= differencetimeBetweenElements;
-				channel.lastArray.value.shift();
-				this.log.debug("reduce " + differencetimeBetweenElements + "ms with value " + channel.lastArray.value[0].val + ", shift array and check next element.");
-			}
-		}while(channel.lastArray.value.length !== 0);// This condition is hopefully ever true
-
-		// Shows the hole timedifference from the oldest to the newest element in the array
-		this.log.debug("Hole timedifference in the array: " +(channel.lastArray.value[channel.lastArray.value.length - 1].ts - channel.lastArray.value[0].ts) / 1000 + "s.");
-		this.setStateAsync(`${this.generateInternalChannel(channel.name)}.${this.internalSmoothedValues.lastArray}`,JSON.stringify(channel.lastArray),true);
-		this.log.debug("----- end new value to array -----");
-	}
-
-	/******************************************************************
-	 * ****************************************************************
-	 * ***************************************************************/
-
-	// Cancel all Scheduled Cronjobs
-	async cancelAllScheduledCronjobs(){
-		for(const cronJobName in this.cronJobs){
-			const cronJob = this.cronJobs[cronJobName];
-			for(const refreshRateName in cronJob){
-				const refreshRate = cronJob[refreshRateName];
-				schedule.cancelJob(refreshRate[this.cronJobs.jobIdKey]);
-				delete refreshRate[this.cronJobs.jobIdKey];
-			}
-		}
-	}
 
 	/******************************************************************
 	 * ****************************************************************
@@ -449,7 +188,7 @@ class Smoothed extends utils.Adapter {
 	onUnload(callback) {
 		try {
 			// Clear all scheduled Cronjobs
-			this.cancelAllScheduledCronjobs();
+			this.schedulehandling.cancelAllScheduledCronjobs();
 
 			callback();
 		} catch (e) {
@@ -477,20 +216,6 @@ class Smoothed extends utils.Adapter {
 	/******************************************************************
 	 * ****************************************************************
 	 * ***************************************************************/
-
-	/**
-	 * Is called if a subscribed state changes
-	 * @param {string} id
-	 * @param {ioBroker.State | null | undefined} state
-	 */
-	onStateChange(id, state) {
-		if (state) {
-			this.doChangeProcess(id,state);
-		} else {
-			// The state was deleted
-			this.log.info(`state ${id} deleted`);
-		}
-	}
 
 	// If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
 	// /**
