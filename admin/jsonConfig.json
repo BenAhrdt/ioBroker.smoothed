@@ -230,6 +230,21 @@
                     "tooltip": "decimalplacesTooltip",
                     "hidden": "data.limitDecimalplaces != true",
                     "sm": 2
+                },            
+                {   "attr": "ignoreAboveStandardDeviation",
+                    "type": "checkbox",
+                    "label": "ignoreStandardDeviation",
+                    "tooltip": "ignoreStandardDeviationTooltip",
+                    "default": false,
+                    "sm":3
+                },
+                { "attr": "standardDeviationLimit",
+                    "type": "number",
+                    "label": "standardDeviationLimit",
+                    "tooltip": "standardDeviationLimitTooltip",
+                    "hidden":"data.ignoreAboveStandardDeviation != true",
+                    "default":0,
+                    "sm":3
                 }
             ]
         }
