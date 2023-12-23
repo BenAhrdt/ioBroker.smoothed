@@ -1,130 +1,143 @@
 {
-    "common": {
-        "name": "smoothed",
-        "version": "0.3.0",
-        "news": {
-            "0.3.0": {
-                "en": "functions outsourced in lib/modules",
-                "de": "funktionen ausgelagert in lib/modules",
-                "ru": "функции, исходящие в lib/modules",
-                "pt": "funções terceirizadas em lib/modules",
-                "nl": "vertaling:",
-                "fr": "fonctions externalisées dans lib/modules",
-                "it": "funzioni outsourced in lib/modules",
-                "es": "funciones subcontratadas en lib/modules",
-                "pl": "funkcjonuje on w lib/module",
-                "uk": "функції з джерела в lib/modules",
-                "zh-cn": "扎尔布/莫杜尔斯外包的职能"
-            },
-            "0.2.0": {
-                "en": "lowpassfilter added to calculation type",
-                "de": "tiefpassfilter zur berechnungsart hinzugefügt",
-                "ru": "lowpassfilter добавлен в тип расчета",
-                "pt": "lowpassfilter adicionado ao tipo de cálculo",
-                "nl": "laagpassfilter toegevoegd aan berekeningen",
-                "fr": "baspassfilter ajouté au type de calcul",
-                "it": "lowpassfilter aggiunto al tipo di calcolo",
-                "es": "lowpassfilter añadido al tipo de cálculo",
-                "pl": "ninipassfiltr dodał do obliczeń typowych",
-                "uk": "нитки додано до розрахунку",
-                "zh-cn": "降水量低"
-            },
-            "0.1.0": {
-                "en": "initial release",
-                "de": "erstausstrahlung",
-                "ru": "начальный выпуск",
-                "pt": "lançamento inicial",
-                "nl": "niet",
-                "fr": "initial release",
-                "it": "rilascio iniziale",
-                "es": "liberación inicial",
-                "pl": "pierwsze wydanie",
-                "uk": "початковий реліз",
-                "zh-cn": "初步释放"
-            },
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "uk": "Початкова версія",
-                "zh-cn": "首次出版"
-            }
-        },
-        "title": "smoothed",
-        "titleLang": {
-            "en": "smoothed",
-            "de": "geglättet",
-            "ru": "сглаженный",
-            "pt": "suavizado",
-            "nl": "gladgestreken",
-            "fr": "lissé",
-            "it": "levigato",
-            "es": "alisado",
-            "pl": "wygładzona",
-            "uk": "згладжений",
-            "zh-cn": "平滑的"
-        },
-        "desc": {
-            "en": "smoothes selected signas according to a selected function",
-            "de": "Glättet ausgewählte Signale gemäß einer ausgewählten Funktion",
-            "ru": "сглаживает выбранные сигналы в соответствии с выбранной функцией",
-            "pt": "suaviza os sinais selecionados de acordo com uma função selecionada",
-            "nl": "verzacht geselecteerde signalen volgens een geselecteerde functie",
-            "fr": "lisse les signaux sélectionnés selon une fonction sélectionnée",
-            "it": "attenua i segnali selezionati in base alla funzione selezionata",
-            "es": "suaviza las señales seleccionadas según una función seleccionada",
-            "pl": "wygładza wybrane znaki zgodnie z wybraną funkcją",
-            "uk": "згладжує вибрані сигнали відповідно до вибраної функції",
-            "zh-cn": "根据选定的函数平滑选定的信号"
-        },
-        "authors": [
-            "Ben1983 <bsahrdt@gmail.com>"
-        ],
-        "keywords": [
-            "smooth",
-            "average",
-            "pt1",
-            "lowpass",
-            "filter",
-            "mittelwert",
-            "tiefpass"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "smoothed.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/BenAhrdt/ioBroker.smoothed/main/admin/smoothed.png",
-        "readme": "https://github.com/BenAhrdt/ioBroker.smoothed/blob/main/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "logic",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "push",
-        "adminUI": {
-            "config": "json"
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=3.3.22"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=6.6.0"
-            }
-        ]
+  "common": {
+    "name": "smoothed",
+    "version": "0.4.0",
+    "news": {
+      "0.4.0": {
+        "en": "calculation and limitation for changes with standard diviation",
+        "de": "berechnung und begrenzung von änderungen mit standardabweichung",
+        "ru": "расчет и ограничение для изменений с стандартной дивиации",
+        "pt": "cálculo e limitação para alterações com diviação padrão",
+        "nl": "berekening en beperking voor veranderingen met standaard verdeel",
+        "fr": "calcul et limitation des changements avec diviation standard",
+        "it": "calcolo e limitazione delle modifiche alla diviazione standard",
+        "es": "cálculo y limitación de cambios con diviación estándar",
+        "pl": "obliczenia i ograniczenia zmian w standardowej dywizjacji",
+        "uk": "розрахунок та обмеження змін із стандартною дивіацією",
+        "zh-cn": "a. 标准差异的计算和限制"
+      },
+      "0.3.0": {
+        "en": "functions outsourced in lib/modules",
+        "de": "funktionen ausgelagert in lib/modules",
+        "ru": "функции, исходящие в lib/modules",
+        "pt": "funções terceirizadas em lib/modules",
+        "nl": "vertaling:",
+        "fr": "fonctions externalisées dans lib/modules",
+        "it": "funzioni outsourced in lib/modules",
+        "es": "funciones subcontratadas en lib/modules",
+        "pl": "funkcjonuje on w lib/module",
+        "uk": "функції з джерела в lib/modules",
+        "zh-cn": "扎尔布/莫杜尔斯外包的职能"
+      },
+      "0.2.0": {
+        "en": "lowpassfilter added to calculation type",
+        "de": "tiefpassfilter zur berechnungsart hinzugefügt",
+        "ru": "lowpassfilter добавлен в тип расчета",
+        "pt": "lowpassfilter adicionado ao tipo de cálculo",
+        "nl": "laagpassfilter toegevoegd aan berekeningen",
+        "fr": "baspassfilter ajouté au type de calcul",
+        "it": "lowpassfilter aggiunto al tipo di calcolo",
+        "es": "lowpassfilter añadido al tipo de cálculo",
+        "pl": "ninipassfiltr dodał do obliczeń typowych",
+        "uk": "нитки додано до розрахунку",
+        "zh-cn": "降水量低"
+      },
+      "0.1.0": {
+        "en": "initial release",
+        "de": "erstausstrahlung",
+        "ru": "начальный выпуск",
+        "pt": "lançamento inicial",
+        "nl": "niet",
+        "fr": "initial release",
+        "it": "rilascio iniziale",
+        "es": "liberación inicial",
+        "pl": "pierwsze wydanie",
+        "uk": "початковий реліз",
+        "zh-cn": "初步释放"
+      },
+      "0.0.1": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "uk": "Початкова версія",
+        "zh-cn": "首次出版"
+      }
     },
-    "native": {
-        "statesAccordion": []
+    "title": "smoothed",
+    "titleLang": {
+      "en": "smoothed",
+      "de": "geglättet",
+      "ru": "сглаженный",
+      "pt": "suavizado",
+      "nl": "gladgestreken",
+      "fr": "lissé",
+      "it": "levigato",
+      "es": "alisado",
+      "pl": "wygładzona",
+      "uk": "згладжений",
+      "zh-cn": "平滑的"
     },
-    "objects": [],
-    "instanceObjects": []
+    "desc": {
+      "en": "smoothes selected signas according to a selected function",
+      "de": "Glättet ausgewählte Signale gemäß einer ausgewählten Funktion",
+      "ru": "сглаживает выбранные сигналы в соответствии с выбранной функцией",
+      "pt": "suaviza os sinais selecionados de acordo com uma função selecionada",
+      "nl": "verzacht geselecteerde signalen volgens een geselecteerde functie",
+      "fr": "lisse les signaux sélectionnés selon une fonction sélectionnée",
+      "it": "attenua i segnali selezionati in base alla funzione selezionata",
+      "es": "suaviza las señales seleccionadas según una función seleccionada",
+      "pl": "wygładza wybrane znaki zgodnie z wybraną funkcją",
+      "uk": "згладжує вибрані сигнали відповідно до вибраної функції",
+      "zh-cn": "根据选定的函数平滑选定的信号"
+    },
+    "authors": [
+      "Ben1983 <bsahrdt@gmail.com>"
+    ],
+    "keywords": [
+      "smooth",
+      "average",
+      "pt1",
+      "lowpass",
+      "filter",
+      "mittelwert",
+      "tiefpass"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "smoothed.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/BenAhrdt/ioBroker.smoothed/main/admin/smoothed.png",
+    "readme": "https://github.com/BenAhrdt/ioBroker.smoothed/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "logic",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=3.3.22"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=6.6.0"
+      }
+    ]
+  },
+  "native": {
+    "statesAccordion": []
+  },
+  "objects": [],
+  "instanceObjects": []
 }

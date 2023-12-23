@@ -17,7 +17,7 @@ smoothes selected signas according to a selected function
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.4.0 (2023-12-23)
 * (Ben1983) calculation and limitation for changes with standard diviation
 
 ### 0.3.0 (2023-12-22)
