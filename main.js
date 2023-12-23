@@ -171,7 +171,8 @@ class Smoothed extends utils.Adapter {
 			}
 			// State is ignored by funkion => greater then allowed standard deviation
 			else{
-				this.log.warn(`The new value ${state.val} of the state ${id} with name ${channel.name} will be ignored. The maximal deviation is actual: ${channel.currentMaxDeviation}.`);
+				const currentDifference = Math.abs(channel.currentValue - state.val);
+				this.log.warn(`The new value ${state.val} of the state ${id} with name ${channel.name} will be ignored. The maximal deviation is actual: ${channel.currentMaxDeviation}. The actual state is ${channel.currentValue}. So a deviation of ${currentDifference} is needed. (${Math.round(currentDifference/channel.currentStandardDeviation)} * actual standard deviation).`);
 			}
 
 
