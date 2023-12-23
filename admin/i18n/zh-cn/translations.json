@@ -47,5 +47,9 @@
     "decimalplacesTooltip": "选择所需的小数位",
     "negativeSeparat": "负分离",
     "lowpass": "低通滤波器",
-    "lowpassPt1": "低通滤波器（PT1）"
+    "lowpassPt1": "低通滤波器（PT1）",
+    "ignoreStandardDeviation": "忽略较大标准差的值",
+    "ignoreStandardDeviationTooltip": "如果有一个新值大于给定的标准差，它将被忽略",
+    "standardDeviationLimit": "标准差的乘数",
+    "standardDeviationLimitTooltip": "定义标准偏差的乘数"
 }

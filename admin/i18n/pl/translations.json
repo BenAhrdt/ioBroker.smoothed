@@ -47,5 +47,9 @@
     "decimalplacesTooltip": "Wybierz żądane miejsca po przecinku",
     "negativeSeparat": "separacja ujemna",
     "lowpass": "Filtr dolnoprzepustowy",
-    "lowpassPt1": "filtr dolnoprzepustowy (PT1)"
+    "lowpassPt1": "filtr dolnoprzepustowy (PT1)",
+    "ignoreStandardDeviation": "ignorować wartości większe odchylenie standardowe",
+    "ignoreStandardDeviationTooltip": "jeżeli pojawi się nowa wartość większa od podanego odchylenia standardowego, zostanie ona zignorowana",
+    "standardDeviationLimit": "mnożnik odchylenia standardowego",
+    "standardDeviationLimitTooltip": "zdefiniuj mnożnik odchylenia standardowego"
 }

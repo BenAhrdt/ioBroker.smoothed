@@ -151,19 +151,27 @@ class Smoothed extends utils.Adapter {
 		for(const channelName in this.activeStates[id]){
 			const channel = this.activeStates[id][channelName];
 
-			// Ceck for limits
-			if(channel.limitInNegativeDirection && state.val < channel.negativeLimit){
-				channel.currentValue = channel.negativeLimit;
-				this.log.info(`State ${id} is set to value ${state.val} and would be limitted to ${channel.negativeLimit}`);
+			// Check standard deviation => (only assign value in case is valid)
+			if(this.calculation.valueIsValid(channel,state)){
+				// Ceck for limits
+				if(channel.limitInNegativeDirection && state.val < channel.negativeLimit){
+					channel.currentValue = channel.negativeLimit;
+					this.log.info(`State ${id} is set to value ${state.val} and would be limitted to ${channel.negativeLimit}`);
+				}
+				else if(channel.limitInPositiveDirection && state.val > channel.positiveLimit){
+					channel.currentValue = channel.negativeLimit;
+					this.log.info(`State ${id} is set to value ${state.val} and would be limitted to ${channel.positiveLimit}`);
+				}
+				else{
+					// Assign new value, if no limit is reached
+					channel.currentValue = state.val;
+				}
 			}
-			else if(channel.limitInPositiveDirection && state.val > channel.positiveLimit){
-				channel.currentValue = channel.negativeLimit;
-				this.log.info(`State ${id} is set to value ${state.val} and would be limitted to ${channel.positiveLimit}`);
-			}
+			// State is ignored by funkion => greater then allowed standard deviation
 			else{
-				// Assign new value, if no limit is reached
-				channel.currentValue = state.val;
+				this.log.warn(`The new value ${state.val} of the state ${id} with name ${channel.name} will be ignored. The maximal deviation is actual: ${channel.currentMaxDeviation}.`);
 			}
+
 
 			// Check refrehing => Output, or just calculate
 			if(channel.refreshRate === 0 || channel.refreshWithStatechange){

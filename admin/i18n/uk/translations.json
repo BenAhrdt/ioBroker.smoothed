@@ -47,5 +47,9 @@
     "decimalplacesTooltip": "Виберіть потрібні знаки після коми",
     "negativeSeparat": "заперечний розділ",
     "lowpass": "фільтр низьких частот",
-    "lowpassPt1": "фільтр нижніх частот (PT1)"
+    "lowpassPt1": "фільтр нижніх частот (PT1)",
+    "ignoreStandardDeviation": "ігнорувати значення більшого стандартного відхилення",
+    "ignoreStandardDeviationTooltip": "якщо є нове значення, яке перевищує вказане стандартне відхилення, воно буде проігноровано",
+    "standardDeviationLimit": "множник стандартного відхилення",
+    "standardDeviationLimitTooltip": "визначте мультиплікатор стандартного визначення"
 }

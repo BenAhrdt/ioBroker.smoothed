@@ -47,5 +47,9 @@
     "decimalplacesTooltip": "Selecione as casas decimais desejadas",
     "negativeSeparat": "separação negativa",
     "lowpass": "filtro passa-baixo",
-    "lowpassPt1": "filtro passa-baixo (PT1)"
+    "lowpassPt1": "filtro passa-baixo (PT1)",
+    "ignoreStandardDeviation": "ignorar valores maior desvio padrão",
+    "ignoreStandardDeviationTooltip": "se houver um novo valor maior que o desvio padrão fornecido, ele será ignorado",
+    "standardDeviationLimit": "multiplicador do desvio padrão",
+    "standardDeviationLimitTooltip": "definir um multiplicador de desafio padrão"
 }

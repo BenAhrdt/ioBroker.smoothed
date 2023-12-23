@@ -45,5 +45,9 @@
     "decimalplaces": "Nachkommastellen",
     "decimalplacesTooltip": "Wählen Sie die gewünschten Dezimalstellen aus",
     "negativeSeparat": "negativ separat",
-    "lowpassPt1": "Tiefpassfilter (PT1)"
+    "lowpassPt1": "Tiefpassfilter (PT1)",
+    "ignoreStandardDeviation": "Ignoriere Werte mit großen Standardabweichungen",
+    "ignoreStandardDeviationTooltip": "Wenn ein neuer Wert größer als die angegebene Standardabweichung ist, wird er ignoriert",
+    "standardDeviationLimit": "Multiplikator der Standardabweichung",
+    "standardDeviationLimitTooltip": "Definieren Sie einen Multiplikator der Standarddefinition"
 }

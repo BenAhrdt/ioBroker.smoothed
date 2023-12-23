@@ -45,5 +45,9 @@
     "limitDecimalplaces": "limit decimal places",
     "limitDecimalplacesTooltip": "By selecting this option you can limit the decimal places of the result",
     "decimalplaces": "decimal places",
-    "decimalplacesTooltip": "Select the desired decimal places"
+    "decimalplacesTooltip": "Select the desired decimal places",
+	"ignoreStandardDeviation": "ignore values greater standard deviation",
+	"ignoreStandardDeviationTooltip": "if there is a new value greater than the given standard deviation, it will be ignored",
+	"standardDeviationLimit": "multiplicator of standard deviation",
+	"standardDeviationLimitTooltip": "define a multiplicator of standard defiation"
 }

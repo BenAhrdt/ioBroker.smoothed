@@ -189,7 +189,6 @@
                 },
                 { "attr": "limitInPositiveDirection",
                     "type": "checkbox",
-                    "newLine": true,
                     "label": "limitMaximum",
                     "tooltip": "limitMaximumTooltip",
                     "hidden": "customObj.common.type !== 'number'",
@@ -243,7 +242,7 @@
                     "label": "standardDeviationLimit",
                     "tooltip": "standardDeviationLimitTooltip",
                     "hidden":"data.ignoreAboveStandardDeviation != true",
-                    "default":0,
+                    "default":100,
                     "sm":3
                 }
             ]

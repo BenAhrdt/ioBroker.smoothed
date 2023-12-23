@@ -47,5 +47,9 @@
     "decimalplacesTooltip": "Sélectionnez les décimales souhaitées",
     "negativeSeparat": "séparation négative",
     "lowpass": "filtre passe bas",
-    "lowpassPt1": "filtre passe-bas (PT1)"
+    "lowpassPt1": "filtre passe-bas (PT1)",
+    "ignoreStandardDeviation": "ignorer les valeurs avec un écart type supérieur",
+    "ignoreStandardDeviationTooltip": "s'il y a une nouvelle valeur supérieure à l'écart type donné, elle sera ignorée",
+    "standardDeviationLimit": "multiplicateur d'écart type",
+    "standardDeviationLimitTooltip": "définir un multiplicateur de définition standard"
 }

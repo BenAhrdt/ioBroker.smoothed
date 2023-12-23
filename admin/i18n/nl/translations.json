@@ -47,5 +47,9 @@
     "decimalplacesTooltip": "Selecteer de gewenste decimalen",
     "negativeSeparat": "negatief gescheiden",
     "lowpass": "laagdoorlaatfilter",
-    "lowpassPt1": "laagdoorlaatfilter (PT1)"
+    "lowpassPt1": "laagdoorlaatfilter (PT1)",
+    "ignoreStandardDeviation": "negeer waarden grotere standaarddeviatie",
+    "ignoreStandardDeviationTooltip": "als er een nieuwe waarde is die groter is dan de opgegeven standaardafwijking, wordt deze genegeerd",
+    "standardDeviationLimit": "vermenigvuldiger van de standaardafwijking",
+    "standardDeviationLimitTooltip": "definieer een multiplicator van standaarduitdaging"
 }
