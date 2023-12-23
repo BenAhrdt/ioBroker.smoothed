@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "news": {
+      "0.4.2": {
+        "en": "logging of actual ignered value improoved",
+        "de": "protokollierung des istwerts improoviert",
+        "ru": "логирование фактического игнорируемого значения неповреждено",
+        "pt": "registro do valor ignered real improoved",
+        "nl": "een lokatie van daadwerkelijke waarde geïmproviseerd",
+        "fr": "journalisation de la valeur réelle signée",
+        "it": "registrazione del valore effettivo ignered improvato",
+        "es": "logging of actual ignered value improoved",
+        "pl": "logowanie prawdziwej wartości improrowizowanej",
+        "uk": "закупівля фактичного значення, що перешкоджається",
+        "zh-cn": "实际含蓄价值的计算"
+      },
       "0.4.1": {
         "en": "add standard deviation into last array",
         "de": "standardabweichung in das letzte array einfügen",
