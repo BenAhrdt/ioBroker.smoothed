@@ -120,6 +120,8 @@ class Smoothed extends utils.Adapter {
 				this.calculation.movingAverage(channel);//this.calculateMovingAverage(channel);
 		}
 
+		// write lastArray to state
+		this.setStateAsync(`${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.lastArray}`,JSON.stringify(channel.lastArray),true);
 		// assign timestamp as last changed timestampt
 		channel.lastTimestamp = timestamp;
 	}

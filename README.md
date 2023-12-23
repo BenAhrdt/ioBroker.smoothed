@@ -17,6 +17,9 @@ smoothes selected signas according to a selected function
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (Ben1983) add standard deviation into last array
+
 ### 0.4.0 (2023-12-23)
 * (Ben1983) calculation and limitation for changes with standard diviation
 
