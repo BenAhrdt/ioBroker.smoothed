@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "news": {
+      "0.4.1": {
+        "en": "add standard deviation into last array",
+        "de": "standardabweichung in das letzte array einfügen",
+        "ru": "добавить стандартное отклонение в последний массив",
+        "pt": "adicionar desvio padrão em última matriz",
+        "nl": "voeg standaard afwijking toe in de laatste array",
+        "fr": "ajouter l'écart standard dans le dernier tableau",
+        "it": "aggiungere deviazione standard in ultima matrice",
+        "es": "añadir la desviación estándar en el último array",
+        "pl": "dodanie odchylenia standardowego w ostatniej kolejce",
+        "uk": "додати стандартне відхилення в останній масив",
+        "zh-cn": "增加标准偏离最后各样"
+      },
       "0.4.0": {
         "en": "calculation and limitation for changes with standard diviation",
         "de": "berechnung und begrenzung von änderungen mit standardabweichung",
