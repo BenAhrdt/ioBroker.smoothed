@@ -41,7 +41,7 @@ smoothes selected signas according to a selected function
 ## License
 MIT License
 
-Copyright (c) 2023 Ben1983 <bsahrdt@gmail.com>
+Copyright (c) 2024 Ben1983 <bsahrdt@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
