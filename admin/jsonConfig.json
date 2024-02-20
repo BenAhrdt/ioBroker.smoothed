@@ -21,6 +21,7 @@
         },
         "statesAccordion":{
             "type":"accordion",
+            "titleAttr": "name",
             "sm":12,
             "items":[
                 {
