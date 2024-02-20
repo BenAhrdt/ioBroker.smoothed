@@ -92,13 +92,20 @@ class Smoothed extends utils.Adapter {
 	 * ***************************************************************/
 
 	outputSmoothedValues(channel){
-		this.calculateSmoothedValue(channel);
-		// Output with the desired decimal places
-		let smoothedOutput = channel.smoothed;
-		if(channel.limitDecimalplaces){
-			smoothedOutput = Math.round(smoothedOutput * channel.decimalplaces) / channel.decimalplaces;
+		const activeFunction = "outputSmoothedValues";
+		this.log.debug(`function ${activeFunction} startet`);
+		try{
+			this.calculateSmoothedValue(channel);
+			// Output with the desired decimal places
+			let smoothedOutput = channel.smoothed;
+			if(channel.limitDecimalplaces){
+				smoothedOutput = Math.round(smoothedOutput * channel.decimalplaces) / channel.decimalplaces;
+			}
+			this.setStateAsync(`${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.smoothed}`,smoothedOutput,true);
 		}
-		this.setStateAsync(`${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.smoothed}`,smoothedOutput,true);
+		catch(error){
+			this.log.error(`error in functionm${activeFunction}: ${error}`);
+		}
 	}
 
 	/******************************************************************
