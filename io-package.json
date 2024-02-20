@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "news": {
+      "0.4.3": {
+        "en": "set Name of accordion content",
+        "de": "satz Name des Akkordeongehalts",
+        "ru": "название аккордеона",
+        "pt": "set Nome do conteúdo de acordeão",
+        "nl": "set Naam van het accordeongehalte",
+        "fr": "jeu Nom du contenu de l'accordéon",
+        "it": "set Nome del contenuto di fisarmonica",
+        "es": "nombre del contenido de acordeón",
+        "pl": "set Nazwa zawartości akordeonu",
+        "uk": "ім'я вмісту акордеонів",
+        "zh-cn": "手风琴内容名称"
+      },
       "0.4.2": {
         "en": "logging of actual ignered value improoved",
         "de": "protokollierung des istwerts improoviert",
@@ -80,19 +93,6 @@
         "pl": "pierwsze wydanie",
         "uk": "початковий реліз",
         "zh-cn": "初步释放"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Початкова версія",
-        "zh-cn": "首次出版"
       }
     },
     "title": "smoothed",

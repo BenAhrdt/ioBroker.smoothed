@@ -17,7 +17,7 @@ smoothes selected signas according to a selected function
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.4.3 (2024-02-20)
 * (Ben1983) set Name of accordion content
 
 ### 0.4.2 (2023-12-23)
