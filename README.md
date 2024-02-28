@@ -10,13 +10,26 @@
 [![NPM](https://nodei.co/npm/iobroker.smoothed.png?downloads=true)](https://nodei.co/npm/iobroker.janitza-gridvis/)
 
 ## smoothed adapter for ioBroker
-smoothes selected signas according to a selected function
+This Adapter make it easy to select some icons to smooth it
+according to a selected allgorithem and the smoothtime (filtertime).
+You can select one id more times to smooth it in defferent allgorithems
+and or times.
+The destination is an id in the directory of the flger, wicht delivers you
+the smoothed values.
+You can limit the min- or max- values.
+Limit the decimal places.
+Or ignore values with a high standard deviation.
+
+![alt text](image.png)
 
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (Ben1983) do some changes in Readme and checking for vorbidden chars
+
 ### 0.4.3 (2024-02-20)
 * (Ben1983) set Name of accordion content
 

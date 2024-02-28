@@ -29,6 +29,8 @@
                     "attr": "name",
                     "label": "name",
                     "tooltip": "nameTooltip",
+                    "validator": "if(data.name === '' || data.name === null){return false;}else{const myRegEx = /^([0-9a-z_ ])*$/i; return myRegEx.test(data.name);}",
+                    "validatorNoSaveOnError": true,
                     "default": "",
                     "sm":2
                 },
@@ -37,6 +39,8 @@
                     "label": "id",
                     "attr": "id",
                     "tooltip": "idTooltip",
+                    "validator": "if(data.id === '' || data.id === null){return false;}else{return true;}",
+                    "validatorNoSaveOnError": true,
                     "default": "",
                     "sm":5
                 },
@@ -243,7 +247,7 @@
                     "label": "standardDeviationLimit",
                     "tooltip": "standardDeviationLimitTooltip",
                     "hidden":"data.ignoreAboveStandardDeviation != true",
-                    "default":100,
+                    "default":1000,
                     "sm":3
                 }
             ]
