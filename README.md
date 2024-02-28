@@ -27,7 +27,7 @@ Or ignore values with a high standard deviation.
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.5.0 (2024-02-28)
 * (Ben1983) do some changes in Readme and checking for vorbidden chars
 
 ### 0.4.3 (2024-02-20)
