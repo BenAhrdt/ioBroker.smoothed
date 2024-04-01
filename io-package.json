@@ -133,7 +133,10 @@
       "mittelwert",
       "tiefpass"
     ],
-    "licenseInformation": "MIT",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
     "platform": "Javascript/Node.js",
     "main": "main.js",
     "icon": "smoothed.png",
