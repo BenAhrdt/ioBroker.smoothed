@@ -95,7 +95,6 @@
         "zh-cn": "降水量低"
       }
     },
-    "title": "smoothed",
     "titleLang": {
       "en": "smoothed",
       "de": "geglättet",
@@ -134,7 +133,7 @@
       "mittelwert",
       "tiefpass"
     ],
-    "license": "MIT",
+    "licenseInformation": "MIT",
     "platform": "Javascript/Node.js",
     "main": "main.js",
     "icon": "smoothed.png",
@@ -142,6 +141,7 @@
     "extIcon": "https://raw.githubusercontent.com/BenAhrdt/ioBroker.smoothed/main/admin/smoothed.png",
     "readme": "https://github.com/BenAhrdt/ioBroker.smoothed/blob/main/README.md",
     "loglevel": "info",
+    "tier": 3,
     "mode": "daemon",
     "type": "logic",
     "compact": true,
