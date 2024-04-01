@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "0.5.0",
+    "version": "1.0.0",
     "news": {
+      "1.0.0": {
+        "en": "update ioPackage and adapter-core",
+        "de": "update ioPackage und adapter-core",
+        "ru": "обновление ioPackage и адаптер-core",
+        "pt": "atualizar ioPackage e núcleo do adaptador",
+        "nl": "update ioPackage en adapter-core",
+        "fr": "mettre à jour ioPackage et adaptateur-core",
+        "it": "aggiornamento ioPackage e adattatore-core",
+        "es": "actualización ioPackage y adaptador-core",
+        "pl": "aktualizacja pakietu iadapter-core",
+        "uk": "оновлення ioPackage і адаптер-core",
+        "zh-cn": "更新 ioPackage 和适配器核心"
+      },
       "0.5.0": {
         "en": "do some changes in Readme and checking for vorbidden chars",
         "de": "einige Änderungen in Readme vornehmen und auf vorbidden chars überprüfen",
@@ -80,19 +93,6 @@
         "pl": "funkcjonuje on w lib/module",
         "uk": "функції з джерела в lib/modules",
         "zh-cn": "扎尔布/莫杜尔斯外包的职能"
-      },
-      "0.2.0": {
-        "en": "lowpassfilter added to calculation type",
-        "de": "tiefpassfilter zur berechnungsart hinzugefügt",
-        "ru": "lowpassfilter добавлен в тип расчета",
-        "pt": "lowpassfilter adicionado ao tipo de cálculo",
-        "nl": "laagpassfilter toegevoegd aan berekeningen",
-        "fr": "baspassfilter ajouté au type de calcul",
-        "it": "lowpassfilter aggiunto al tipo di calcolo",
-        "es": "lowpassfilter añadido al tipo de cálculo",
-        "pl": "ninipassfiltr dodał do obliczeń typowych",
-        "uk": "нитки додано до розрахунку",
-        "zh-cn": "降水量低"
       }
     },
     "titleLang": {
