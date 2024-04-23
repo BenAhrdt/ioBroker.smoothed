@@ -27,6 +27,9 @@ Or ignore values with a high standard deviation.
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (Ben1983) Bugfix maximum Limitation
+
 ### 1.0.0 (2024-04-01)
 * (Ben1983) update ioPackage and adapter-core
 

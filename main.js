@@ -168,7 +168,7 @@ class Smoothed extends utils.Adapter {
 					this.log.info(`State ${id} is set to value ${state.val} and would be limitted to ${channel.negativeLimit}`);
 				}
 				else if(channel.limitInPositiveDirection && state.val > channel.positiveLimit){
-					channel.currentValue = channel.negativeLimit;
+					channel.currentValue = channel.positiveLimit;
 					this.log.info(`State ${id} is set to value ${state.val} and would be limitted to ${channel.positiveLimit}`);
 				}
 				else{
