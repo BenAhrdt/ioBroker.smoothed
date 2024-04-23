@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "news": {
+      "1.0.1": {
+        "en": "Bugfix maximum Limitation & fix standard deviation",
+        "de": "Bugfix maximal Limitierung & Standardabweichung fixieren",
+        "ru": "Максимальный Ограничение и исправление стандартного отклонения",
+        "pt": "Máximo de Bugfix Limitação e correção desvio padrão",
+        "nl": "Maximum bugfix Beperking en vaststelling van standaardafwijking",
+        "fr": "Correction maximale Limite & fixer l'écart type",
+        "it": "Bugfix massimo Limitazioni & fix deviazione standard",
+        "es": "Máximo de Bugfix Limitación \" fijación de la desviación estándar",
+        "pl": "Maksimum błędów Ograniczenie i stałe odchylenie standardowe",
+        "uk": "Максимальна кількість помилок Обмеження та фіксація стандартного відхилення",
+        "zh-cn": "最大错误修正 限制和固定标准偏差"
+      },
       "1.0.0": {
         "en": "update ioPackage and adapter-core",
         "de": "update ioPackage und adapter-core",
@@ -80,19 +93,6 @@
         "pl": "obliczenia i ograniczenia zmian w standardowej dywizjacji",
         "uk": "розрахунок та обмеження змін із стандартною дивіацією",
         "zh-cn": "a. 标准差异的计算和限制"
-      },
-      "0.3.0": {
-        "en": "functions outsourced in lib/modules",
-        "de": "funktionen ausgelagert in lib/modules",
-        "ru": "функции, исходящие в lib/modules",
-        "pt": "funções terceirizadas em lib/modules",
-        "nl": "vertaling:",
-        "fr": "fonctions externalisées dans lib/modules",
-        "it": "funzioni outsourced in lib/modules",
-        "es": "funciones subcontratadas en lib/modules",
-        "pl": "funkcjonuje on w lib/module",
-        "uk": "функції з джерела в lib/modules",
-        "zh-cn": "扎尔布/莫杜尔斯外包的职能"
       }
     },
     "titleLang": {
