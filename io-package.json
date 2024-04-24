@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "news": {
+      "1.0.2": {
+        "en": "remove wrong warning",
+        "de": "falsche warnung entfernen",
+        "ru": "удалить предупреждение",
+        "pt": "remover aviso errado",
+        "nl": "verkeerde waarschuwing verwijderen",
+        "fr": "supprimer les avertissements erronés",
+        "it": "rimuovere l'avviso sbagliato",
+        "es": "eliminar la advertencia equivocada",
+        "pl": "usunąć niewłaściwe ostrzeżenie",
+        "uk": "видалення неправильного попередження",
+        "zh-cn": "删除错误的警告"
+      },
       "1.0.1": {
         "en": "Bugfix maximum Limitation & fix standard deviation",
         "de": "Bugfix maximal Limitierung & Standardabweichung fixieren",
@@ -80,19 +93,6 @@
         "pl": "dodanie odchylenia standardowego w ostatniej kolejce",
         "uk": "додати стандартне відхилення в останній масив",
         "zh-cn": "增加标准偏离最后各样"
-      },
-      "0.4.0": {
-        "en": "calculation and limitation for changes with standard diviation",
-        "de": "berechnung und begrenzung von änderungen mit standardabweichung",
-        "ru": "расчет и ограничение для изменений с стандартной дивиации",
-        "pt": "cálculo e limitação para alterações com diviação padrão",
-        "nl": "berekening en beperking voor veranderingen met standaard verdeel",
-        "fr": "calcul et limitation des changements avec diviation standard",
-        "it": "calcolo e limitazione delle modifiche alla diviazione standard",
-        "es": "cálculo y limitación de cambios con diviación estándar",
-        "pl": "obliczenia i ograniczenia zmian w standardowej dywizjacji",
-        "uk": "розрахунок та обмеження змін із стандартною дивіацією",
-        "zh-cn": "a. 标准差异的计算和限制"
       }
     },
     "titleLang": {
