@@ -101,8 +101,9 @@ class Smoothed extends utils.Adapter {
 			if(channel.limitDecimalplaces){
 				smoothedOutput = Math.round(smoothedOutput * channel.decimalplaces) / channel.decimalplaces;
 			}
-			this.log.warn("Setstate: " + `${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.smoothed}`);
-			this.setStateAsync(`${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.smoothed}`,smoothedOutput,true);
+			const statename = `${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.smoothed}`;
+			this.log.debug("setstate: " + statename);
+			this.setStateAsync(,smoothedOutput,true);
 		}
 		catch(error){
 			this.log.error(`error in functionm${activeFunction}: ${error}`);
@@ -145,7 +146,6 @@ class Smoothed extends utils.Adapter {
 	 */
 	onStateChange(id, state) {
 		if (state) {
-			this.log.warn("Change: " + id);
 			this.doChangeProcess(id,state);
 		} else {
 			// The state was deleted
@@ -159,10 +159,8 @@ class Smoothed extends utils.Adapter {
 
 	async doChangeProcess(id,state){
 		//Check internal channels for output, or just calculation
-		this.log.warn("Start doChange");
 		for(const channelName in this.activeStates[id]){
 			const channel = this.activeStates[id][channelName];
-			this.log.warn(channelName);
 			// Check standard deviation => (only assign value in case is valid)
 			if(this.calculation.valueIsValid(channel,state)){
 				// Ceck for limits
@@ -197,7 +195,6 @@ class Smoothed extends utils.Adapter {
 			// Assign current value to last value
 			channel.lastValue = channel.currentValue;
 		}
-		this.log.warn("Stop doChange");
 	}
 
 	/******************************************************************
