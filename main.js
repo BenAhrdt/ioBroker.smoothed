@@ -185,6 +185,7 @@ class Smoothed extends utils.Adapter {
 
 			// Check refrehing => Output, or just calculate
 			if(channel.refreshRate === 0 || channel.refreshWithStatechange){
+				this.log.silly(`Channel ${channelName} changed to value: ${state.val} and ack: ${state.ack}. => Output Data`);
 				this.outputSmoothedValues(channel);
 			}
 			else{
