@@ -103,7 +103,7 @@ class Smoothed extends utils.Adapter {
 			}
 			const statename = `${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.smoothed}`;
 			this.log.debug("setstate: " + statename);
-			this.setStateAsync(,smoothedOutput,true);
+			this.setStateAsync(statename,smoothedOutput,true);
 		}
 		catch(error){
 			this.log.error(`error in functionm${activeFunction}: ${error}`);
