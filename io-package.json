@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "news": {
+      "1.0.4": {
+        "en": "added more silly debugging for value changes",
+        "de": "mehr silly debugging für wertänderungen",
+        "ru": "добавлены более глупые отладки для изменения стоимости",
+        "pt": "adicionado mais bobo depuração para mudanças de valor",
+        "nl": "toegevoegd meer domme debuggen voor waardewijzigingen",
+        "fr": "ajouté plus stupide débogage pour les changements de valeur",
+        "it": "aggiunto più stupido debugging per cambiamenti di valore",
+        "es": "añadido más tonto depuración para los cambios de valor",
+        "pl": "dodano bardziej głupie debugowanie zmian wartości",
+        "uk": "додано більше викупівля silly для змін вартості",
+        "zh-cn": "为值变化添加更多愚蠢的调试"
+      },
       "1.0.3": {
         "en": "added time for standard deviation in unsmeethed mode",
         "de": "zusatzzeit für standardabweichung im ungesechten modus",
@@ -80,19 +93,6 @@
         "pl": "set Nazwa zawartości akordeonu",
         "uk": "ім'я вмісту акордеонів",
         "zh-cn": "手风琴内容名称"
-      },
-      "0.4.2": {
-        "en": "logging of actual ignered value improoved",
-        "de": "protokollierung des istwerts improoviert",
-        "ru": "логирование фактического игнорируемого значения неповреждено",
-        "pt": "registro do valor ignered real improoved",
-        "nl": "een lokatie van daadwerkelijke waarde geïmproviseerd",
-        "fr": "journalisation de la valeur réelle signée",
-        "it": "registrazione del valore effettivo ignered improvato",
-        "es": "logging of actual ignered value improoved",
-        "pl": "logowanie prawdziwej wartości improrowizowanej",
-        "uk": "закупівля фактичного значення, що перешкоджається",
-        "zh-cn": "实际含蓄价值的计算"
       }
     },
     "titleLang": {
