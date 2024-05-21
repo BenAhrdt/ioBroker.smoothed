@@ -101,6 +101,7 @@ class Smoothed extends utils.Adapter {
 			if(channel.limitDecimalplaces){
 				smoothedOutput = Math.round(smoothedOutput * channel.decimalplaces) / channel.decimalplaces;
 			}
+			this.log.warn("Setstate: " + `${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.smoothed}`);
 			this.setStateAsync(`${this.statehandling.generateInternalChannelString(channel.name)}.${this.internalSmoothedValues.smoothed}`,smoothedOutput,true);
 		}
 		catch(error){
