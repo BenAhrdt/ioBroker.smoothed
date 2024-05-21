@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "news": {
+      "1.0.5": {
+        "en": "change some loggings",
+        "de": "einige protokolle ändern",
+        "ru": "изменить некоторые журналы",
+        "pt": "alterar alguns registros",
+        "nl": "sommige logs wijzigen",
+        "fr": "changer certains enregistrements",
+        "it": "cambiare qualche registrazione",
+        "es": "cambiar algunos registros",
+        "pl": "zmień trochę zamków",
+        "uk": "змінити деякі журнали",
+        "zh-cn": "更改一些日志"
+      },
       "1.0.4": {
         "en": "added more silly debugging for value changes",
         "de": "mehr silly debugging für wertänderungen",
@@ -80,19 +93,6 @@
         "pl": "zrobić kilka zmian w Readme i sprawdzanie na voorbarded znaków",
         "uk": "робіть деякі зміни у місті Ретме та перевірте вихрестденні chars",
         "zh-cn": "在 Readme 中做一些修改, 并检查 vorbid 字符"
-      },
-      "0.4.3": {
-        "en": "set Name of accordion content",
-        "de": "satz Name des Akkordeongehalts",
-        "ru": "название аккордеона",
-        "pt": "set Nome do conteúdo de acordeão",
-        "nl": "set Naam van het accordeongehalte",
-        "fr": "jeu Nom du contenu de l'accordéon",
-        "it": "set Nome del contenuto di fisarmonica",
-        "es": "nombre del contenido de acordeón",
-        "pl": "set Nazwa zawartości akordeonu",
-        "uk": "ім'я вмісту акордеонів",
-        "zh-cn": "手风琴内容名称"
       }
     },
     "titleLang": {
