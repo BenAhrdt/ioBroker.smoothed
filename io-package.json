@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "news": {
+      "1.0.6": {
+        "en": "solve error in setState",
+        "de": "fehler in setState lösen",
+        "ru": "ошибка в setState",
+        "pt": "resolver erro no setState",
+        "nl": "fout in setState oplossen",
+        "fr": "résoudre l'erreur dans setState",
+        "it": "risolvere errore in setState",
+        "es": "resolver error en setState",
+        "pl": "rozwiązać błąd w setState",
+        "uk": "помилки в setState",
+        "zh-cn": "在设置状态中解决错误"
+      },
       "1.0.5": {
         "en": "change some loggings",
         "de": "einige protokolle ändern",
@@ -80,19 +93,6 @@
         "pl": "aktualizacja pakietu iadapter-core",
         "uk": "оновлення ioPackage і адаптер-core",
         "zh-cn": "更新 ioPackage 和适配器核心"
-      },
-      "0.5.0": {
-        "en": "do some changes in Readme and checking for vorbidden chars",
-        "de": "einige Änderungen in Readme vornehmen und auf vorbidden chars überprüfen",
-        "ru": "внести некоторые изменения в Readme и проверить вихревые шары",
-        "pt": "fazer algumas mudanças no Readme e verificar para vorbidden chars",
-        "nl": "sommige wijzigingen in Readme en het controleren van vorbidden tekens",
-        "fr": "faire quelques changements dans Readme et vérifier les caractères vorbidden",
-        "it": "fare alcuni cambiamenti in Readme e controllare i carboni voruti",
-        "es": "hacer algunos cambios en Readme y comprobar para chars vorbidden",
-        "pl": "zrobić kilka zmian w Readme i sprawdzanie na voorbarded znaków",
-        "uk": "робіть деякі зміни у місті Ретме та перевірте вихрестденні chars",
-        "zh-cn": "在 Readme 中做一些修改, 并检查 vorbid 字符"
       }
     },
     "titleLang": {
