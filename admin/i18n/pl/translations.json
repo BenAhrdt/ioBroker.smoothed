@@ -51,5 +51,7 @@
     "ignoreStandardDeviation": "ignorować wartości większe odchylenie standardowe",
     "ignoreStandardDeviationTooltip": "jeżeli pojawi się nowa wartość większa od podanego odchylenia standardowego, zostanie ona zignorowana",
     "standardDeviationLimit": "mnożnik odchylenia standardowego",
-    "standardDeviationLimitTooltip": "zdefiniuj mnożnik odchylenia standardowego"
+    "standardDeviationLimitTooltip": "zdefiniuj mnożnik odchylenia standardowego",
+    "unsmoothedStandardDeviationTime": "Czas na niewygładzone odchylenie standardowe",
+    "unsmoothedStandardDeviationTimeTooltip": "wybierz czas, przez jaki odchylenie standardowe będzie działać z niewygładzonymi wartościami"
 }

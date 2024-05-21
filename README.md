@@ -28,7 +28,7 @@ Or ignore values with a high standard deviation.
 	### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
-* (Ben1983) Updating Dependencies
+* (Ben1983) added time for standard deviation in unsmeethed mode
 
 ### 1.0.2 (2024-04-24)
 * (Ben1983) remove wrong warning

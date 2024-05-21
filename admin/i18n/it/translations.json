@@ -51,5 +51,7 @@
     "ignoreStandardDeviation": "ignorare i valori con deviazione standard maggiore",
     "ignoreStandardDeviationTooltip": "se è presente un nuovo valore maggiore della deviazione standard specificata, verrà ignorato",
     "standardDeviationLimit": "moltiplicatore della deviazione standard",
-    "standardDeviationLimitTooltip": "definire un moltiplicatore della defiazione standard"
+    "standardDeviationLimitTooltip": "definire un moltiplicatore della defiazione standard",
+    "unsmoothedStandardDeviationTime": "È tempo di deviazione standard non livellata",
+    "unsmoothedStandardDeviationTimeTooltip": "selezionare il tempo in cui la deviazione standard funziona con valori non livellati"
 }

@@ -248,7 +248,25 @@
                     "tooltip": "standardDeviationLimitTooltip",
                     "hidden":"data.ignoreAboveStandardDeviation != true",
                     "default":1000,
-                    "sm":3
+                    "sm":2
+                },
+                {
+                    "type": "select",
+                    "attr":"unsmoothedStandardDeviationTime",
+                    "options": [
+                    {"label":"10 s","value":10000},
+                    {"label":"20 s","value":20000},
+                    {"label":"30 s","value":30000},
+                    {"label":"1 min","value":60000},
+                    {"label":"2 min","value":120000},
+                    {"label":"3 min","value":180000},
+                    {"label":"4 min","value":240000},
+                    {"label":"5 min","value":300000}],
+                    "default":20000,
+                    "label": "unsmoothedStandardDeviationTime",
+                    "tooltip": "unsmoothedStandardDeviationTimeTooltip",
+                    "sm": 2,
+                    "hidden":"data.ignoreAboveStandardDeviation != true || data.smoothtime != 0"
                 }
             ]
         }

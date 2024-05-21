@@ -51,5 +51,7 @@
     "ignoreStandardDeviation": "ignorer les valeurs avec un écart type supérieur",
     "ignoreStandardDeviationTooltip": "s'il y a une nouvelle valeur supérieure à l'écart type donné, elle sera ignorée",
     "standardDeviationLimit": "multiplicateur d'écart type",
-    "standardDeviationLimitTooltip": "définir un multiplicateur de définition standard"
+    "standardDeviationLimitTooltip": "définir un multiplicateur de définition standard",
+    "unsmoothedStandardDeviationTime": "Temps nécessaire à l’écart type non lissé",
+    "unsmoothedStandardDeviationTimeTooltip": "sélectionner la durée pendant laquelle l'écart type fonctionne avec des valeurs non lissées"
 }

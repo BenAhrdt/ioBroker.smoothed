@@ -49,5 +49,7 @@
     "ignoreStandardDeviation": "Ignoriere Werte mit großen Standardabweichungen",
     "ignoreStandardDeviationTooltip": "Wenn ein neuer Wert größer als die angegebene Standardabweichung ist, wird er ignoriert",
     "standardDeviationLimit": "Multiplikator der Standardabweichung",
-    "standardDeviationLimitTooltip": "Definieren Sie einen Multiplikator der Standarddefinition"
+    "standardDeviationLimitTooltip": "Definieren Sie einen Multiplikator der Standarddefinition",
+    "unsmoothedStandardDeviationTime": "Zeit für ungeglättete Standardabweichung",
+    "unsmoothedStandardDeviationTimeTooltip": "Wählen Sie die Zeit aus, in der die Standardabweichung bei ungeglätteten Werten berechnet wird"
 }

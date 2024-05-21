@@ -49,5 +49,7 @@
 	"ignoreStandardDeviation": "ignore values greater standard deviation",
 	"ignoreStandardDeviationTooltip": "if there is a new value greater than the given standard deviation, it will be ignored",
 	"standardDeviationLimit": "multiplicator of standard deviation",
-	"standardDeviationLimitTooltip": "define a multiplicator of standard defiation"
+	"standardDeviationLimitTooltip": "define a multiplicator of standard defiation",
+	"unsmoothedStandardDeviationTime": "Time for unsmoothed standard deviation",
+	"unsmoothedStandardDeviationTimeTooltip": "select the time the standard deviation works with unsmoothed values"
 }

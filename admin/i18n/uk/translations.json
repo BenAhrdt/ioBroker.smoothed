@@ -51,5 +51,7 @@
     "ignoreStandardDeviation": "ігнорувати значення більшого стандартного відхилення",
     "ignoreStandardDeviationTooltip": "якщо є нове значення, яке перевищує вказане стандартне відхилення, воно буде проігноровано",
     "standardDeviationLimit": "множник стандартного відхилення",
-    "standardDeviationLimitTooltip": "визначте мультиплікатор стандартного визначення"
+    "standardDeviationLimitTooltip": "визначте мультиплікатор стандартного визначення",
+    "unsmoothedStandardDeviationTime": "Час для незгладженого стандартного відхилення",
+    "unsmoothedStandardDeviationTimeTooltip": "виберіть час, протягом якого стандартне відхилення працює з незгладженими значеннями"
 }

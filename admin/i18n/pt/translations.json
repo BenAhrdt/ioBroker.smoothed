@@ -51,5 +51,7 @@
     "ignoreStandardDeviation": "ignorar valores maior desvio padrão",
     "ignoreStandardDeviationTooltip": "se houver um novo valor maior que o desvio padrão fornecido, ele será ignorado",
     "standardDeviationLimit": "multiplicador do desvio padrão",
-    "standardDeviationLimitTooltip": "definir um multiplicador de desafio padrão"
+    "standardDeviationLimitTooltip": "definir um multiplicador de desafio padrão",
+    "unsmoothedStandardDeviationTime": "Tempo para desvio padrão não suavizado",
+    "unsmoothedStandardDeviationTimeTooltip": "selecione o tempo em que o desvio padrão funciona com valores não suavizados"
 }

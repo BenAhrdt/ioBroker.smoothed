@@ -51,5 +51,7 @@
     "ignoreStandardDeviation": "negeer waarden grotere standaarddeviatie",
     "ignoreStandardDeviationTooltip": "als er een nieuwe waarde is die groter is dan de opgegeven standaardafwijking, wordt deze genegeerd",
     "standardDeviationLimit": "vermenigvuldiger van de standaardafwijking",
-    "standardDeviationLimitTooltip": "definieer een multiplicator van standaarduitdaging"
+    "standardDeviationLimitTooltip": "definieer een multiplicator van standaarduitdaging",
+    "unsmoothedStandardDeviationTime": "Tijd voor een ongevlakte standaarddeviatie",
+    "unsmoothedStandardDeviationTimeTooltip": "selecteer de tijd waarop de standaardafwijking werkt met niet-afgevlakte waarden"
 }

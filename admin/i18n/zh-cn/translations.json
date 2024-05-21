@@ -51,5 +51,7 @@
     "ignoreStandardDeviation": "忽略较大标准差的值",
     "ignoreStandardDeviationTooltip": "如果有一个新值大于给定的标准差，它将被忽略",
     "standardDeviationLimit": "标准差的乘数",
-    "standardDeviationLimitTooltip": "定义标准偏差的乘数"
+    "standardDeviationLimitTooltip": "定义标准偏差的乘数",
+    "unsmoothedStandardDeviationTime": "未平滑标准差的时间",
+    "unsmoothedStandardDeviationTimeTooltip": "选择标准差与非平滑值一起工作的时间"
 }
