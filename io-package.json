@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "news": {
+      "1.0.3": {
+        "en": "added time for standard deviation in unsmeethed mode",
+        "de": "zusatzzeit für standardabweichung im ungesechten modus",
+        "ru": "добавленное время для стандартного отклонения в непрошедшем режиме",
+        "pt": "tempo adicionado para desvio padrão no modo não metado",
+        "nl": "extra tijd voor standaardafwijking in niet-besmette modus",
+        "fr": "temps supplémentaire pour l'écart type en mode non nettoyé",
+        "it": "tempo aggiunto per deviazione standard in modalità non smeethed",
+        "es": "tiempo añadido para la desviación estándar en modo no medido",
+        "pl": "dodany czas odchylenia standardowego w trybie niesmeethed",
+        "uk": "доданий час для стандартного відхилення в непрозорому режимі",
+        "zh-cn": "在未密钥模式下添加标准偏差时间"
+      },
       "1.0.2": {
         "en": "remove wrong warning",
         "de": "falsche warnung entfernen",
@@ -80,19 +93,6 @@
         "pl": "logowanie prawdziwej wartości improrowizowanej",
         "uk": "закупівля фактичного значення, що перешкоджається",
         "zh-cn": "实际含蓄价值的计算"
-      },
-      "0.4.1": {
-        "en": "add standard deviation into last array",
-        "de": "standardabweichung in das letzte array einfügen",
-        "ru": "добавить стандартное отклонение в последний массив",
-        "pt": "adicionar desvio padrão em última matriz",
-        "nl": "voeg standaard afwijking toe in de laatste array",
-        "fr": "ajouter l'écart standard dans le dernier tableau",
-        "it": "aggiungere deviazione standard in ultima matrice",
-        "es": "añadir la desviación estándar en el último array",
-        "pl": "dodanie odchylenia standardowego w ostatniej kolejce",
-        "uk": "додати стандартне відхилення в останній масив",
-        "zh-cn": "增加标准偏离最后各样"
       }
     },
     "titleLang": {
