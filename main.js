@@ -144,6 +144,7 @@ class Smoothed extends utils.Adapter {
 	 */
 	onStateChange(id, state) {
 		if (state) {
+			this.log.warn("Change: " + id);
 			this.doChangeProcess(id,state);
 		} else {
 			// The state was deleted
@@ -157,9 +158,10 @@ class Smoothed extends utils.Adapter {
 
 	async doChangeProcess(id,state){
 		//Check internal channels for output, or just calculation
+		this.log.warn("Start doChange");
 		for(const channelName in this.activeStates[id]){
 			const channel = this.activeStates[id][channelName];
-
+			this.log.warn(channelName);
 			// Check standard deviation => (only assign value in case is valid)
 			if(this.calculation.valueIsValid(channel,state)){
 				// Ceck for limits
@@ -185,7 +187,7 @@ class Smoothed extends utils.Adapter {
 
 			// Check refrehing => Output, or just calculate
 			if(channel.refreshRate === 0 || channel.refreshWithStatechange){
-				this.log.silly(`Channel ${channelName} changed to value: ${state.val} and ack: ${state.ack}. => Output Data`);
+				this.log.debug(`Channel ${channelName} changed to value: ${state.val} and ack: ${state.ack}. => Output Data`);
 				this.outputSmoothedValues(channel);
 			}
 			else{
@@ -194,7 +196,7 @@ class Smoothed extends utils.Adapter {
 			// Assign current value to last value
 			channel.lastValue = channel.currentValue;
 		}
-
+		this.log.warn("Stop doChange");
 	}
 
 	/******************************************************************
