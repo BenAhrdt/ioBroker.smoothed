@@ -27,6 +27,9 @@ Or ignore values with a high standard deviation.
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (Ben1983) reduce more times subscribtion of the same id
+
 ### 1.0.6 (2024-05-21)
 * (Ben1983) solve error in setState
 
