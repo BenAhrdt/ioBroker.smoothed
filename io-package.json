@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "news": {
+      "1.0.7": {
+        "en": "reduce more times subscribtion of the same id",
+        "de": "mehrmalige abschreibung der gleichen id",
+        "ru": "уменьшать больше раз субкрибции одного и того же",
+        "pt": "reduzir mais vezes a subscrição do mesmo id",
+        "nl": "meer keer subscribtie van hetzelfde id verminderen",
+        "fr": "réduire plus de temps de subscribtion du même id",
+        "it": "ridurre più volte la sottoscrizione dello stesso id",
+        "es": "reducir más veces la suscripción de la misma id",
+        "pl": "zmniejszyć więcej razy subskrybowanie tego samego id",
+        "uk": "зменшити більше разів підщеплення того ж id",
+        "zh-cn": "减少同一 id 的子缩放次数"
+      },
       "1.0.6": {
         "en": "solve error in setState",
         "de": "fehler in setState lösen",
@@ -80,19 +93,6 @@
         "pl": "Maksimum błędów Ograniczenie i stałe odchylenie standardowe",
         "uk": "Максимальна кількість помилок Обмеження та фіксація стандартного відхилення",
         "zh-cn": "最大错误修正 限制和固定标准偏差"
-      },
-      "1.0.0": {
-        "en": "update ioPackage and adapter-core",
-        "de": "update ioPackage und adapter-core",
-        "ru": "обновление ioPackage и адаптер-core",
-        "pt": "atualizar ioPackage e núcleo do adaptador",
-        "nl": "update ioPackage en adapter-core",
-        "fr": "mettre à jour ioPackage et adaptateur-core",
-        "it": "aggiornamento ioPackage e adattatore-core",
-        "es": "actualización ioPackage y adaptador-core",
-        "pl": "aktualizacja pakietu iadapter-core",
-        "uk": "оновлення ioPackage і адаптер-core",
-        "zh-cn": "更新 ioPackage 和适配器核心"
       }
     },
     "titleLang": {
