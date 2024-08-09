@@ -27,7 +27,7 @@ Or ignore values with a high standard deviation.
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.8 (2024-08-09)
 * (Ben1983) remove 1.0.5 from io-package and add ioBroker to keywords
 
 ### 1.0.7 (2024-05-22)

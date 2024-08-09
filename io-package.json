@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "news": {
+      "1.0.8": {
+        "en": "remove 1.0.5 from io-package and add ioBroker to keywords",
+        "de": "1.0.5 aus io-package entfernen und ioBroker zu Keywords hinzufügen",
+        "ru": "удалить 1.0.5 из io-package и добавить ioBroker к ключевым словам",
+        "pt": "remover 1.0.5 do io-package e adicionar ioBroker às palavras-chave",
+        "nl": "verwijderen 1.0.5 uit io-package en ioBroker toevoegen aan trefwoorden",
+        "fr": "supprimer 1.0.5 de io-package et ajouter ioBroker aux mots-clés",
+        "it": "rimuovere 1.0.5 da io-package e aggiungere ioBroker a parole chiave",
+        "es": "eliminar 1.0.5 de io-paquete y añadir ioBroker a palabras clave",
+        "pl": "usunąć 1.0.5 z pakietu jo- i dodać joBroker do słów kluczowych",
+        "uk": "remove 1.0.5 від io-package і додайте ioBroker до ключових слів",
+        "zh-cn": "从 io- package 中删除 1. 0.5 ,并在关键词中添加 ioBroker"
+      },
       "1.0.7": {
         "en": "reduce more times subscribtion of the same id",
         "de": "mehrmalige abschreibung der gleichen id",
