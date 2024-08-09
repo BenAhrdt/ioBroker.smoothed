@@ -29,19 +29,6 @@
         "uk": "помилки в setState",
         "zh-cn": "在设置状态中解决错误"
       },
-      "1.0.5": {
-        "en": "change some loggings",
-        "de": "einige protokolle ändern",
-        "ru": "изменить некоторые журналы",
-        "pt": "alterar alguns registros",
-        "nl": "sommige logs wijzigen",
-        "fr": "changer certains enregistrements",
-        "it": "cambiare qualche registrazione",
-        "es": "cambiar algunos registros",
-        "pl": "zmień trochę zamków",
-        "uk": "змінити деякі журнали",
-        "zh-cn": "更改一些日志"
-      },
       "1.0.4": {
         "en": "added more silly debugging for value changes",
         "de": "mehr silly debugging für wertänderungen",

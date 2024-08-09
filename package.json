@@ -9,6 +9,7 @@
   "homepage": "https://github.com/BenAhrdt/ioBroker.smoothed",
   "license": "MIT",
   "keywords": [
+    "ioBroker",
     "smooth",
     "average",
     "pt1",
