@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.0.8",
+    "version": "1.1.0",
     "news": {
+      "1.1.0": {
+        "en": "* Update Dependencies: \"js-controller\": \">=5.0.19\"\n  Check your System before installing new Version",
+        "de": "* Update Dependencies: \"js-controller\": \">=5.0.19\"\nÜberprüfen Sie Ihr System vor der Installation neuer Version",
+        "ru": "* Зависимость обновления: \"Js-controller\": \">=5.0.19\"\nПроверьте свою систему перед установкой новой версии",
+        "pt": "* Dependências de atualização: \"js-controller\": \">=5.0.19\"\nVerifique o seu sistema antes de instalar nova versão",
+        "nl": "* Update afhankelijkheden: \"js-controller\": \">=5.0.19\"\nControleer uw systeem voordat u nieuwe versie installeert",
+        "fr": "* Mise à jour des dépendances : \"js-controller\" : \">=5.0.19\"\nVérifiez votre système avant d'installer une nouvelle version",
+        "it": "* Dipendenze di aggiornamento: \"js-controller\": \">=5.0.19\"\nControlla il tuo sistema prima di installare una nuova versione",
+        "es": "* Actualizar Dependencias: \"js-controller\": \"Inglés=5.0.19\"\nCompruebe su sistema antes de instalar nueva versión",
+        "pl": "* Update Dependences: \"js- controller\": \"> = 5.0.19\"\nSprawdź system przed zainstalowaniem nowej wersji",
+        "uk": "* Оновлення залежностей: \"js-controller\": \">=5.0.19\"\nПеревірити систему до встановлення нової версії",
+        "zh-cn": "* 更新属:\"js-controller\":\">=5.0.19\"\n在安装新版本前检查您的系统"
+      },
       "1.0.8": {
         "en": "remove 1.0.5 from io-package and add ioBroker to keywords",
         "de": "1.0.5 aus io-package entfernen und ioBroker zu Keywords hinzufügen",
@@ -80,19 +93,6 @@
         "pl": "usunąć niewłaściwe ostrzeżenie",
         "uk": "видалення неправильного попередження",
         "zh-cn": "删除错误的警告"
-      },
-      "1.0.1": {
-        "en": "Bugfix maximum Limitation & fix standard deviation",
-        "de": "Bugfix maximal Limitierung & Standardabweichung fixieren",
-        "ru": "Максимальный Ограничение и исправление стандартного отклонения",
-        "pt": "Máximo de Bugfix Limitação e correção desvio padrão",
-        "nl": "Maximum bugfix Beperking en vaststelling van standaardafwijking",
-        "fr": "Correction maximale Limite & fixer l'écart type",
-        "it": "Bugfix massimo Limitazioni & fix deviazione standard",
-        "es": "Máximo de Bugfix Limitación \" fijación de la desviación estándar",
-        "pl": "Maksimum błędów Ograniczenie i stałe odchylenie standardowe",
-        "uk": "Максимальна кількість помилок Обмеження та фіксація стандартного відхилення",
-        "zh-cn": "最大错误修正 限制和固定标准偏差"
       }
     },
     "titleLang": {
