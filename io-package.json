@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "news": {
+      "1.1.1": {
+        "en": "Add more smoothtime values",
+        "de": "Mehr Glattzeitwerte hinzufügen",
+        "ru": "Добавить более гладкие значения",
+        "pt": "Adicionar mais valores de tempo suave",
+        "nl": "Meer vloeiende tijdwaarden toevoegen",
+        "fr": "Ajouter des valeurs plus lisses",
+        "it": "Aggiungi più valori di tempo liscio",
+        "es": "Añadir valores de tiempo más suave",
+        "pl": "Dodaj więcej wartości smoothtime",
+        "uk": "Додати більш рівні значення",
+        "zh-cn": "添加更光滑的时间值"
+      },
       "1.1.0": {
         "en": "* Update Dependencies: \"js-controller\": \">=5.0.19\"\n  Check your System before installing new Version",
         "de": "* Update Dependencies: \"js-controller\": \">=5.0.19\"\nÜberprüfen Sie Ihr System vor der Installation neuer Version",
@@ -80,19 +93,6 @@
         "pl": "dodany czas odchylenia standardowego w trybie niesmeethed",
         "uk": "доданий час для стандартного відхилення в непрозорому режимі",
         "zh-cn": "在未密钥模式下添加标准偏差时间"
-      },
-      "1.0.2": {
-        "en": "remove wrong warning",
-        "de": "falsche warnung entfernen",
-        "ru": "удалить предупреждение",
-        "pt": "remover aviso errado",
-        "nl": "verkeerde waarschuwing verwijderen",
-        "fr": "supprimer les avertissements erronés",
-        "it": "rimuovere l'avviso sbagliato",
-        "es": "eliminar la advertencia equivocada",
-        "pl": "usunąć niewłaściwe ostrzeżenie",
-        "uk": "видалення неправильного попередження",
-        "zh-cn": "删除错误的警告"
       }
     },
     "titleLang": {
