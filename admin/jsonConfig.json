@@ -6,23 +6,42 @@
             "newLine": true,
             "type": "header",
             "text": "mainInformations",
-            "size": 3
+            "size": 3,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "Information1":{
             "newLine":true,
             "type": "staticText",
-            "label": "mainInformationText"
+            "label": "mainInformationText",
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "configurationHeader": {
             "newLine": true,
             "type": "header",
             "text": "configuration",
-            "size": 3
+            "size": 3,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "statesAccordion":{
             "type":"accordion",
             "titleAttr": "name",
-            "sm":12,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
             "items":[
                 {
                     "type": "text",
@@ -32,7 +51,11 @@
                     "validator": "if(data.name === '' || data.name === null){return false;}else{const myRegEx = /^([0-9a-z_ ])*$/i; return myRegEx.test(data.name);}",
                     "validatorNoSaveOnError": true,
                     "default": "",
-                    "sm":2
+					"xs": 12,
+					"sm": 2,
+					"md": 2,
+					"lg": 2,
+					"xl": 2
                 },
                 {
                     "type": "objectId",
@@ -42,7 +65,11 @@
                     "validator": "if(data.id === '' || data.id === null){return false;}else{return true;}",
                     "validatorNoSaveOnError": true,
                     "default": "",
-                    "sm":5
+                    "xs": 12,
+					"sm": 5,
+					"md": 5,
+					"lg": 5,
+					"xl": 5
                 },
                 {
                     "attr": "refreshRate",
@@ -64,7 +91,11 @@
                     "default": 2,
                     "label": "refreshRate",
                     "tooltip": "refreshRateTooltip",
-                    "sm": 2
+                    "xs": 12,
+					"sm": 2,
+					"md": 2,
+					"lg": 2,
+					"xl": 2
                 },
                 {
                     "attr": "refreshWithStatechange",
@@ -73,7 +104,11 @@
                     "tooltip": "resfreshWithValuechangeTooltip",
                     "hidden":"data.refreshRate === 0",
                     "default": false,
-                    "sm":1
+                    "xs": 12,
+					"sm": 1,
+					"md": 1,
+					"lg": 1,
+					"xl": 1
                   },
                 {
                     "newLine": true,
@@ -85,7 +120,11 @@
                     "default": "mvgavg",
                     "label": "calculationType",
                     "tooltip": "typeTooltip",
-                    "sm": 3
+                    "xs": 12,
+					"sm": 3,
+					"md": 3,
+					"lg": 3,
+					"xl": 3
                 },
                 {
                     "type": "select",
@@ -134,7 +173,11 @@
                     "default":30,
                     "label": "smoothtime",
                     "tooltip": "smoothtimeTooltip",
-                    "sm":2
+                    "xs": 12,
+					"sm": 2,
+					"md": 2,
+					"lg": 2,
+					"xl": 2
                 },
                 {   "attr": "separateSmoothtimeForNegativeDifference",
                     "type": "checkbox",
@@ -142,7 +185,11 @@
                     "tooltip": "negativeSeparateTooltip",
                     "default": false,
                     "hidden": "data.type !== 'PT1'",
-                    "sm":2
+                    "xs": 12,
+					"sm": 2,
+					"md": 2,
+					"lg": 2,
+					"xl": 2
                 },
                 {
                     "type": "select",
@@ -182,7 +229,11 @@
                     "default":30,
                     "label": "smoothtimeNegative",
                     "tooltip": "smoothtimeNegativeTooltip",
-                    "sm": 2,
+                    "xs": 12,
+					"sm": 2,
+					"md": 2,
+					"lg": 2,
+					"xl": 2,
                     "hidden": "data.type !== 'PT1' || data.separateSmoothtimeForNegativeDifference === false"
                 },            
                 {   "attr": "limitInNegativeDirection",
@@ -191,7 +242,11 @@
                     "label": "limitMinimum",
                     "tooltip": "limitMinimumTooltip",
                     "default": false,
-                    "sm":3
+                    "xs": 12,
+					"sm": 3,
+					"md": 3,
+					"lg": 3,
+					"xl": 3
                 },
                 { "attr": "negativeLimit",
                     "type": "number",
@@ -199,7 +254,11 @@
                     "tooltip": "minimumValueTooltip",
                     "hidden":"data.limitInNegativeDirection != true",
                     "default":0,
-                    "sm":3
+                    "xs": 12,
+					"sm": 3,
+					"md": 3,
+					"lg": 3,
+					"xl": 3
                 },
                 { "attr": "limitInPositiveDirection",
                     "type": "checkbox",
@@ -207,7 +266,11 @@
                     "tooltip": "limitMaximumTooltip",
                     "hidden": "customObj.common.type !== 'number'",
                     "default": false,
-                    "sm":3
+                    "xs": 12,
+					"sm": 3,
+					"md": 3,
+					"lg": 3,
+					"xl": 3
                 },
                 { "attr": "positiveLimit",
                     "type": "number",
@@ -215,7 +278,11 @@
                     "tooltip": "maximumValueTooltip",
                     "hidden":"data.limitInPositiveDirection != true || customObj.common.type !== 'number'",
                     "default":100,
-                    "sm":3
+                    "xs": 12,
+					"sm": 3,
+					"md": 3,
+					"lg": 3,
+					"xl": 3
                 },
                 { "attr": "limitDecimalplaces",
                     "type": "checkbox",
@@ -223,7 +290,11 @@
                     "label": "limitDecimalplaces",
                     "tooltip": "limitDecimalplacesTooltip",
                     "default": false,
-                    "sm":3
+                    "xs": 12,
+					"sm": 3,
+					"md": 3,
+					"lg": 3,
+					"xl": 3
                 },
                 {
                     "attr": "decimalplaces",
@@ -242,14 +313,22 @@
                     "label": "decimalplaces",
                     "tooltip": "decimalplacesTooltip",
                     "hidden": "data.limitDecimalplaces != true",
-                    "sm": 2
+                    "xs": 12,
+					"sm": 2,
+					"md": 2,
+					"lg": 2,
+					"xl": 2
                 },            
                 {   "attr": "ignoreAboveStandardDeviation",
                     "type": "checkbox",
                     "label": "ignoreStandardDeviation",
                     "tooltip": "ignoreStandardDeviationTooltip",
                     "default": false,
-                    "sm":3
+                    "xs": 12,
+					"sm": 3,
+					"md": 3,
+					"lg": 3,
+					"xl": 3
                 },
                 { "attr": "standardDeviationLimit",
                     "type": "number",
@@ -257,7 +336,11 @@
                     "tooltip": "standardDeviationLimitTooltip",
                     "hidden":"data.ignoreAboveStandardDeviation != true",
                     "default":1000,
-                    "sm":2
+                    "xs": 12,
+					"sm": 2,
+					"md": 2,
+					"lg": 2,
+					"xl": 2
                 },
                 {
                     "type": "select",
@@ -274,7 +357,11 @@
                     "default":20000,
                     "label": "unsmoothedStandardDeviationTime",
                     "tooltip": "unsmoothedStandardDeviationTimeTooltip",
-                    "sm": 2,
+                    "xs": 12,
+					"sm": 2,
+					"md": 2,
+					"lg": 2,
+					"xl": 2,
                     "hidden":"data.ignoreAboveStandardDeviation != true || data.smoothtime != 0"
                 }
             ]
