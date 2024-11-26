@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "news": {
+      "1.1.2": {
+        "en": "responsive tags added to jsonconfig",
+        "de": "responsive tags hinzugefügt jsonconfig",
+        "ru": "адаптивные теги добавлены к jsonconfig",
+        "pt": "tags responsivas adicionadas ao jsonconfig",
+        "nl": "responsieve tags toegevoegd aan jsonconfig",
+        "fr": "tags responsive ajoutés à jsonconfig",
+        "it": "tag reattivi aggiunti a jsonconfig",
+        "es": "etiquetas sensibles añadidos a jsonconfig",
+        "pl": "responsive tags dodany do jsonconfig",
+        "uk": "responsive теги додано в jsonconfig",
+        "zh-cn": "添加到 jsonconfig 的响应标记"
+      },
       "1.1.1": {
         "en": "Add more smoothtime values",
         "de": "Mehr Glattzeitwerte hinzufügen",
@@ -80,19 +93,6 @@
         "pl": "dodano bardziej głupie debugowanie zmian wartości",
         "uk": "додано більше викупівля silly для змін вартості",
         "zh-cn": "为值变化添加更多愚蠢的调试"
-      },
-      "1.0.3": {
-        "en": "added time for standard deviation in unsmeethed mode",
-        "de": "zusatzzeit für standardabweichung im ungesechten modus",
-        "ru": "добавленное время для стандартного отклонения в непрошедшем режиме",
-        "pt": "tempo adicionado para desvio padrão no modo não metado",
-        "nl": "extra tijd voor standaardafwijking in niet-besmette modus",
-        "fr": "temps supplémentaire pour l'écart type en mode non nettoyé",
-        "it": "tempo aggiunto per deviazione standard in modalità non smeethed",
-        "es": "tiempo añadido para la desviación estándar en modo no medido",
-        "pl": "dodany czas odchylenia standardowego w trybie niesmeethed",
-        "uk": "доданий час для стандартного відхилення в непрозорому режимі",
-        "zh-cn": "在未密钥模式下添加标准偏差时间"
       }
     },
     "titleLang": {

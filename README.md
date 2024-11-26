@@ -27,7 +27,7 @@ Or ignore values with a high standard deviation.
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.1.2 (2024-11-26)
 * (BenAhrdt) responsive tags added to jsonconfig
 
 ### 1.1.1 (2024-11-21)
