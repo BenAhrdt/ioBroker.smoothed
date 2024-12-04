@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "news": {
+      "1.2.0": {
+        "en": "eslint updated",
+        "de": "eslint aktualisiert",
+        "ru": "eslint",
+        "pt": "eslint atualizado",
+        "nl": "eslint bijgewerkt",
+        "fr": "mise à jour",
+        "it": "eslint aggiornato",
+        "es": "eslint updated",
+        "pl": "eslint zaktualizowany",
+        "uk": "eslint оновлений",
+        "zh-cn": "埃斯林特更新"
+      },
       "1.1.2": {
         "en": "responsive tags added to jsonconfig",
         "de": "responsive tags hinzugefügt jsonconfig",
@@ -80,19 +93,6 @@
         "pl": "rozwiązać błąd w setState",
         "uk": "помилки в setState",
         "zh-cn": "在设置状态中解决错误"
-      },
-      "1.0.4": {
-        "en": "added more silly debugging for value changes",
-        "de": "mehr silly debugging für wertänderungen",
-        "ru": "добавлены более глупые отладки для изменения стоимости",
-        "pt": "adicionado mais bobo depuração para mudanças de valor",
-        "nl": "toegevoegd meer domme debuggen voor waardewijzigingen",
-        "fr": "ajouté plus stupide débogage pour les changements de valeur",
-        "it": "aggiunto più stupido debugging per cambiamenti di valore",
-        "es": "añadido más tonto depuración para los cambios de valor",
-        "pl": "dodano bardziej głupie debugowanie zmian wartości",
-        "uk": "додано більше викупівля silly для змін вартості",
-        "zh-cn": "为值变化添加更多愚蠢的调试"
       }
     },
     "titleLang": {
