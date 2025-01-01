@@ -145,7 +145,7 @@ class Smoothed extends utils.Adapter {
      * Is called if a subscribed state changes
      *
      * @param id id of the changed state
-     * @param state state (val & ack) of the changed ste-id
+     * @param state state (val & ack) of the changed state-id
      */
     onStateChange(id, state) {
         if (state) {
