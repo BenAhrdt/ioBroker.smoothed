@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "news": {
+      "1.2.1": {
+        "en": "add logging to function in cyclic output",
+        "de": "fügen sie die protokollierung in der funktion der zyklischen ausgabe hinzu",
+        "ru": "добавить заготовку для функционирования в циклическом выпуске",
+        "pt": "adicionar log para função na saída cíclica",
+        "nl": "logging toevoegen aan functie in cyclische uitvoer",
+        "fr": "ajouter l'enregistrement à la fonction en sortie cyclique",
+        "it": "aggiungere logging alla funzione in uscita ciclica",
+        "es": "añadir logging to function in cyclic output",
+        "pl": "dodaj logowanie do funkcji w cyklicznym wyjściu",
+        "uk": "додати запис до функції в циклічному виході",
+        "zh-cn": "将日志添加到循环输出中的函数"
+      },
       "1.2.0": {
         "en": "eslint updated",
         "de": "eslint aktualisiert",
@@ -80,19 +93,6 @@
         "pl": "zmniejszyć więcej razy subskrybowanie tego samego id",
         "uk": "зменшити більше разів підщеплення того ж id",
         "zh-cn": "减少同一 id 的子缩放次数"
-      },
-      "1.0.6": {
-        "en": "solve error in setState",
-        "de": "fehler in setState lösen",
-        "ru": "ошибка в setState",
-        "pt": "resolver erro no setState",
-        "nl": "fout in setState oplossen",
-        "fr": "résoudre l'erreur dans setState",
-        "it": "risolvere errore in setState",
-        "es": "resolver error en setState",
-        "pl": "rozwiązać błąd w setState",
-        "uk": "помилки в setState",
-        "zh-cn": "在设置状态中解决错误"
       }
     },
     "titleLang": {

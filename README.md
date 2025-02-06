@@ -27,7 +27,7 @@ Or ignore values with a high standard deviation.
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.1 (2025-02-06)
 * (BenAhrdt) add logging to function in cyclic output
 
 ### 1.2.0 (2024-12-04)
