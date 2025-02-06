@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "news": {
+      "1.2.2": {
+        "en": "add debuglogging at statechange",
+        "de": "debuglogging bei statechange hinzufügen",
+        "ru": "добавить отладку в statechange",
+        "pt": "adicionar debuglogging no statechange",
+        "nl": "debugging toevoegen bij statusverandering",
+        "fr": "ajouter debuglogging à statechange",
+        "it": "aggiungere debuglogging a statechange",
+        "es": "añadir depuración en el cambio de estado",
+        "pl": "dodaj debuglogging w stanie",
+        "uk": "додати дебвуглогу в державну зміну",
+        "zh-cn": "在状态更改时添加调试日志"
+      },
       "1.2.1": {
         "en": "add logging to function in cyclic output",
         "de": "fügen sie die protokollierung in der funktion der zyklischen ausgabe hinzu",
@@ -80,19 +93,6 @@
         "pl": "usunąć 1.0.5 z pakietu jo- i dodać joBroker do słów kluczowych",
         "uk": "remove 1.0.5 від io-package і додайте ioBroker до ключових слів",
         "zh-cn": "从 io- package 中删除 1. 0.5 ,并在关键词中添加 ioBroker"
-      },
-      "1.0.7": {
-        "en": "reduce more times subscribtion of the same id",
-        "de": "mehrmalige abschreibung der gleichen id",
-        "ru": "уменьшать больше раз субкрибции одного и того же",
-        "pt": "reduzir mais vezes a subscrição do mesmo id",
-        "nl": "meer keer subscribtie van hetzelfde id verminderen",
-        "fr": "réduire plus de temps de subscribtion du même id",
-        "it": "ridurre più volte la sottoscrizione dello stesso id",
-        "es": "reducir más veces la suscripción de la misma id",
-        "pl": "zmniejszyć więcej razy subskrybowanie tego samego id",
-        "uk": "зменшити більше разів підщеплення того ж id",
-        "zh-cn": "减少同一 id 的子缩放次数"
       }
     },
     "titleLang": {
