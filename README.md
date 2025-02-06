@@ -29,6 +29,7 @@ Or ignore values with a high standard deviation.
 -->
 ### **WORK IN PROGRESS**
 * (BenAhrdt) add logging to function in cyclic output
+
 ### 1.2.0 (2024-12-04)
 * (BenAhrdt) eslint updated
 
@@ -96,7 +97,7 @@ Or ignore values with a high standard deviation.
 ## License
 MIT License
 
-Copyright (c) 2024 Ben1983 <bsahrdt@gmail.com>
+Copyright (c) 2025 Ben1983 <bsahrdt@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
