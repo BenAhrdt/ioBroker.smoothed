@@ -106,7 +106,7 @@ class Smoothed extends utils.Adapter {
             this.log.debug(`setstate: ${statename}`);
             this.setStateAsync(statename, smoothedOutput, true);
         } catch (error) {
-            this.log.error(`error in functionm${activeFunction}: ${error}`);
+            this.log.error(`error in function ${activeFunction}: ${error}`);
         }
     }
 
