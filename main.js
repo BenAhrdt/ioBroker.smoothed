@@ -151,6 +151,7 @@ class Smoothed extends utils.Adapter {
      */
     onStateChange(id, state) {
         if (state) {
+            this.log.debug(`Statechange of id: ${id}, value: ${state.val}, ack: ${state.ack}`);
             this.doChangeProcess(id, state);
         } else {
             // The state was deleted
