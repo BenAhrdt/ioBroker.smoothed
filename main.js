@@ -78,6 +78,8 @@ class Smoothed extends utils.Adapter {
      * ***************************************************************/
 
     outputAddedChannels(refreshRate) {
+        const activeFunction = 'outputAddedChannels';
+        this.log.debug(`function ${activeFunction} startet`);
         for (const channelName in this.cronJobs[refreshRate]) {
             if (channelName !== this.cronJobs.jobIdKey) {
                 const channel = this.activeChannels[channelName];

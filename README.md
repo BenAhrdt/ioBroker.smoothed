@@ -27,6 +27,8 @@ Or ignore values with a high standard deviation.
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (BenAhrdt) add logging to function in cyclic output
 ### 1.2.0 (2024-12-04)
 * (BenAhrdt) eslint updated
 
