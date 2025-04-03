@@ -28,6 +28,9 @@ Or ignore values with a high standard deviation.
 	### **WORK IN PROGRESS**
 -->
 ### 1.3.0 (2025-02-22)
+* (BenAhrdt) implement calculation type median
+
+### 1.3.0 (2025-02-22)
 * (BenAhrdt) update admin and js-controller dependecies
 
 ### 1.2.2 (2025-02-06)

@@ -51,6 +51,7 @@ class Smoothed extends utils.Adapter {
         this.calculationtype = {
             mvgavg: 'mvgavg',
             lowpasspt1: 'PT1',
+            median: 'Median',
         };
 
         // define externat modules
@@ -123,6 +124,9 @@ class Smoothed extends utils.Adapter {
         switch (channel.type) {
             case this.calculationtype.lowpasspt1:
                 this.calculation.lowpassPt1(channel);
+                break;
+            case this.calculationtype.median:
+                this.calculation.Median(channel);
                 break;
             case this.calculationtype.mvgavg:
             default:
