@@ -27,7 +27,7 @@ Or ignore values with a high standard deviation.
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### 1.3.0 (2025-02-22)
+### **WORK IN PROGRESS**
 * (BenAhrdt) implement calculation type median
 
 ### 1.3.0 (2025-02-22)
