@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "news": {
+      "1.5.0": {
+        "en": "update Authentication NPM\nupdate dependencie EsLint\nupdate dependencie admin, Core, EsLint\nupdate dependencie to node >= 20\nupdate testing to 24.x",
+        "de": "update Authentication NPM\nupdate abhängigencie EsLint\nupdate abhängigencie admin, Core, EsLint\nupdate abhängigencier to node >= 20\nupdate-tests auf 24.x",
+        "ru": "обновление Authentication NPM\nобновление зависимостей EsLint\nобновление зависимого администратора, Core, EsLint\nобновление зависимых узлов >= 20\nтестирование обновлений до 24.x",
+        "pt": "atualizar a autenticação NPM\natualizar dependente EsLint\nupdate dependencie admin, Core, EsLint\natualização dependente para nó >= 20\natualização de testes para 24.x",
+        "nl": "authenticatie NPM bijwerken\nupdate afhankelijk EsLint\nupdate afhankelijk admin, Core, EsLint\nupdate afhankelijk van knooppunt 20\nupdate testen naar 24.x",
+        "fr": "mettre à jour Authentification NPM\nmise à jour de dépendance EsLint\nupdate dependencie admin, Core, EsLint\nmettre à jour dependencie to node >= 20\nmettre à jour les tests à 24.x",
+        "it": "aggiornamento Autenticazione NPM\naggiornamento indipendenza EsLint\naggiornamento dependencie admin, Core, EsLint\naggiornamento della dipendenza dal nodo 20\naggiornamento test a 24.x",
+        "es": "actualización de la autenticación NPM\nactualización dependecie EsLint\nactualización dependecie admin, Core, EsLint\nactualización dependecie de nodo √= 20\npruebas de actualización a 24.x",
+        "pl": "aktualizacja Uwierzytelnianie NPM\nupdate dependencie EsLint\nupdate dependencie admin, Core, EsLint\naktualizacja zależnego do węzła > = 20\naktualizacja testów do 24.x",
+        "uk": "оновлення аутентифікації NPM\nоновлення залежності EsLint\njavaScript licenses API Веб-сайт Go1.13.8\nоновлення залежності до вершини >= 20 хв\nтестування оновлення до 24.x",
+        "zh-cn": "更新认证国家预防机制\n更新依存的 EsLint\n更新依赖性管理员、 核心、 EsLint\n更新依赖到节点qq 20 (简体中文)\n更新测试为 24.x"
+      },
       "1.4.0": {
         "en": "implement calculation type median",
         "de": "berechnungsart median implementieren",
@@ -80,19 +93,6 @@
         "pl": "responsive tags dodany do jsonconfig",
         "uk": "responsive теги додано в jsonconfig",
         "zh-cn": "添加到 jsonconfig 的响应标记"
-      },
-      "1.1.1": {
-        "en": "Add more smoothtime values",
-        "de": "Mehr Glattzeitwerte hinzufügen",
-        "ru": "Добавить более гладкие значения",
-        "pt": "Adicionar mais valores de tempo suave",
-        "nl": "Meer vloeiende tijdwaarden toevoegen",
-        "fr": "Ajouter des valeurs plus lisses",
-        "it": "Aggiungi più valori di tempo liscio",
-        "es": "Añadir valores de tiempo más suave",
-        "pl": "Dodaj więcej wartości smoothtime",
-        "uk": "Додати більш рівні значення",
-        "zh-cn": "添加更光滑的时间值"
       }
     },
     "titleLang": {
