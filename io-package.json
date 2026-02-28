@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "news": {
+      "1.5.1": {
+        "en": "update dependecies",
+        "de": "aktualisierung der abhängigkeiten",
+        "ru": "обновление зависимостей",
+        "pt": "atualizar dependências",
+        "nl": "afhankelijkheden bijwerken",
+        "fr": "mettre à jour les dépendances",
+        "it": "dipendenze dell'aggiornamento",
+        "es": "dependencias de actualización",
+        "pl": "uaktualnianie zależności",
+        "uk": "оновлення залежності",
+        "zh-cn": "更新依赖关系"
+      },
       "1.5.0": {
         "en": "update Authentication NPM\nupdate dependencie EsLint\nupdate dependencie admin, Core, EsLint\nupdate dependencie to node >= 20\nupdate testing to 24.x",
         "de": "update Authentication NPM\nupdate abhängigencie EsLint\nupdate abhängigencie admin, Core, EsLint\nupdate abhängigencier to node >= 20\nupdate-tests auf 24.x",
@@ -80,19 +93,6 @@
         "pl": "eslint zaktualizowany",
         "uk": "eslint оновлений",
         "zh-cn": "埃斯林特更新"
-      },
-      "1.1.2": {
-        "en": "responsive tags added to jsonconfig",
-        "de": "responsive tags hinzugefügt jsonconfig",
-        "ru": "адаптивные теги добавлены к jsonconfig",
-        "pt": "tags responsivas adicionadas ao jsonconfig",
-        "nl": "responsieve tags toegevoegd aan jsonconfig",
-        "fr": "tags responsive ajoutés à jsonconfig",
-        "it": "tag reattivi aggiunti a jsonconfig",
-        "es": "etiquetas sensibles añadidos a jsonconfig",
-        "pl": "responsive tags dodany do jsonconfig",
-        "uk": "responsive теги додано в jsonconfig",
-        "zh-cn": "添加到 jsonconfig 的响应标记"
       }
     },
     "titleLang": {
