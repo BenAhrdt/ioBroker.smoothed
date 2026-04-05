@@ -10,6 +10,8 @@ const utils = require('@iobroker/adapter-core');
 const calculationtypes = require('./lib/modules/calculation');
 const statehandlingtypes = require('./lib/modules/statehandling');
 const schedulehandlingtypes = require('./lib/modules/schedulehandling');
+const objectStoreClass = require('./lib/modules/objectStore');
+const SmoothedDeviceManagement = require('./lib/modules/deviceManager/deviceManager');
 
 /** This class is the main class to smooth the values. */
 class Smoothed extends utils.Adapter {
@@ -23,8 +25,8 @@ class Smoothed extends utils.Adapter {
         });
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
-        // this.on("objectChange", this.onObjectChange.bind(this));
-        // this.on("message", this.onMessage.bind(this));
+        this.on('objectChange', this.onObjectChange.bind(this));
+        this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
 
         // Name of internal folder for smoothed values
@@ -66,6 +68,16 @@ class Smoothed extends utils.Adapter {
     async onReady() {
         // delete not configed ids in namestapace
         await this.statehandling.delNotConfiguredIds();
+
+        // Initialize your adapter here
+        this.subscribeForeignObjects('*');
+        this.subscribeStates('*');
+
+        // Generate Object Store
+        this.objectStore = new objectStoreClass(this);
+        await this.objectStore.generateStoreObjects();
+        // Device Manager
+        this.deviceManagement = new SmoothedDeviceManagement(this);
 
         // Create internal adapter-structure
         await this.statehandling.createInternalValues();
@@ -153,9 +165,13 @@ class Smoothed extends utils.Adapter {
      * @param id id of the changed state
      * @param state state (val & ack) of the changed state-id
      */
-    onStateChange(id, state) {
+    async onStateChange(id, state) {
         if (state) {
             this.log.debug(`Statechange of id: ${id}, value: ${state.val}, ack: ${state.ack}`);
+            // Internal ObjectStore
+            if (id.startsWith(this.objectStore?.startCondition)) {
+                await this.objectStore?.updateDeviceObject(id, { payload: { state: state } });
+            }
             this.doChangeProcess(id, state);
         } else {
             // The state was deleted
@@ -238,15 +254,18 @@ class Smoothed extends utils.Adapter {
     //  * @param {string} id
     //  * @param {ioBroker.Object | null | undefined} obj
     //  */
-    // onObjectChange(id, obj) {
-    // 	if (obj) {
-    // 		// The object was changed
-    // 		this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-    // 	} else {
-    // 		// The object was deleted
-    // 		this.log.info(`object ${id} deleted`);
-    // 	}
-    // }
+    async onObjectChange(id, obj) {
+        if (obj) {
+            try {
+                // Internal ObjectStore
+                if (id.startsWith(this.objectStore?.startCondition)) {
+                    await this.objectStore?.updateDeviceObject(id, { payload: { object: obj } });
+                }
+            } catch (error) {
+                this.log.error(`error at object change: ${error}`);
+            }
+        }
+    }
 
     /******************************************************************
      * ****************************************************************
@@ -258,17 +277,23 @@ class Smoothed extends utils.Adapter {
     //  * Using this method requires "common.messagebox" property to be set to true in io-package.json
     //  * @param {ioBroker.Message} obj
     //  */
-    // onMessage(obj) {
-    // 	if (typeof obj === "object" && obj.message) {
-    // 		if (obj.command === "send") {
-    // 			// e.g. send email or pushover or whatever
-    // 			this.log.info("send command");
+    onMessage(obj) {
+        if (obj.command?.startsWith('dm:')) {
+            // Handled by Device Manager class itself, so ignored here
+            return;
+        }
+        if (typeof obj === 'object' && obj.message) {
+            if (obj.command === 'send') {
+                // e.g. send email or pushover or whatever
+                this.log.debug('send command');
 
-    // 			// Send response in callback if required
-    // 			if (obj.callback) this.sendTo(obj.from, obj.command, "Message received", obj.callback);
-    // 		}
-    // 	}
-    // }
+                // Send response in callback if required
+                if (obj.callback) {
+                    this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
+                }
+            }
+        }
+    }
 }
 
 if (require.main !== module) {

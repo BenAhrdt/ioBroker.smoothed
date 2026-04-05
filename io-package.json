@@ -149,8 +149,20 @@
     "compact": true,
     "connectionType": "local",
     "dataSource": "push",
+    "supportedMessages": {
+      "deviceManager": true
+    },
     "adminUI": {
-      "config": "json"
+      "config": "json",
+      "tab": "json"
+    },
+    "adminTab": {
+      "link": "jsonTab.json",
+      "singleton": false,
+      "name": {
+        "en": "Smoothed",
+        "de": "Gefiltert"
+      }
     },
     "dependencies": [
       {
