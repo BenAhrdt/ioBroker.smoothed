@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smoothed",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "news": {
+      "1.6.0": {
+        "en": "improve sourceId in desc => id\nadd objectStore\nadd device Manager",
+        "de": "sourceId in dec =>\nobjekt speichern\ngerät Manager hinzufügen",
+        "ru": "улучшить sourceId в desc => id\nдобавить ObjectStore\nдобавить менеджер устройств",
+        "pt": "melhorar o sourceId em desc => id\nadicionar objetoStore\nadicionar gerenciador de dispositivos",
+        "nl": "bron-id verbeteren in desc => id\nobject toevoegenStore\napparaatbeheer toevoegen",
+        "fr": "améliorer sourceId dans desc => id\najouter objetStore\najouter le gestionnaire de périphérique",
+        "it": "migliorare la fonteId in desc => id\naggiungere oggettoStore\naggiungere dispositivo Manager",
+        "es": "mejor sourceId in desc = confianza id\nañadir objetoStore\nagregar dispositivo Manager",
+        "pl": "poprawić sourceId w desc = > id\ndodaj obiekt Sklep\ndodaj menedżera urządzeń",
+        "uk": "javaScript licenses API Веб-сайт Go1.13.8\nдодати об'єктStore\nдодати диспетчер пристроїв",
+        "zh-cn": "在 desc id 中改进源代码\n添加对象Store\n添加设备管理器"
+      },
       "1.5.1": {
         "en": "update dependecies",
         "de": "aktualisierung der abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "dodaj logowanie do funkcji w cyklicznym wyjściu",
         "uk": "додати запис до функції в циклічному виході",
         "zh-cn": "将日志添加到循环输出中的函数"
-      },
-      "1.2.0": {
-        "en": "eslint updated",
-        "de": "eslint aktualisiert",
-        "ru": "eslint",
-        "pt": "eslint atualizado",
-        "nl": "eslint bijgewerkt",
-        "fr": "mise à jour",
-        "it": "eslint aggiornato",
-        "es": "eslint updated",
-        "pl": "eslint zaktualizowany",
-        "uk": "eslint оновлений",
-        "zh-cn": "埃斯林特更新"
       }
     },
     "titleLang": {
