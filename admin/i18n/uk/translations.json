@@ -16,7 +16,6 @@
     "smoothtimeTooltip": "плавний час для позитивних змін",
     "smoothtimeNegative": "згладжений час негативний",
     "smoothtimeNegativeTooltip": "плавний час для негативних змін",
-    "avgbw": "avg (зворотне ковзне середнє)",
     "mvgavg": "ковзне середнє",
     "valueChanged": "значення змінено",
     "everySecond": "кожна секунда",

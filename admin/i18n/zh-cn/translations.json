@@ -16,7 +16,6 @@
     "smoothtimeTooltip": "积极改变的平稳时间",
     "smoothtimeNegative": "平滑时间为负",
     "smoothtimeNegativeTooltip": "负面变化的平滑时间",
-    "avgbw": "avg（向后移动平均线）",
     "mvgavg": "移动平均线",
     "valueChanged": "值改变",
     "everySecond": "每一秒",

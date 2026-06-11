@@ -16,7 +16,6 @@
     "smoothtimeTooltip": "soepele tijd voor positieve veranderingen",
     "smoothtimeNegative": "smoothtime negatief",
     "smoothtimeNegativeTooltip": "soepele tijd voor negatieve veranderingen",
-    "avgbw": "avg (achterwaarts voortschrijdend gemiddelde)",
     "mvgavg": "voortschrijdend gemiddelde",
     "valueChanged": "waarde veranderd",
     "everySecond": "elke seconde",

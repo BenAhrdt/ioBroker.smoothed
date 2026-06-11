@@ -16,7 +16,6 @@
     "smoothtimeTooltip": "гладкое время для позитивных перемен",
     "smoothtimeNegative": "сглаживание негатива",
     "smoothtimeNegativeTooltip": "плавное время для негативных изменений",
-    "avgbw": "avg (обратное скользящее среднее)",
     "mvgavg": "скользящее среднее",
     "valueChanged": "значение изменено",
     "everySecond": "каждую секунду",

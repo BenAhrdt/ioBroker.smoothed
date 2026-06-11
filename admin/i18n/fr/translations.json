@@ -16,7 +16,6 @@
     "smoothtimeTooltip": "smoothtime pour des changements positifs",
     "smoothtimeNegative": "temps de fluidité négatif",
     "smoothtimeNegativeTooltip": "smoothtime pour les changements négatifs",
-    "avgbw": "avg (Moyenne mobile vers l'arrière)",
     "mvgavg": "moyenne mobile",
     "valueChanged": "valeur modifiée",
     "everySecond": "chaque seconde",

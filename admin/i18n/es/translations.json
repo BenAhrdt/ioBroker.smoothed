@@ -16,7 +16,6 @@
     "smoothtimeTooltip": "buen tiempo para cambios positivos",
     "smoothtimeNegative": "tiempo suave negativo",
     "smoothtimeNegativeTooltip": "buen tiempo para cambios negativos",
-    "avgbw": "avg (promedio móvil hacia atrás)",
     "mvgavg": "media móvil",
     "valueChanged": "valor cambiado",
     "everySecond": "cada segundo",
