@@ -47,7 +47,6 @@
                     "type": "text",
                     "attr": "name",
                     "label": "name",
-                    "tooltip": "nameTooltip",
                     "validator": "if(data.name === '' || data.name === null){return false;}else{const myRegEx = /^([0-9a-z_ ])*$/i; return myRegEx.test(data.name);}",
                     "validatorNoSaveOnError": true,
                     "default": "",
