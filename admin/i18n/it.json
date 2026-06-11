@@ -25,7 +25,6 @@
     "limitMaximumTooltip": "Selezionando questa opzione è possibile inserire un valore per limitare i valori validi nella direzione positiva",
     "limitMinimum": "limitare il valore minimo",
     "limitMinimumTooltip": "Selezionando questa opzione è possibile inserire un valore per limitare i valori validi nella direzione negativa",
-    "lowpass": "filtro passa basso",
     "lowpassPt1": "filtro passa basso (PT1)",
     "mainInformationText": "Con questo adattatore puoi attenuare i tuoi segnali secondo una formula selezionata. Inoltre puoi selezionare un ID più di una volta per uniformarlo con una formula diversa.",
     "mainInformations": "informazioni principali",

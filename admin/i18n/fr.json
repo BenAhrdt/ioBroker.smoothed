@@ -25,7 +25,6 @@
     "limitMaximumTooltip": "En sélectionnant cette option vous pouvez saisir une valeur pour limiter les valeurs valides dans le sens positif",
     "limitMinimum": "limite valeur minimale",
     "limitMinimumTooltip": "En sélectionnant cette option, vous pouvez saisir une valeur pour limiter les valeurs valides dans le sens négatif",
-    "lowpass": "filtre passe bas",
     "lowpassPt1": "filtre passe-bas (PT1)",
     "mainInformationText": "Avec cet adaptateur vous pouvez lisser vos signaux selon une formule sélectionnée. Vous pouvez également sélectionner un identifiant plusieurs fois pour le lisser avec une formule différente.",
     "mainInformations": "informations principales",

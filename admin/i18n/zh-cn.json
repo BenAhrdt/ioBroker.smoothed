@@ -25,7 +25,6 @@
     "limitMaximumTooltip": "通过选择此选项，您可以输入一个值来限制正方向的有效值",
     "limitMinimum": "限制最小值",
     "limitMinimumTooltip": "通过选择此选项，您可以输入一个值来限制负方向的有效值",
-    "lowpass": "低通滤波器",
     "lowpassPt1": "低通滤波器（PT1）",
     "mainInformationText": "使用此适配器，您可以根据选定的公式平滑信号。您也可以多次选择一个 ID，以使用不同的公式对其进行平滑处理。",
     "mainInformations": "主要信息",

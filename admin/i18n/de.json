@@ -25,7 +25,6 @@
     "limitMaximumTooltip": "Durch Auswahl dieser Option können Sie einen Wert eingeben, um die gültigen Werte in positiver Richtung zu begrenzen",
     "limitMinimum": "Minimalwert begrenzen",
     "limitMinimumTooltip": "Durch Auswahl dieser Option können Sie einen Wert eingeben, um die gültigen Werte in negativer Richtung zu begrenzen",
-    "lowpassPt1": "Tiefpassfilter (PT1)",
     "mainInformationText": "Mit diesem Adapter können Sie Ihre Signale nach einer ausgewählten Formel glätten. Sie können eine ID auch mehrmals auswählen, um sie mit einer anderen Formel zu glätten.",
     "mainInformations": "Hauptinformationen",
     "maximumValue": "Maximalwert",

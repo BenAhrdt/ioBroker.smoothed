@@ -25,7 +25,6 @@
     "limitMaximumTooltip": "Ao selecionar esta opção você pode inserir um valor para limitar os valores válidos na direção positiva",
     "limitMinimum": "limite valor mínimo",
     "limitMinimumTooltip": "Ao selecionar esta opção você pode inserir um valor para limitar os valores válidos na direção negativa",
-    "lowpass": "filtro passa-baixo",
     "lowpassPt1": "filtro passa-baixo (PT1)",
     "mainInformationText": "Com este adaptador você pode suavizar seus sinais de acordo com uma fórmula selecionada. Além disso, você pode selecionar um ID mais de uma vez para suavizá-lo com fórmulas diferentes.",
     "mainInformations": "informações principais",

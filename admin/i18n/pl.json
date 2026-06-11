@@ -25,7 +25,6 @@
     "limitMaximumTooltip": "Wybierając tę ​​opcję, możesz wprowadzić wartość ograniczającą prawidłowe wartości w kierunku dodatnim",
     "limitMinimum": "ograniczyć wartość minimalną",
     "limitMinimumTooltip": "Wybierając tę ​​opcję, możesz wprowadzić wartość, aby ograniczyć prawidłowe wartości w kierunku ujemnym",
-    "lowpass": "Filtr dolnoprzepustowy",
     "lowpassPt1": "filtr dolnoprzepustowy (PT1)",
     "mainInformationText": "Za pomocą tego adaptera możesz wygładzić sygnały według wybranej formuły. Możesz także wybrać jeden identyfikator więcej niż jeden raz, aby wygładzić go inną formułą.",
     "mainInformations": "główne informacje",

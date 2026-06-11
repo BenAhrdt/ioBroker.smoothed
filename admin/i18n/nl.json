@@ -25,7 +25,6 @@
     "limitMaximumTooltip": "Door deze optie te selecteren kunt u een waarde invoeren om de geldige waarden in de positieve richting te beperken",
     "limitMinimum": "minimale waarde beperken",
     "limitMinimumTooltip": "Door deze optie te selecteren kunt u een waarde invoeren om de geldige waarden in negatieve richting te beperken",
-    "lowpass": "laagdoorlaatfilter",
     "lowpassPt1": "laagdoorlaatfilter (PT1)",
     "mainInformationText": "Met deze adapter kunt u uw signalen afvlakken volgens een geselecteerde formule. U kunt ook één ID meer dan één keer selecteren om deze met een andere formule glad te strijken.",
     "mainInformations": "belangrijkste informatie",
